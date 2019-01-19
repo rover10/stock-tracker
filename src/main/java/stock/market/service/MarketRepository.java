@@ -8,6 +8,6 @@ import stock.market.model.Market;
 
 public interface MarketRepository extends JpaRepository<Market, Integer>{
 	public List<Market> findAll();
-	public Market save(Market cusip);
+	public Market save(Market market);
 	public Market findById(String id);
 }

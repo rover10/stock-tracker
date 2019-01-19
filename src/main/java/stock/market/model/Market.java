@@ -15,17 +15,13 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
-public 
 @Entity
-@Data
-
-class Market{
+public class Market{
 	@Id
 	private String id;
 	
 	@OneToMany
 	private Set<Cusip> cusip;
-	
 	
 	private String name;
 	private String countryCode;

@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -17,10 +18,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
 
-public @Entity
-@Data
-class Cusip{
-
+@Entity
+public class Cusip{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -28,6 +27,29 @@ class Cusip{
 	@ManyToOne
 	@JoinColumn(name="tradingMarket", insertable = false, updatable = false)
 	private Market market;
+	private String name;
+	private String cusip;
+	private Date tradingFrom;
+	private String tradingMarket;
+	
+	@ManyToMany(mappedBy="trackedCusips") // FieldName in Users table with ManyToMany annotation.
+    private Set<User> users;
+	
+	public Date getTradingFrom() {
+		return tradingFrom;
+	}
+	
+	public void setTradingFrom(Date tradingFrom) {
+		this.tradingFrom = tradingFrom;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
 
 	public Market getMarket() {
 		return market;
@@ -54,19 +76,7 @@ class Cusip{
 	public void setCusip(String cusip) {
 		this.cusip = cusip;
 	}
-	public Date getRegistration() {
-		return registration;
-	}
-	public void setRegistration(Date registration) {
-		this.registration = registration;
-	}
 	
-	private String name;
-	private String cusip;
-	private Date registration;
-	private String tradingMarket;
-	//private String marketid;
-
 	public String getTradingMarket() {
 		return tradingMarket;
 	}
