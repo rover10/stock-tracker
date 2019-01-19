@@ -15,9 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Cusip{
 	@Id
@@ -32,9 +34,6 @@ public class Cusip{
 	private Date tradingFrom;
 	private String tradingMarket;
 	
-	@ManyToMany(mappedBy="trackedCusips") // FieldName in Users table with ManyToMany annotation.
-    private Set<User> users;
-	
 	public Date getTradingFrom() {
 		return tradingFrom;
 	}
@@ -42,15 +41,6 @@ public class Cusip{
 	public void setTradingFrom(Date tradingFrom) {
 		this.tradingFrom = tradingFrom;
 	}
-
-	public Set<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
-	}
-
 	public Market getMarket() {
 		return market;
 	}
