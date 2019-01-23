@@ -1,15 +1,20 @@
 package stock.market.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import stock.market.model.Cusip;
 import stock.market.model.Market;
 import stock.market.model.Stock;
 import stock.market.model.User;
+import stock.market.model.query.CusipQuery;
 
 import org.springframework.http.MediaType;
 import stock.market.service.CusipRepository;
 import stock.market.service.MarketRepository;
 import stock.market.service.UserRepository;
+import stock.market.service.thirdparty.StockPrice;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,12 +25,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 public class StockController {
+	
 	@Autowired
 	CusipRepository cusipRepository;
+	
 	@Autowired
 	MarketRepository marketRepository;
+	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	StockPrice stockPrice;
 	
 	@RequestMapping(value= "/cusip", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Cusip> getAllCusip(){
@@ -34,6 +45,11 @@ public class StockController {
 					   .stream()
 					   .forEach((m) -> System.out.println(m.getMarket()));
 		return cusipRepository.findAll();
+	}
+	
+	@RequestMapping(value = "/cusip/historical", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Object getCusipPrice(@RequestBody CusipQuery cusipQuery) {
+		return stockPrice.fetchDetail(cusipQuery);
 	}
 	
 	@RequestMapping(value= "/cusip", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

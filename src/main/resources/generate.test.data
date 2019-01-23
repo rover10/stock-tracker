@@ -16,7 +16,7 @@ POST: localhost:8080/user
 {
 	"first_name": "sam",
 	"email":"am@gmail.com",
-	"mobile": "905553434",
+	"mobile": "775511111",
 	"last_name":"Kumar"
 }
 
@@ -154,3 +154,71 @@ GET: localhost:8080/user
         "middleName": null
     }
 ]
+
+
+
+
+GET: localhost:8080/cusip/historical
+Request body
+{
+	"symbol" : "TATASTLBSL",
+	"startDate" :  "12-12-2018",
+	"endDate" : "12-12-2018"
+}
+
+Response
+{
+    "id": 0,
+    "cusip": null,
+    "price": 0,
+    "date": null,
+    "userId": 0
+}
+
+Inner service response(this should be parsed)
+{
+  "dataset": {
+    "id": 45282687,
+    "dataset_code": "TATASTLBSL",
+    "database_code": "NSE",
+    "name": "Tata Steel Bsl Limited",
+    "description": "Historical prices for Tata Steel Bsl Limited<br><br>National Stock Exchange of India<br><br>Ticker: TATASTLBSL<br><br>ISIN: INE824B01021",
+    "refreshed_at": "2019-01-04 15:01:17 UTC",
+    "newest_available_date": "2019-01-04",
+    "oldest_available_date": "2018-12-10",
+    "column_names": [
+      "Date",
+      "Open",
+      "High",
+      "Low",
+      "Last",
+      "Close",
+      "Total Trade Quantity",
+      "Turnover (Lacs)"
+    ],
+    "frequency": "daily",
+    "type": "Time Series",
+    "premium": false,
+    "limit": null,
+    "transform": null,
+    "column_index": null,
+    "start_date": "2018-12-12",
+    "end_date": "2018-12-12",
+    "data": [
+      [
+        "2018-12-12",
+        34.2,
+        39.2,
+        33.55,
+        38.7,
+        38.3,
+        8588900.0,
+        3212.1
+      ]
+    ],
+    "collapse": null,
+    "order": null,
+    "database_id": 33
+  }
+}
+

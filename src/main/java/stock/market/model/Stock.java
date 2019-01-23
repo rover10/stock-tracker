@@ -13,16 +13,16 @@ import javax.persistence.OneToOne;
 public class Stock {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private long id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
 	private Cusip cusip;
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public Cusip getCusip() {

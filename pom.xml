@@ -48,6 +48,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+		    <groupId>io.fastjson</groupId>
+		    <artifactId>boon</artifactId>
+		    <version>0.33</version>
+		</dependency>
 	</dependencies>
 
 	<build>
