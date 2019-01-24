@@ -33,7 +33,7 @@ public class NSEStockPrice implements StockPrice{
 				   .queryParam("end_date", cusipQuery.getEndDate())
 				   .queryParam("api_key", apiKey);
 
-		Stock stock = restTemplate.getForObject(builder.buildAndExpand().toUri(), Stock.class);
+		Stock stock = new Stock(); //restTemplate.getForObject(builder.buildAndExpand().toUri(), Stock.class);
 
 		//Experimental
 		String result = restTemplate.getForObject(builder.buildAndExpand().toUri(), String.class);

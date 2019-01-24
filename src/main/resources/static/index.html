@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl" class="jumbotron"> 
+
+<div class="container">
+   <H1>NSE Stock Research</H1>
+	<hr>
+	<Br>
+	<div>
+		STOCK &nbsp; <input type="text" id="symbol" ng-model="symbol"> &nbsp; &nbsp; &nbsp;
+		DATE (DD-MM-YYYY) &nbsp; <input type="text" id="startDate" ng-model="startDate">  &nbsp; &nbsp; &nbsp;
+		<Button ng-click="fetch()">Get price</Button>
+	</div>
+	
+	<BR><BR>
+	<h5>Ticker: {{symbol}} on {{startDate}}</h5>
+	<h2 style="color:green"> &#8377; <span ng-hide="loading"> {{stock.price}}</span>  <span ng-show="loading"><img src="loader.gif" height="35px"></span>  </h2>
+  </div>
+  
+  <div>
+  	<button ng-click = "fetch_nse()">NSE Companies</button>
+  	<div ng-repeat="comp in nse_companies">
+  		<div>{{comp}}</div>
+  	</div>
+  </div>
+  {{nse_companies}}
+</div>
+<!-- 
+CSS
+ https://getbootstrap.com/docs/3.3/components/#jumbotron
+ -->
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+	$scope.symbol = "";
+	$scope.startDate = "";
+	$scope.endDate = "";
+	$scope.fetch = function(){
+		$scope.loading = true;
+		  $http({
+			    method : "POST",
+			    url : "/cusip/historical",
+			    data: { symbol: $scope.symbol, startDate:$scope.startDate, endDate:$scope.startDate }
+			  }).then(function mySuccess(response) {
+			      $scope.stock = response.data;
+			      $scope.loading = false
+			    }, function myError(response) {
+			      $scope.myWelcome = response.statusText;
+			      $scope.loading = false;
+			  });
+	}
+	
+	$scope.fetch_nse = function(){
+		$http({
+			method: "GET",
+			url: "/company/nse",
+		}).then(function succ(response){
+			$scope.nse_companies = response.data;
+		}, function err(resp){
+			//alert("Error: Can't get companies list " + resp);
+			$scope.nse_companies = resp;
+		});
+	}
+
+});
+</script>
+
+</body>
+</html>

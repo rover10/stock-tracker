@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import stock.market.model.Company;
 import stock.market.model.Cusip;
 import stock.market.model.Market;
 import stock.market.model.Stock;
@@ -11,6 +12,9 @@ import stock.market.model.User;
 import stock.market.model.query.CusipQuery;
 
 import org.springframework.http.MediaType;
+
+import stock.market.service.CompanyAdder;
+import stock.market.service.CompanyRepository;
 import stock.market.service.CusipRepository;
 import stock.market.service.MarketRepository;
 import stock.market.service.UserRepository;
@@ -36,6 +40,12 @@ public class StockController {
 	UserRepository userRepository;
 	
 	@Autowired
+	CompanyRepository companyRepository;
+	
+	@Autowired
+	CompanyAdder companyAdder;
+	
+	@Autowired
 	StockPrice stockPrice;
 	
 	@RequestMapping(value= "/cusip", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -47,7 +57,7 @@ public class StockController {
 		return cusipRepository.findAll();
 	}
 	
-	@RequestMapping(value = "/cusip/historical", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/cusip/historical", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Object getCusipPrice(@RequestBody CusipQuery cusipQuery) {
 		return stockPrice.fetchDetail(cusipQuery);
 	}
@@ -85,4 +95,15 @@ public class StockController {
 		userRepository.save(usr);	
 		return usr;
 	}
+	
+	@RequestMapping(value = "/company/nse", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Company> nseCompanies(){
+		return companyRepository.findAll();
+	}
+	
+	@RequestMapping(value = "/company/reload/nse", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void reloadNSECompanies() {
+		companyAdder.addCompanies();
+	}
+	
 }	
