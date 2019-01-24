@@ -1,46 +1,94 @@
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<head>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<script src="/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
+  <style>
+  .typeahead-demo .custom-popup-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    background-color: #f9f9f9;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .message {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    color: #868686;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .dropdown-menu {
+    position: static;
+    float: none;
+    display: block;
+    min-width: 160px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+</style>
+  </head>
 <body>
 
-<div ng-app="myApp" ng-controller="myCtrl" class="jumbotron"> 
+<!-- http://angular-ui.github.io/bootstrap/#!#top -->
 
+<div ng-app="myApp" ng-controller="myCtrl"> 
 <div class="container">
-   <H1>NSE Stock Research</H1>
-	<hr>
-	<Br>
-	<div>
-		STOCK &nbsp; <input type="text" id="symbol" ng-model="symbol"> &nbsp; &nbsp; &nbsp;
-		DATE (DD-MM-YYYY) &nbsp; <input type="text" id="startDate" ng-model="startDate">  &nbsp; &nbsp; &nbsp;
+<div class="">
+   <H1><strong>NSE</strong> <span style = "color:silver;font-weight: 300;">Stock Research<thin></span></H1>
+	<BR>
+	<p class="form-group">
+		<input type="text" id="symbol" ng-model="symbol" class="form-control"
+			placeholder="Custom template" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
+			typeahead-show-hint="true" typeahead-min-length="0"> 
+	</p>
+	<p class="form-group">
+		<input type="text" id="startDate" ng-model="startDate" placeholder = "DD-MM-YYYY" class="form-control">  
+	</p>
+
+	<p class="form-group">
 		<Button ng-click="fetch()">Get price</Button>
-	</div>
-	
-	<BR><BR>
-	<h5>Ticker: {{symbol}} on {{startDate}}</h5>
+	</p>
+
+	<p class="form-group">
+		<h5>{{symbol}} on {{startDate}}</h5>
+	</p>
 	<h2 style="color:green"> &#8377; <span ng-hide="loading"> {{stock.price}}</span>  <span ng-show="loading"><img src="loader.gif" height="35px"></span>  </h2>
-  </div>
   
-  <div>
-  	<button ng-click = "fetch_nse()">NSE Companies</button>
-  	<div ng-repeat="comp in nse_companies">
-  		<div>{{comp}}</div>
-  	</div>
-  </div>
-  {{nse_companies}}
 </div>
-<!-- 
-CSS
- https://getbootstrap.com/docs/3.3/components/#jumbotron
- -->
+</div>
+
+<script type="text/ng-template" id="customTemplate.html">
+	 <div style = "padding:5px;">
+      <span ng-bind-html="comp.symbol"></span>
+	</div>
+</script>
+
 <script>
-var app = angular.module('myApp', []);
+var app = angular.module('myApp', ['ngAnimate', 'ngSanitize','ui.bootstrap']);
 app.controller('myCtrl', function($scope, $http) {
+
 	$scope.symbol = "";
 	$scope.startDate = "";
 	$scope.endDate = "";
+	$scope.selected = undefined;
+	$scope.modelOptions = {
+		    debounce: {
+		      default: 500,
+		      blur: 250
+		    },
+		    getterSetter: true
+		  };
+	
 	$scope.fetch = function(){
 		$scope.loading = true;
 		  $http({
@@ -67,7 +115,7 @@ app.controller('myCtrl', function($scope, $http) {
 			$scope.nse_companies = resp;
 		});
 	}
-
+	$scope.fetch_nse();
 });
 </script>
 
