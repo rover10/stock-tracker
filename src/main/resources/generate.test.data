@@ -14,10 +14,10 @@ POST: localhost:8080/market
 
 POST: localhost:8080/user
 {
-	"first_name": "sam",
-	"email":"am@gmail.com",
-	"mobile": "775511111",
-	"last_name":"Kumar"
+	"firstName": "Rakesh",
+	"email":"rakesh.ducs@gmail.com",
+	"mobile": "9835720231",
+	"lastName":"Kumar"
 }
 
 GET: http://localhost:8080/cusip

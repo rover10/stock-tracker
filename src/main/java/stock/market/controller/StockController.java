@@ -84,6 +84,11 @@ public class StockController {
 		return userRepository.findAll();
 	}
 	
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
+	public User getUser(@PathVariable("id") int id) {
+		return userRepository.getOne(id);
+	}
+	
 	@RequestMapping(value="/track/{user}/{cusip}", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public User trackStock(
 		@PathVariable("user") int user,
@@ -94,6 +99,17 @@ public class StockController {
 		usr.getTrackedCusips().add(cp);
 		userRepository.save(usr);	
 		return usr;
+	}
+	
+	@RequestMapping(value = "/track/{user}/symbol/{symbol}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public User trackStockSymbol(
+			@PathVariable("user") int user,
+			@PathVariable("symbol") String symbol) {
+			User usr = userRepository.getOne(user);
+			Cusip cp = cusipRepository.findByCusip(symbol);
+			usr.getTrackedCusips().add(cp);
+			userRepository.save(usr);
+			return usr;
 	}
 	
 	@RequestMapping(value = "/company/nse", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

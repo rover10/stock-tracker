@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import stock.market.model.Company;
+import stock.market.model.Cusip;
+import stock.market.model.Market;
 
 @Service
 public class CompanyAdder {
@@ -18,8 +20,21 @@ public class CompanyAdder {
 	@Autowired
 	CompanyRepository companyRepository;
 	
+	@Autowired
+	CusipRepository cusipRepository;
+	
+	@Autowired
+	MarketRepository marketRepository;
+	
 	public void addCompanies() {
 		System.out.println("\n\n\n " + file);
+		
+		Market market = new Market();
+		market.setCountryCode("IN");
+		market.setId("nse");
+		market.setName("National Stock Exchange");
+		marketRepository.save(market);
+		
 		try (Scanner scanner = new Scanner(new File(file))) {
 			while (scanner.hasNext()){
 				
@@ -45,8 +60,15 @@ public class CompanyAdder {
 				c.setIsin(isin);
 				c.setFaceValue(face_value);
 				companyRepository.save(c);
-				//System.out.println(company);	
-			}
+				//System.out.println(company);
+				
+				Cusip cusip = new Cusip();
+				cusip.setCusip(symbol);
+				cusip.setName(name);
+				//cusip.setTradingFrom(tradingFrom);
+				cusip.setTradingMarket("nse");
+				cusipRepository.save(cusip);
+			}			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

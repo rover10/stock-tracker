@@ -58,78 +58,75 @@
 <!-- http://angular-ui.github.io/bootstrap/#!#top -->
 <!-- https://www.w3schools.com/icons/icons_reference.asp -->
 
-<div ng-app="myApp" ng-controller="myCtrl"> 
-<div class="container">
-<div class="">
-   <H1><strong>NSE</strong> <span style = "color:silver;font-weight: 300;">Stock Research<thin></span></H1>
-
-   	<div class="well well-sm">
-	<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
-		New <i class='fas fa-plus' style='font-size:12px'></i>
-	</button>
-
-   	<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
-	Alert <i class='fas fa-bell	' style='font-size:12px'></i>
-	</button>	
-	
-	
-   	<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
-	Settings <i class='fas fa-user-cog' style='font-size:12px'></i>
-	</button>	
-	</div>
-
-	<p class="form-group">
-		<input type="text" id="symbol" ng-model="symbol" class="form-control"
-			placeholder="Custom template" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
-			typeahead-show-hint="true" typeahead-min-length="0"> 
-	</p>
-	<p class="form-group">
-		<input type="text" id="startDate" ng-model="startDate" placeholder = "DD-MM-YYYY" class="form-control">  
-	</p>
-
-	<p class="form-group">
-		<Button type="button" class="btn btn-info btn-sm" ng-click="fetch()">Get price</Button>
-	</p>
-
-	<p class="form-group">
-		<h5>{{symbol}} on {{startDate}}</h5>
-	</p>
-	<h2 style="color:green"> &#8377; <span ng-hide="loading"> {{stock.price}}</span>  <span ng-show="loading"><img src="loader.gif" height="35px"></span>  </h2>
-  
-</div>
-
-</div>
-
-
-<div class="container">
-  <!-- Trigger the modal with a button -->
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 class="modal-title">Manage stock</h3>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+<div ng-app="myApp" ng-controller="myCtrl">
+   <div class="container">
+      <div class="">
+         <H1>
+            <strong>NSE</strong> 
+            <span style = "color:silver;font-weight: 300;">
+               Stock Research
+               <thin>
+            </span>
+         </H1>
+         <div class="well well-sm">
+            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
+            New <i class='fas fa-plus' style='font-size:12px'></i>
+            </button>
+            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
+            Alert <i class='fas fa-bell	' style='font-size:12px'></i>
+            </button>	
+            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
+            Settings <i class='fas fa-user-cog' style='font-size:12px'></i>
+            </button>	
+         </div>
+         <p class="form-group">
+            <input type="text" id="symbol" ng-model="symbol" class="form-control"
+               placeholder="Custom template" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
+               typeahead-show-hint="true" typeahead-min-length="0"> 
+         </p>
+         <p class="form-group">
+            <input type="text" id="startDate" ng-model="startDate" placeholder = "DD-MM-YYYY" class="form-control">  
+         </p>
+         <p class="form-group">
+            <Button type="button" class="btn btn-info btn-sm" ng-click="fetch()">Get price</Button>
+         </p>
+         <p class="form-group">
+         <h5>{{symbol}} on {{startDate}}</h5>
+         </p>
+         <h2 style="color:green"> &#8377; <span ng-hide="loading"> {{stock.price}}</span>  <span ng-show="loading"><img src="loader.gif" height="35px"></span>  </h2>
       </div>
       
-    </div>
-  </div>
-  
+      
+   </div>
+   
+   
+   <!-- Modal -->
+   <div class="container">
+      <div class="modal fade" id="myModal" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-body"> 
+               
+					<div  style="float:left;">
+	            	<input type="text" id="addSymbol" ng-model="addSymbol" class="form-control"
+	               			placeholder="Custom template" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
+	               	typeahead-show-hint="true" typeahead-min-length="0"
+	               	> 
+				</div>
+				<button type="button" class="btn btn-info btn-md" ng-click="track()">Track</button>
+					{{addSymbol}}
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Exit</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   
 </div>
 
-
-
-
-</div>
 <script type="text/ng-template" id="customTemplate.html">
 	 <div style = "padding:5px;">
       <span ng-bind-html="comp.symbol"></span>
@@ -145,6 +142,8 @@ app.controller('myCtrl', function($scope, $http) {
 	$scope.endDate = "";
 	$scope.selected = undefined;
 	$scope.isCollapsed = true;
+	$scope.addSymbol = "";
+	
 	$scope.modelOptions = {
 		    debounce: {
 		      default: 500,
@@ -179,6 +178,35 @@ app.controller('myCtrl', function($scope, $http) {
 			$scope.nse_companies = resp;
 		});
 	}
+	
+	$scope.tracked_stocks = [];
+	$scope.user = {"id": 3225};
+	$scope.addSymbol = "";
+	
+	$scope.track = function(){
+		$http({
+			method: "POST",
+			url: "/track/" + $scope.user.id + "/symbol/" + $scope.addSymbol
+		}).then(function(response){
+			$scope.tracked_companies = response.data;
+			console.log(response.data);
+			// Add to temp tracked table
+		}, function(err){
+			alert("Error: Can't fetch tracked companies " + err);
+		});
+	}
+	
+	$scope.get_tracked_companies = function(){
+		$http({
+				method: "GET",
+				url: "/user/" +$scope.user.id,
+			}).then(function(response){
+				$scope.tracked_companies = response.data;
+			}, function(err){
+				alert("Error: Can't fetch tracked comapnies " + err);
+			});	
+	} 
+	
 	$scope.fetch_nse();
 	 
 });
