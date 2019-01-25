@@ -76,7 +76,7 @@
             Alert <i class='fas fa-bell	' style='font-size:12px'></i>
             </button>	
             <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
-            Settings <i class='fas fa-user-cog' style='font-size:12px'></i>
+            {{user.firstName}} <i class='fas fa-user-cog' style='font-size:12px'></i>
             </button>	
          </div>
          <p class="form-group">
@@ -96,6 +96,29 @@
          <h2 style="color:green"> &#8377; <span ng-hide="loading"> {{stock.price}}</span>  <span ng-show="loading"><img src="loader.gif" height="35px"></span>  </h2>
       </div>
       
+      <br>
+      <div>
+      	
+      </div>
+      
+      <div>
+      	<table class="table table-condensed">
+      		<thead>
+      			<th>Stock</th>
+      			<th>Company</th>
+      			<th>Tracking from</th>
+      			<th>Price</th>
+      			<th>Current</th>
+      		</thead>
+      		<tbody ng-repeat = "stock in user.trackedCusips">
+      			<td>{{stock.cusip}}</td>
+      			<td>{{stock.name}}</td>
+      			<td></td>
+      			<td> &#8377;</td>
+      			<td> &#8377;</td>
+      		</tbody>
+      	</table>
+      </div>
       
    </div>
    
@@ -180,7 +203,7 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 	
 	$scope.tracked_stocks = [];
-	$scope.user = {"id": 3225};
+	$scope.user = {"id": 2033};
 	$scope.addSymbol = "";
 	
 	$scope.track = function(){
@@ -188,7 +211,7 @@ app.controller('myCtrl', function($scope, $http) {
 			method: "POST",
 			url: "/track/" + $scope.user.id + "/symbol/" + $scope.addSymbol
 		}).then(function(response){
-			$scope.tracked_companies = response.data;
+			$scope.user = response.data;
 			console.log(response.data);
 			// Add to temp tracked table
 		}, function(err){
@@ -207,6 +230,18 @@ app.controller('myCtrl', function($scope, $http) {
 			});	
 	} 
 	
+	$scope.get_user = function(){
+		$scope.user = $http({
+			url: "/user/"+$scope.user.id,
+			method: "GET"
+		}).then(function(response){
+			$scope.user = response.data;
+		}, function(err){
+			alert("Unknown user");
+		});
+	}
+	
+	$scope.get_user();
 	$scope.fetch_nse();
 	 
 });
