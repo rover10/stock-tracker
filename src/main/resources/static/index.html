@@ -9,6 +9,22 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<script src="/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	
+	
+	
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	
+
+	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css' integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/' crossorigin='anonymous'>
+	
+	</head>
+
   <style>
   .typeahead-demo .custom-popup-wrapper {
     position: absolute;
@@ -40,12 +56,28 @@
 <body>
 
 <!-- http://angular-ui.github.io/bootstrap/#!#top -->
+<!-- https://www.w3schools.com/icons/icons_reference.asp -->
 
 <div ng-app="myApp" ng-controller="myCtrl"> 
 <div class="container">
 <div class="">
    <H1><strong>NSE</strong> <span style = "color:silver;font-weight: 300;">Stock Research<thin></span></H1>
-	<BR>
+
+   	<div class="well well-sm">
+	<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
+		New <i class='fas fa-plus' style='font-size:12px'></i>
+	</button>
+
+   	<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
+	Alert <i class='fas fa-bell	' style='font-size:12px'></i>
+	</button>	
+	
+	
+   	<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
+	Settings <i class='fas fa-user-cog' style='font-size:12px'></i>
+	</button>	
+	</div>
+
 	<p class="form-group">
 		<input type="text" id="symbol" ng-model="symbol" class="form-control"
 			placeholder="Custom template" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
@@ -56,7 +88,7 @@
 	</p>
 
 	<p class="form-group">
-		<Button ng-click="fetch()">Get price</Button>
+		<Button type="button" class="btn btn-info btn-sm" ng-click="fetch()">Get price</Button>
 	</p>
 
 	<p class="form-group">
@@ -65,13 +97,44 @@
 	<h2 style="color:green"> &#8377; <span ng-hide="loading"> {{stock.price}}</span>  <span ng-show="loading"><img src="loader.gif" height="35px"></span>  </h2>
   
 </div>
+
 </div>
 
+
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Manage stock</h3>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+
+
+</div>
 <script type="text/ng-template" id="customTemplate.html">
 	 <div style = "padding:5px;">
       <span ng-bind-html="comp.symbol"></span>
 	</div>
-</script>
+</script>    
 
 <script>
 var app = angular.module('myApp', ['ngAnimate', 'ngSanitize','ui.bootstrap']);
@@ -81,6 +144,7 @@ app.controller('myCtrl', function($scope, $http) {
 	$scope.startDate = "";
 	$scope.endDate = "";
 	$scope.selected = undefined;
+	$scope.isCollapsed = true;
 	$scope.modelOptions = {
 		    debounce: {
 		      default: 500,
@@ -116,6 +180,7 @@ app.controller('myCtrl', function($scope, $http) {
 		});
 	}
 	$scope.fetch_nse();
+	 
 });
 </script>
 
