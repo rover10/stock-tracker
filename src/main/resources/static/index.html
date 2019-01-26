@@ -23,6 +23,8 @@
 
 	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css' integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/' crossorigin='anonymous'>
 	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+
 	</head>
 
   <style>
@@ -51,6 +53,7 @@
     border-radius: 0;
     box-shadow: none;
   }
+  
 </style>
   </head>
 <body>
@@ -69,7 +72,7 @@
             </span>
          </H1>
          <div class="well well-sm">
-            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal">
             New <i class='fas fa-plus' style='font-size:12px'></i>
             </button>
             <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
@@ -113,7 +116,7 @@
       		<tbody ng-repeat = "stock in user.trackedCusips">
       			<td>{{stock.cusip}}</td>
       			<td>{{stock.name}}</td>
-      			<td></td>
+      			<td>{{stock.tradingFrom}}</td>
       			<td> &#8377;</td>
       			<td> &#8377;</td>
       		</tbody>
@@ -133,12 +136,18 @@
                
 					<div  style="float:left;">
 	            	<input type="text" id="addSymbol" ng-model="addSymbol" class="form-control"
-	               			placeholder="Custom template" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
+	               			placeholder="Company / Symbol" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
 	               	typeahead-show-hint="true" typeahead-min-length="0"
-	               	> 
-				</div>
+	               	>
+	               					 
+					</div>
+					<div style="float:left">
+					<input type="text" ng-model="trackDate" class="form-control">
+	               	
+					</div>
+					
 				<button type="button" class="btn btn-info btn-md" ng-click="track()">Track</button>
-					{{addSymbol}}
+				
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Exit</button>
@@ -158,11 +167,12 @@
 
 <script>
 var app = angular.module('myApp', ['ngAnimate', 'ngSanitize','ui.bootstrap']);
+
 app.controller('myCtrl', function($scope, $http) {
 
 	$scope.symbol = "";
-	$scope.startDate = "";
-	$scope.endDate = "";
+	$scope.startDate =  moment().format('DD-MM-YYYY');; ;
+	$scope.endDate = $scope.startDate;
 	$scope.selected = undefined;
 	$scope.isCollapsed = true;
 	$scope.addSymbol = "";
@@ -203,13 +213,13 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 	
 	$scope.tracked_stocks = [];
-	$scope.user = {"id": 2033};
+	$scope.user = {"id": 3225};
 	$scope.addSymbol = "";
-	
+	$scope.trackDate = moment().format('DD-MM-YYYY');
 	$scope.track = function(){
 		$http({
 			method: "POST",
-			url: "/track/" + $scope.user.id + "/symbol/" + $scope.addSymbol
+			url: "/track/" + $scope.user.id + "/symbol/" + $scope.addSymbol + "/date/" + $scope.trackDate
 		}).then(function(response){
 			$scope.user = response.data;
 			console.log(response.data);

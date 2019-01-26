@@ -35,8 +35,7 @@ public class User {
 	
 	@ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="track_stocks",    // Will create a table with name 'track_stock'
-    	joinColumns = { @JoinColumn(referencedColumnName = "id") }, 
-    			
+    	joinColumns = { @JoinColumn(referencedColumnName = "id") }, 	
     	inverseJoinColumns = { @JoinColumn(referencedColumnName = "id") }) 
     private Set<Cusip> trackedCusips;
 	

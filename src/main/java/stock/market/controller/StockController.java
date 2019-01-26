@@ -1,7 +1,14 @@
 package stock.market.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import stock.market.model.Company;
@@ -101,13 +108,25 @@ public class StockController {
 		return usr;
 	}
 	
-	@RequestMapping(value = "/track/{user}/symbol/{symbol}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/track/{user}/symbol/{symbol}/date/{date}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public User trackStockSymbol(
 			@PathVariable("user") int user,
-			@PathVariable("symbol") String symbol) {
+			@PathVariable("symbol") String symbol,
+			@PathVariable("date") String date) throws ParseException {
 			User usr = userRepository.getOne(user);
 			Cusip cp = cusipRepository.findByCusip(symbol);
 			usr.getTrackedCusips().add(cp);
+			
+			CusipQuery cQuery = new CusipQuery();
+			cQuery.setSymbol(symbol);
+			cQuery.setStartDate(date);
+			cQuery.setEndDate(date);
+			
+			Stock stock = stockPrice.fetchDetail(cQuery);
+			DateFormat format = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+			Date trackdate = format.parse(date);
+			cp.setTradingFrom(trackdate);
+
 			userRepository.save(usr);
 			return usr;
 	}
