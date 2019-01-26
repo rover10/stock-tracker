@@ -2,6 +2,7 @@ package stock.market.model;
 
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -27,13 +28,15 @@ public class Cusip{
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name="tradingMarket", insertable = false, updatable = false)
 	private Market market;
 	private String name;
 	private String cusip;
 	private Date tradingFrom;
 	private String tradingMarket;
 	
+//	@OneToMany
+//	private Set<UserTracksCusip> userTracksCusip = new HashSet<UserTracksCusip>();
+//	
 	public Date getTradingFrom() {
 		return tradingFrom;
 	}
@@ -63,6 +66,15 @@ public class Cusip{
 	public String getCusip() {
 		return cusip;
 	}
+
+	//	public Set<UserTracksCusip> getUserTracksCusip() {
+	//		return userTracksCusip;
+	//	}
+	//
+	//	public void setUserTracksCusip(Set<UserTracksCusip> userTracksCusip) {
+	//		this.userTracksCusip = userTracksCusip;
+	//	}
+
 	public void setCusip(String cusip) {
 		this.cusip = cusip;
 	}

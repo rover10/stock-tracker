@@ -16,6 +16,7 @@ import stock.market.model.Cusip;
 import stock.market.model.Market;
 import stock.market.model.Stock;
 import stock.market.model.User;
+import stock.market.model.UserTracksCusip;
 import stock.market.model.query.CusipQuery;
 
 import org.springframework.http.MediaType;
@@ -25,6 +26,7 @@ import stock.market.service.CompanyRepository;
 import stock.market.service.CusipRepository;
 import stock.market.service.MarketRepository;
 import stock.market.service.UserRepository;
+import stock.market.service.UserTracksCusipRepository;
 import stock.market.service.thirdparty.StockPrice;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,6 +50,9 @@ public class StockController {
 	
 	@Autowired
 	CompanyRepository companyRepository;
+	
+	@Autowired
+	UserTracksCusipRepository userTracksCusipRepository;
 	
 	@Autowired
 	CompanyAdder companyAdder;
@@ -96,26 +101,59 @@ public class StockController {
 		return userRepository.getOne(id);
 	}
 	
+	@RequestMapping(value = "/user/{id}/stocks", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
+	public List<UserTracksCusip>  getUsersTrackedStocks(@PathVariable("id") int id) {
+		return userTracksCusipRepository.findByUser(userRepository.getOne(id));
+	}
+	
 	@RequestMapping(value="/track/{user}/{cusip}", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public User trackStock(
 		@PathVariable("user") int user,
-		@PathVariable("cusip") int cusip) {
+		@PathVariable("cusip") int cusip) throws ParseException {
 		
-		User usr = userRepository.getOne(user);
-		Cusip cp = cusipRepository.getOne(cusip);
-		usr.getTrackedCusips().add(cp);
-		userRepository.save(usr);	
+		User usr = userRepository.findById(user);
+		Cusip cp = cusipRepository.findById(cusip);
+		//usr.getTrackedCusips().add(cp);
+		
+		CusipQuery cQuery = new CusipQuery();
+		cQuery.setSymbol(cusipRepository.getOne(cusip).getCusip());
+		String date = "12-12-2018";
+		cQuery.setStartDate(date);
+		cQuery.setEndDate(date);
+		
+		Stock stock = stockPrice.fetchDetail(cQuery);
+		DateFormat format = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+		Date trackdate = format.parse(date);
+		cp.setTradingFrom(trackdate);
+		
+		UserTracksCusip userTracksCusip = new UserTracksCusip();
+		userTracksCusip.setPrice(stock.getPrice());
+		//userTracksCusip.setCusip(cp);
+		//userTracksCusip.setUser(usr);
+		
+		
+		//userTracksCusip.setPrice(stock.getPrice());
+		//usr.getUserTracksCusip().add(userTracksCusip);
+		//cp.getUserTracksCusip().add(userTracksCusip);
+
+		userTracksCusipRepository.save(userTracksCusip);
+		//userRepository.save(usr);
+		//cusipRepository.save(cp);
 		return usr;
 	}
 	
 	@RequestMapping(value = "/track/{user}/symbol/{symbol}/date/{date}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public User trackStockSymbol(
+	public List<UserTracksCusip> trackStockSymbol(
 			@PathVariable("user") int user,
 			@PathVariable("symbol") String symbol,
 			@PathVariable("date") String date) throws ParseException {
-			User usr = userRepository.getOne(user);
+			
+	
+			User usr = userRepository.findById(user);
 			Cusip cp = cusipRepository.findByCusip(symbol);
-			usr.getTrackedCusips().add(cp);
+			//usr.getTrackedCusips().add(cp);
+			
+			System.out.println("Cusip: " + cp.getId() + "Name" + cp.getName() );
 			
 			CusipQuery cQuery = new CusipQuery();
 			cQuery.setSymbol(symbol);
@@ -126,9 +164,21 @@ public class StockController {
 			DateFormat format = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
 			Date trackdate = format.parse(date);
 			cp.setTradingFrom(trackdate);
-
+			
+			UserTracksCusip userTracksCusip = new UserTracksCusip();
+			userTracksCusip.setPrice(stock.getPrice());
+			
+			userTracksCusip.setUser(usr);
+			userTracksCusip.setCusip(cp);
+			
+			//usr.getUserTracksCusip().add(userTracksCusip);
+			//cp.getUserTracksCusip().add(userTracksCusip);
+			
+			userTracksCusipRepository.save(userTracksCusip);
 			userRepository.save(usr);
-			return usr;
+			cusipRepository.save(cp);
+			
+			return userTracksCusipRepository.findByUser(usr); //userTracksCusip;
 	}
 	
 	@RequestMapping(value = "/company/nse", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

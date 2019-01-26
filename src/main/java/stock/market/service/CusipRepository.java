@@ -10,4 +10,5 @@ public interface CusipRepository extends JpaRepository<Cusip, Integer>{
 	public Cusip save(Cusip cusip);
 	//public Cusip findOne(int cusip);
 	public Cusip findByCusip(String name);
+	public Cusip findById(int id);
 }

@@ -68,7 +68,6 @@
             <strong>NSE</strong> 
             <span style = "color:silver;font-weight: 300;">
                Stock Research
-               <thin>
             </span>
          </H1>
          <div class="well well-sm">
@@ -81,6 +80,7 @@
             <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
             {{user.firstName}} <i class='fas fa-user-cog' style='font-size:12px'></i>
             </button>	
+            <span style = "font-size:16px;float:right;color:#33333375">{{currentTime}}</span>
          </div>
          <p class="form-group">
             <input type="text" id="symbol" ng-model="symbol" class="form-control"
@@ -110,15 +110,15 @@
       			<th>Stock</th>
       			<th>Company</th>
       			<th>Tracking from</th>
-      			<th>Price</th>
-      			<th>Current</th>
+      			<th class="text-right">Price</th>
+      			<th class="text-right">Current</th>
       		</thead>
-      		<tbody ng-repeat = "stock in user.trackedCusips">
-      			<td>{{stock.cusip}}</td>
-      			<td>{{stock.name}}</td>
-      			<td>{{stock.tradingFrom}}</td>
-      			<td> &#8377;</td>
-      			<td> &#8377;</td>
+      		<tbody ng-repeat = "stock in tracked_stocks">
+      			<td>{{stock.cusip.cusip}}</td>
+      			<td>{{stock.cusip.name}}</td>
+      			<td>{{stock.cusip.tradingFrom}}</td>
+      			<td class="text-right"> &#8377; {{stock.price}}</td>
+      			<td class="text-right"> &#8377;</td>
       		</tbody>
       	</table>
       </div>
@@ -168,7 +168,7 @@
 <script>
 var app = angular.module('myApp', ['ngAnimate', 'ngSanitize','ui.bootstrap']);
 
-app.controller('myCtrl', function($scope, $http) {
+app.controller('myCtrl', function($scope, $http, $interval) {
 
 	$scope.symbol = "";
 	$scope.startDate =  moment().format('DD-MM-YYYY');; ;
@@ -177,6 +177,12 @@ app.controller('myCtrl', function($scope, $http) {
 	$scope.isCollapsed = true;
 	$scope.addSymbol = "";
 	
+	
+	
+	$interval(function() {
+		$scope.currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
+      }, 100);
+    
 	$scope.modelOptions = {
 		    debounce: {
 		      default: 500,
@@ -213,7 +219,8 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 	
 	$scope.tracked_stocks = [];
-	$scope.user = {"id": 3225};
+	$scope.user = {"id": 936};
+	$scope.id = $scope.user.id; 
 	$scope.addSymbol = "";
 	$scope.trackDate = moment().format('DD-MM-YYYY');
 	$scope.track = function(){
@@ -221,7 +228,8 @@ app.controller('myCtrl', function($scope, $http) {
 			method: "POST",
 			url: "/track/" + $scope.user.id + "/symbol/" + $scope.addSymbol + "/date/" + $scope.trackDate
 		}).then(function(response){
-			$scope.user = response.data;
+			//$scope.user = response.data.user;
+			$scope.tracked_stocks = response.data;
 			console.log(response.data);
 			// Add to temp tracked table
 		}, function(err){
@@ -230,11 +238,13 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 	
 	$scope.get_tracked_companies = function(){
+		console.log("user = " + $scope.user.id);
+		console.log($scope.user);
 		$http({
 				method: "GET",
-				url: "/user/" +$scope.user.id,
+				url: "/user/" + $scope.id + "/stocks",
 			}).then(function(response){
-				$scope.tracked_companies = response.data;
+				$scope.tracked_stocks = response.data;
 			}, function(err){
 				alert("Error: Can't fetch tracked comapnies " + err);
 			});	
@@ -253,7 +263,7 @@ app.controller('myCtrl', function($scope, $http) {
 	
 	$scope.get_user();
 	$scope.fetch_nse();
-	 
+	$scope.get_tracked_companies();
 });
 </script>
 

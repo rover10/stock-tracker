@@ -20,20 +20,12 @@ public class Market{
 	@Id
 	private String id;
 	
-	@OneToMany
-	private Set<Cusip> cusip;
-	
 	private String name;
 	private String countryCode;
 	public String getId() {
 		return id;
 	}
-	public Set<Cusip> getCusip() {
-		return cusip;
-	}
-	public void setCusip(Set<Cusip> cusip) {
-		this.cusip = cusip;
-	}
+	
 	public void setId(String id) {
 		this.id = id;
 	}

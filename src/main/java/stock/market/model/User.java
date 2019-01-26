@@ -1,5 +1,6 @@
 package stock.market.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -17,15 +19,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "SUser")
 public class User {
-	public Set<Cusip> getTrackedCusips() {
-		return trackedCusips;
-	}
-	public void setTrackedCusips(Set<Cusip> trackedCusips) {
-		this.trackedCusips = trackedCusips;
-	}
+	//	public Set<Cusip> getTrackedCusips() {
+	//		return trackedCusips;
+	//	}
+	//	public void setTrackedCusips(Set<Cusip> trackedCusips) {
+	//		this.trackedCusips = trackedCusips;
+	//	}
+	//	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
+	//	public Set<UserTracksCusip> getUserTracksCusip() {
+	//		return userTracksCusip;
+	//	}
+	//	public void setUserTracksCusip(Set<UserTracksCusip> userTracksCusip) {
+	//		this.userTracksCusip = userTracksCusip;
+	//	}
 	
 	@Column(unique = true, nullable = false)
 	private String email;
@@ -33,12 +44,16 @@ public class User {
 	@Column(unique = true, nullable = false)
 	private String mobile;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="track_stocks",    // Will create a table with name 'track_stock'
-    	joinColumns = { @JoinColumn(referencedColumnName = "id") }, 	
-    	inverseJoinColumns = { @JoinColumn(referencedColumnName = "id") }) 
-    private Set<Cusip> trackedCusips;
+	//	@ManyToMany(cascade=CascadeType.ALL)
+	//    @JoinTable(name="track_stocks",    // Will create a table with name 'track_stock'
+	//    	joinColumns = { @JoinColumn(referencedColumnName = "id") }, 	
+	//    	inverseJoinColumns = { @JoinColumn(referencedColumnName = "id") }) 
+	//    private Set<Cusip> trackedCusips;
+	//	
 	
+	//@OneToMany
+	//private Set<UserTracksCusip> userTracksCusip = new HashSet<UserTracksCusip>();
+		
 	private String country;
 	private String firstName;
 	private String lastName;
