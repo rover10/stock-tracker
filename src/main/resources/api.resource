@@ -149,3 +149,32 @@ https://www.quandl.com/api/v3/datasets/TC1/SUNPHARMA?column_index=1&api_key=YOUR
 Filter by a date range
 This call retrieves data from Dec 29, 2010 to Dec 31, 2010 for TC1/SUNPHARMA.
 https://www.quandl.com/api/v3/datasets/TC1/SUNPHARMA?start_date=2010-12-29&end_date=2010-12-31&api_key=YOUR_API_KEY
+
+
+
+Hibernate:
+https://stackoverflow.com/questions/5127129/mapping-many-to-many-association-table-with-extra-columns
+
+class User {
+    @OneToMany(mappedBy = "user")
+    private Set<UserService> userServices = new HashSet<UserService>();
+}
+
+class UserService {
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "service_code")
+    private Service service;
+
+    @Column(name = "blocked")
+    private boolean blocked;
+}
+
+class Service {
+    @OneToMany(mappedBy = "service")
+    private Set<UserService> userServices = new HashSet<UserService>();
+}
+
