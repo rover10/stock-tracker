@@ -146,11 +146,11 @@
 	               	
 					</div>
 					
-				<button type="button" class="btn btn-info btn-md" ng-click="track()">Track</button>
-				
+				<button type="button" class="btn btn-info btn-md" ng-click="track()">Add</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Exit</button>
                </div>
                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Exit</button>
+                  Price tracker
                </div>
             </div>
          </div>
@@ -219,7 +219,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
 	}
 	
 	$scope.tracked_stocks = [];
-	$scope.user = {"id": 936};
+	$scope.user = {"id": 3235};
 	$scope.id = $scope.user.id; 
 	$scope.addSymbol = "";
 	$scope.trackDate = moment().format('DD-MM-YYYY');
