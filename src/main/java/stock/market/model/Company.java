@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -27,6 +26,28 @@ public class Company {
 	
 	@OneToMany
 	private Set<BalanceSheet> balanceSheet;
+	
+	@OneToMany
+	private Set<ProfitAndLoss> profitAndLoss;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Set<BalanceSheet> getBalanceSheet() {
+		return balanceSheet;
+	}
+	public void setBalanceSheet(Set<BalanceSheet> balanceSheet) {
+		this.balanceSheet = balanceSheet;
+	}
+	public Set<ProfitAndLoss> getProfitAndLoss() {
+		return profitAndLoss;
+	}
+	public void setProfitAndLoss(Set<ProfitAndLoss> profitAndLoss) {
+		this.profitAndLoss = profitAndLoss;
+	}
 	
 	public String getSymbol() {
 		return symbol;
