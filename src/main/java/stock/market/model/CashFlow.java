@@ -1,20 +1,15 @@
 package stock.market.model;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
+@Entity
 public class CashFlow {
 	
 	@Id
 	private int id;
 	private int year;
 	private double unitMutiplier;
-	
-	@ManyToOne
-	@JoinColumn(referencedColumnName = "id")
-	Company company;
-	
 	private double netCashFlowFromOperatingActivities;
 	private double netCashUsedInInvestingActivities;
 	private double foreignExchangeGainsOrLosses;
@@ -42,12 +37,12 @@ public class CashFlow {
 	public void setUnitMutiplier(double unitMutiplier) {
 		this.unitMutiplier = unitMutiplier;
 	}
-	public Company getCompany() {
-		return company;
-	}
-	public void setCompany(Company company) {
-		this.company = company;
-	}
+	//	public Company getCompany() {
+	//		return company;
+	//	}
+	//	public void setCompany(Company company) {
+	//		this.company = company;
+	//	}
 	public double getNetCashFlowFromOperatingActivities() {
 		return netCashFlowFromOperatingActivities;
 	}
