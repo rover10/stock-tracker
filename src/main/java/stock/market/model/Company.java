@@ -1,9 +1,13 @@
 package stock.market.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Company {
@@ -20,6 +24,9 @@ public class Company {
 	private String isin;
 	private float faceValue;
 	private String market;
+	
+	@OneToMany
+	private Set<BalanceSheet> balanceSheet;
 	
 	public String getSymbol() {
 		return symbol;

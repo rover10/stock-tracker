@@ -78,7 +78,7 @@
             Alert <i class='fas fa-bell	' style='font-size:12px'></i>
             </button>	
             <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
-            {{user.firstName}} <i class='fas fa-user-cog' style='font-size:12px'></i>
+            {{user.email}} <i class='fas fa-user-cog' style='font-size:12px'></i>
             </button>	
             <span style = "font-size:16px;float:right;color:#33333375">{{currentTime}}</span>
          </div>
@@ -219,7 +219,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
 	}
 	
 	$scope.tracked_stocks = [];
-	$scope.user = {"id": 3235};
+	$scope.user = {"id": 3225	};
 	$scope.id = $scope.user.id; 
 	$scope.addSymbol = "";
 	$scope.trackDate = moment().format('DD-MM-YYYY');
