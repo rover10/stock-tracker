@@ -30,6 +30,9 @@ public class Company {
 	@OneToMany
 	private Set<ProfitAndLoss> profitAndLoss;
 	
+	@OneToMany
+	private Set<Ratios> ratios;
+	
 	public int getId() {
 		return id;
 	}
