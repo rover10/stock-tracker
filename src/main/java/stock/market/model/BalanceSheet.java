@@ -1,9 +1,12 @@
 package stock.market.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 public class BalanceSheet {
@@ -11,9 +14,9 @@ public class BalanceSheet {
 	@Id
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(referencedColumnName = "id")
-	private Company company;
+	//@ManyToOne
+	//@JoinColumn(referencedColumnName = "id")
+	//private Company company;
 	
 	//BALANCESHEET YEAR
 	private int year;
@@ -103,12 +106,7 @@ public class BalanceSheet {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Company getCompany() {
-		return company;
-	}
-	public void setCompany(Company company) {
-		this.company = company;
-	}
+	
 	public int getYear() {
 		return year;
 	}

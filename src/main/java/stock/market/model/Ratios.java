@@ -2,17 +2,16 @@ package stock.market.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Ratios {
 	@Id
 	private int id;
 	private int year;
-	@ManyToOne
-	@JoinColumn(referencedColumnName = "id")
-	Company company;
+	
+	//@ManyToOne
+	//@JoinColumn(referencedColumnName = "id")
+	//Company company;
 	
 	//PER SHARE RATIOS
 	private float basicEps;
@@ -67,12 +66,12 @@ public class Ratios {
 	public void setYear(int year) {
 		this.year = year;
 	}
-	public Company getCompany() {
-		return company;
-	}
-	public void setCompany(Company company) {
-		this.company = company;
-	}
+//	public Company getCompany() {
+//		return company;
+//	}
+//	public void setCompany(Company company) {
+//		this.company = company;
+//	}
 	public float getBasicEps() {
 		return basicEps;
 	}
