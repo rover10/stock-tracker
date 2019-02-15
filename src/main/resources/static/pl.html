@@ -35,6 +35,7 @@
 			 &nbsp; for the year &nbsp;   
 			<input id="pl_year" ng-model = "pl_year" type="text" class="form-control input-sm" placeholder="year">
 			<button type="button" class="btn btn-success" ng-click="savePnL();">Save</button>
+			<button type="button" class="btn btn-info" ng-click="getCompanyPnL();">Load</button>
 		</div>	
 	</div>
     
@@ -350,15 +351,56 @@
 				    	
 				    	}
 				  }).then(function mySuccess(response) {
-				      $scope.stock = response.data;
-				      $scope.loading = false
+				         $scope.loading = false
+				    	 
 				    }, function myError(response) {
 				      $scope.myWelcome = response.statusText;
 				      $scope.loading = false;
 				});	   
 		   }
 		   
-
+		 $scope.getCompanyPnL = function(){
+			 $http({method: "GET", 
+				url: "/company/" + $scope.company + "/pl/" + $scope.pl_year	 
+			 }).then(function success(response){
+				 $scope.loading = false;
+				 $scope.pl_grossRevenueFromOperations = response.data.grossRevenueFromOperations;
+		    	 $scope.pl_exciseOrServiceTaxOrOtherLevies = response.data.exciseOrServiceTaxOrOtherLevies;
+		    	 $scope.pl_netRevenueFromOperations = response.data.netRevenueFromOperations;
+		    	 $scope.pl_otherOperatingRevenues = response.data.otherOperatingRevenues;
+		    	 $scope.pl_totalOperatingRevenues = response.data.totalOperatingRevenues;
+		    	 $scope.pl_otherIncome = response.data.otherIncom;
+		    	 $scope.pl_totalRevenue = response.data.totalRevenue;
+		    	 $scope.pl_costOfMaterialConsumed = response.data.costOfMaterialConsumed;
+		    	 $scope.pl_purchaseOfStocksInTrade = response.data.purchaseOfStocksInTrade;
+		    	 $scope.pl_changeOfInventoriesOfFgWipAndStockInTrade = response.data.changeOfInventoriesOfFgWipAndStockInTrade;
+		    	 $scope.pl_employmentBenefitExpenses = response.data.employmentBenefitExpenses;
+		    	 $scope.pl_financeCosts = response.data.financeCosts;
+		    	 $scope.pl_depreciationAndAmortisationExpenses = response.data.depreciationAndAmortisationExpenses;
+		    	 $scope.pl_financeCosts = response.data.financeCosts;
+		    	 $scope.pl_depreciationAndAmortisationExpenses = response.data.depreciationAndAmortisationExpenses;
+		    	 $scope.pl_otherExpenses = response.data.otherExpenses;
+		    	 $scope.pl_amountTransferToCapitalAccounts = response.data.amountTransferToCapitalAccounts
+		    	 $scope.pl_totalExpenses = response.data.totalExpenses;
+		    	 $scope.pl_exceptionalItems = response.data.exceptionalItems;
+		    	 $scope.pl_profitLossBeforeTax = response.data.profitLossBeforeTax;
+		    	 $scope.pl_currentTax = response.data.currentTax;
+		    	 $scope.pl_matCreditEntitlement = response.data.matCreditEntitlement;
+		    	 $scope.pl_deferredTax = response.data.deferredTax;
+		    	 $scope.pl_totalTaxExpenses = response.data.totalTaxExpenses;
+		    	 $scope.pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems = response.data.profitLossAfterTaxAndBeforeExtraOrdinaryItems;
+		    	 $scope.pl_profitLossForThePeriod = response.data.profitLossForThePeriod;
+		    	 $scope.pl_basicEps = response.data.basicEps;
+		    	 $scope.pl_dilutedEps = response.data.dilutedEps;
+		    	 $scope.pl_importedRawMaterials = response.data.importedRawMaterials;
+		    	 $scope.pl_indigenousRawMaterials = response.data.indigenousRawMaterials;
+		    	 $scope.pl_equityShareDividend = response.data.equityShareDividend;
+		    	 $scope.pl_taxOnDividend = response.data.taxOnDividend;
+			 }, function error(response){
+				 $scope.loading = false;
+				 
+			 });
+		 }  
 	});
 	
 </script>

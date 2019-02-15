@@ -218,4 +218,10 @@ public class StockController {
 		
 		return this.companyProfitAndLossRepository.save(companyProfitAndLoss);
 	}
+	
+	@RequestMapping(value = "company/{symbol}/pl/{year}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public CompanyProfitAndLoss profitAndLoss(@PathVariable("symbol") String symbol, @PathVariable("year") int year) {
+		Company c = this.companyRepository.findBySymbol(symbol);
+		return this.companyProfitAndLossRepository.findByCompanyAndYear(c, year);
+	}
 }	
