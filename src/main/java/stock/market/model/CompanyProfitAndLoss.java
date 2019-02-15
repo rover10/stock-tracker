@@ -3,6 +3,8 @@ package stock.market.model;
 import java.util.Currency;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,6 +15,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 public class CompanyProfitAndLoss {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private int year;
 	

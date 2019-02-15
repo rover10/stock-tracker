@@ -262,24 +262,24 @@
 		   $scope.pl_grossRevenueFromOperations  = null;
 		   $scope.pl_exciseOrServiceTaxOrOtherLevies  = null;
 		   $scope.pl_netRevenueFromOperations  = null;
-		   $scope.pl_otherOperatingRevenues  = null;
+		   $scope.pl_otherOperatingRevenues  = null; 
 		   $scope.pl_totalOperatingRevenues  = null;
 		   $scope.pl_otherIncome  = null;
 		   $scope.pl_totalRevenue  = null;
 		
 		//EXPENSES
-		   $scope.pl_costOfMaterialConsumed = null;
+		   $scope.pl_costOfMaterialConsumed = null; 
 		   $scope.pl_purchaseOfStocksInTrade = null;
 		   $scope.pl_changeOfInventoriesOfFgWipAndStockInTrade = null;
-		   $scope.pl_employmentBenefitExpenses = null;
+		   $scope.pl_employmentBenefitExpenses = null; 
 		   $scope.pl_financeCosts = null;
-		   $scope.pl_depreciationAndAmortisationExpenses = null;
+		   $scope.pl_depreciationAndAmortisationExpenses = null; 
 		   $scope.pl_otherExpenses = null;
 		   $scope.pl_amountTransferToCapitalAccounts = null;
 		   $scope.pl_totalExpenses = null;
 		
 		//PROFIT/LOSS BEFORE EXCEPTIONAL, EXTRAORDINARY ITEMS AND TAX
-		   $scope.pl_exceptionalItems = null;
+		   $scope.pl_exceptionalItems = null; 
 		   $scope.pl_profitLossBeforeTax = null;
 		
 		//TAX EXPENSES-CONTINUED OPERATIONS
@@ -287,14 +287,14 @@
 		   $scope.pl_matCreditEntitlement = null;
 		   $scope.pl_deferredTax = null;
 		
-		   $scope.pl_totalTaxExpenses = null;
+		   $scope.pl_totalTaxExpenses = null;   
 		   $scope.pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems = null;
 		   $scope.pl_profitLossForThePeriod = null;
 		
 		//OTHER ADDITIONAL INFORMATION
 		//EARNING PER SHARE
-		   $scope.pl_basicEps = null;
-		   $scope.pl_dilutedEps = null;
+		   $scope.pl_basicEps = null;  
+		   $scope.pl_dilutedEps = null; pl_equityDividendRate
 		
 		// VALUE OF IMPORTED AND INDIGENIOUS RAW MATERIALS
 		   $scope.pl_importedRawMaterials = null;
@@ -314,10 +314,40 @@
 				    method : "POST",
 				    url : "/company/" + $scope.company + "/pl",
 				    data: { company: {symbol: $scope.company}, 
-				    	year:$scope.pl_year, 
-				    	grossRevenueFromOperations: $scope.pl_grossRevenueFromOperations,
-				    	exciseOrServiceTaxOrOtherLevies: $scope.pl_exciseOrServiceTaxOrOtherLevies,
-				    	netRevenueFromOperations: $scope.pl_netRevenueFromOperations
+					    	year:$scope.pl_year, 
+					    	grossRevenueFromOperations: $scope.pl_grossRevenueFromOperations,
+					    	exciseOrServiceTaxOrOtherLevies: $scope.pl_exciseOrServiceTaxOrOtherLevies,
+					    	netRevenueFromOperations: $scope.pl_netRevenueFromOperations,
+					    	otherOperatingRevenues: $scope.pl_otherOperatingRevenues,
+					    	totalOperatingRevenues: $scope.pl_totalOperatingRevenues,
+					    	otherIncome: $scope.pl_otherIncome,
+					    	totalRevenue: $scope.pl_totalRevenue,
+					    	costOfMaterialConsumed: $scope.pl_costOfMaterialConsumed,
+					    	purchaseOfStocksInTrade: $scope.pl_purchaseOfStocksInTrade, 
+					    	changeOfInventoriesOfFgWipAndStockInTrade: $scope.pl_changeOfInventoriesOfFgWipAndStockInTrade,
+					    	employmentBenefitExpenses: $scope.pl_employmentBenefitExpenses, 
+					    	financeCosts: $scope.pl_financeCosts, 
+					    	depreciationAndAmortisationExpenses: $scope.pl_depreciationAndAmortisationExpenses,
+					    	financeCosts: $scope.pl_financeCosts,
+					    	depreciationAndAmortisationExpenses: $scope.pl_depreciationAndAmortisationExpenses, 
+					    	otherExpenses: $scope.pl_otherExpenses,
+					    	amountTransferToCapitalAccounts: $scope.pl_amountTransferToCapitalAccounts,
+					    	totalExpenses: $scope.pl_totalExpenses,
+					    	exceptionalItems: $scope.pl_exceptionalItems,
+					    	profitLossBeforeTax: $scope.pl_profitLossBeforeTax,
+					    	currentTax: $scope.pl_currentTax,
+					    	matCreditEntitlement: $scope.pl_matCreditEntitlement,
+					    	deferredTax: $scope.pl_deferredTax,
+					    	totalTaxExpenses: $scope.pl_totalTaxExpenses,
+					    	profitLossAfterTaxAndBeforeExtraOrdinaryItems: $scope.pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems,
+					    	profitLossForThePeriod: $scope.pl_profitLossForThePeriod,
+					    	basicEps: $scope.pl_basicEps,  
+					    	dilutedEps: $scope.pl_dilutedEps,
+					    	importedRawMaterials: $scope.pl_importedRawMaterials,
+					    	indigenousRawMaterials: $scope.pl_indigenousRawMaterials,
+					    	equityShareDividend: $scope.pl_equityShareDividend, 
+					    	taxOnDividend: $scope.pl_taxOnDividend
+				    	
 				    	}
 				  }).then(function mySuccess(response) {
 				      $scope.stock = response.data;

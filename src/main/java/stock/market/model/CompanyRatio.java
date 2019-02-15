@@ -1,6 +1,8 @@
 package stock.market.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -11,6 +13,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "company_ratio", uniqueConstraints = @UniqueConstraint(columnNames= {"year","fk_company","fk_company_ratio"}) )
 public class CompanyRatio {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@ManyToOne
