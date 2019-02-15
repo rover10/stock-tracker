@@ -5,13 +5,23 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    
+    
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<div class="container">
+<style>
+	.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+    	border-style:none;
+	}
+</style>
+<div class="container" ng-app="myApp" ng-controller="myCtrl">
 <BR><BR>
 
  <form class="form-inline">
@@ -19,12 +29,12 @@
 	<div style = "">
 		<div style ="font-size:40px;float:left;"> <strong>Profit & Loss</strong> </div>
 		<div style = "float:right;">
-			<input type="text" id="symbol" ng-model="symbol" class="form-control"
+			<input type="text" id="symbol" ng-model="company" class="form-control input-sm"
 		    placeholder="Company" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
 		    typeahead-show-hint="true" typeahead-min-length="0"> 
 			 &nbsp; for the year &nbsp;   
-			<input id="pl_year" ng-model = "pl_year" type="text" class="form-control" placeholder="year">
-			<button type="button" class="btn btn-success">Save</button>
+			<input id="pl_year" ng-model = "pl_year" type="text" class="form-control input-sm" placeholder="year">
+			<button type="button" class="btn btn-success" ng-click="savePnL();">Save</button>
 		</div>	
 	</div>
     
@@ -36,30 +46,30 @@
 	<div class="well">
 	<h5>INCOME</h5>
 	    
-	 <table class="table table-condensed">
+	 <table class="table table-condensed ">
 	    <tbody>
 	      <tr>
 	        <td><label for="focusedInput">Gross revenue from operations</label></td>
-	        <td> <input id="pl_grossRevenueFromOperations" ng-model = "pl_grossRevenueFromOperations" type="text" class="form-control" placeholder="pl_grossRevenueFromOperations"> </td>
+	        <td> <input id="pl_grossRevenueFromOperations" ng-model = "pl_grossRevenueFromOperations" type="text" class="form-control input-sm" placeholder=""> </td>
 	        <td> <label for="focusedInput">Excise or service tax or other levies</label></td>
-	        <td> <input id="pl_exciseOrServiceTaxOrOtherLevies" ng-model = "pl_exciseOrServiceTaxOrOtherLevies" type="text" class="form-control" placeholder="pl_exciseOrServiceTaxOrOtherLevies">
+	        <td> <input id="pl_exciseOrServiceTaxOrOtherLevies" ng-model = "pl_exciseOrServiceTaxOrOtherLevies" type="text" class="form-control input-sm" placeholder="">
 		    </td>
 	      </tr>
 	      <tr>
 	        <td><label for="focusedInput">Net revenue from operations</label></td>
-	        <td><input id="pl_netRevenueFromOperations" ng-model = "pl_netRevenueFromOperations" type="text" class="form-control" placeholder="pl_netRevenueFromOperations"></td>
+	        <td><input id="pl_netRevenueFromOperations" ng-model = "pl_netRevenueFromOperations" type="text" class="form-control input-sm" placeholder=""></td>
 	        <td><label for="focusedInput">Other operating revenues</label></td>
-	        <td><input id="pl_otherOperatingRevenues" ng-model = "pl_otherOperatingRevenues" type="text" class="form-control" placeholder="pl_otherOperatingRevenues"></td>
+	        <td><input id="pl_otherOperatingRevenues" ng-model = "pl_otherOperatingRevenues" type="text" class="form-control input-sm" placeholder=""></td>
 	      </tr>
 	      <tr>
 	        <td><label for="focusedInput">Total operating revenues</label></td>
-	        <td><input id="pl_totalOperatingRevenues" ng-model = "pl_totalOperatingRevenues" type="text" class="form-control" placeholder="pl_totalOperatingRevenues"></td>
+	        <td><input id="pl_totalOperatingRevenues" ng-model = "pl_totalOperatingRevenues" type="text" class="form-control input-sm" placeholder=""></td>
 	        <td><label for="focusedInput">Other income</label></td>
-	        <td><input id="pl_otherIncome" ng-model = "pl_otherIncome" type="text" class="form-control" placeholder="pl_otherIncome"></td>
+	        <td><input id="pl_otherIncome" ng-model = "pl_otherIncome" type="text" class="form-control input-sm" placeholder=""></td>
 	      </tr>
 	      <tr>
 	        <td><label for="focusedInput">Total revenue</label></td>
-	        <td><input id="pl_totalRevenue" ng-model = "pl_totalRevenue" type="text" class="form-control" placeholder="pl_totalRevenue"></td>
+	        <td><input id="pl_totalRevenue" ng-model = "pl_totalRevenue" type="text" class="form-control input-sm" placeholder=""></td>
 	        <td></td>
 	        <td></td>
 	      </tr>
@@ -78,32 +88,32 @@
 		    <tbody>
 		      <tr>
 		        <td><label for="focusedInput">Cost of material consumed </label></td>
-		        <td><input id="pl_costOfMaterialConsumed" ng-model = "pl_costOfMaterialConsumed" type="text" class="form-control" placeholder="pl_costOfMaterialConsumed">
+		        <td><input id="pl_costOfMaterialConsumed" ng-model = "pl_costOfMaterialConsumed" type="text" class="form-control input-sm" placeholder="">
 			    </td>
 		        <td><label for="focusedInput">Purchase of stocks in trade </label></td>
-		        <td><input id="pl_purchaseOfStocksInTrade" ng-model = "pl_purchaseOfStocksInTrade" type="text" class="form-control" placeholder="pl_purchaseOfStocksInTrade"></td>
+		        <td><input id="pl_purchaseOfStocksInTrade" ng-model = "pl_purchaseOfStocksInTrade" type="text" class="form-control input-sm" placeholder=""></td>
 		      </tr>
 		      <tr>
 		        <td><label for="focusedInput">Change of inventories of FG wip and Stock in Trade </label></td>
-		        <td><input id="pl_changeOfInventoriesOfFgWipAndStockInTrade" ng-model = "pl_changeOfInventoriesOfFgWipAndStockInTrade" type="text" class="form-control" placeholder="pl_changeOfInventoriesOfFgWipAndStockInTrade"></td>
+		        <td><input id="pl_changeOfInventoriesOfFgWipAndStockInTrade" ng-model = "pl_changeOfInventoriesOfFgWipAndStockInTrade" type="text" class="form-control input-sm" placeholder=""></td>
 		        <td><label for="focusedInput">Employment benefit expenses</label></td>
-		        <td><input id="pl_employmentBenefitExpenses" ng-model = "pl_employmentBenefitExpenses" type="text" class="form-control" placeholder="pl_employmentBenefitExpenses"></td>
+		        <td><input id="pl_employmentBenefitExpenses" ng-model = "pl_employmentBenefitExpenses" type="text" class="form-control input-sm" placeholder=""></td>
 		      </tr>
 		      <tr>
 		        <td><label for="focusedInput">Finance costs</label></td>
-		        <td><input id="pl_financeCosts" ng-model = "pl_financeCosts" type="text" class="form-control" placeholder="pl_financeCosts"></td>
+		        <td><input id="pl_financeCosts" ng-model = "pl_financeCosts" type="text" class="form-control input-sm" placeholder=""></td>
 		        <td><label for="focusedInput">Depreciation and amortisation expenses</label></td>
-		        <td><input id="pl_depreciationAndAmortisationExpenses" ng-model = "pl_depreciationAndAmortisationExpenses" type="text" class="form-control" placeholder="pl_depreciationAndAmortisationExpenses"></td>
+		        <td><input id="pl_depreciationAndAmortisationExpenses" ng-model = "pl_depreciationAndAmortisationExpenses" type="text" class="form-control input-sm" placeholder=""></td>
 		      </tr>
 		      <tr>
 		        <td><label for="focusedInput">Other expenses</label></td>
-		        <td><input id="pl_otherExpenses" ng-model = "pl_otherExpenses" type="text" class="form-control" placeholder="pl_otherExpenses"></td>
+		        <td><input id="pl_otherExpenses" ng-model = "pl_otherExpenses" type="text" class="form-control input-sm" placeholder=""></td>
 		        <td><label for="focusedInput">Amount transfer to capital accounts</label></td>
-		        <td><input id="pl_amountTransferToCapitalAccounts" ng-model = "pl_amountTransferToCapitalAccounts" type="text" class="form-control" placeholder="pl_amountTransferToCapitalAccounts"></td>
+		        <td><input id="pl_amountTransferToCapitalAccounts" ng-model = "pl_amountTransferToCapitalAccounts" type="text" class="form-control input-sm" placeholder=""></td>
 		      </tr>
 		      <tr>
 		        <td><label for="focusedInput">Total expenses</label></td>
-		        <td><input id="pl_totalExpenses" ng-model = "pl_totalExpenses" type="text" class="form-control" placeholder="pl_totalExpenses"></td>
+		        <td><input id="pl_totalExpenses" ng-model = "pl_totalExpenses" type="text" class="form-control input-sm" placeholder=""></td>
 		      </tr>
 		    </tbody>
 		  </table>	       
@@ -115,9 +125,9 @@
 		    <tbody>
 		      <tr>
 		      <td><label for="focusedInput">Exceptional items</label></td>
-		      <td><input id="pl_exceptionalItems" ng-model = "pl_exceptionalItems" type="text" class="form-control" placeholder="pl_exceptionalItems"></td>
+		      <td><input id="pl_exceptionalItems" ng-model = "pl_exceptionalItems" type="text" class="form-control input-sm" placeholder=""></td>
 		      <td><label for="focusedInput">Profit loss before tax</label></td>
-		      <td><input id="pl_profitLossBeforeTax" ng-model = "pl_profitLossBeforeTax" type="text" class="form-control" placeholder="pl_profitLossBeforeTax"></td>
+		      <td><input id="pl_profitLossBeforeTax" ng-model = "pl_profitLossBeforeTax" type="text" class="form-control input-sm" placeholder=""></td>
 		      </tr>
 		      </tbody>  
 		    </tbody>
@@ -132,23 +142,23 @@
 			<tbody>
 				<tr>
 				<td><label for="focusedInput">Current tax</label></td>
-				<td><input id="pl_currentTax" ng-model = "pl_currentTax" type="text" class="form-control" placeholder="pl_currentTax"></td>
+				<td><input id="pl_currentTax" ng-model = "pl_currentTax" type="text" class="form-control input-sm" placeholder=""></td>
 				<td><label for="focusedInput">Mat credit entitlement</label></td>
-				<td><input id="pl_matCreditEntitlement" ng-model = "pl_matCreditEntitlement" type="text" class="form-control" placeholder="pl_matCreditEntitlement"></td>
+				<td><input id="pl_matCreditEntitlement" ng-model = "pl_matCreditEntitlement" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
 				
 				<tr>
 				<td><label for="focusedInput">Deferred tax</label></td>
-				<td><input id="pl_deferredTax" ng-model = "pl_deferredTax" type="text" class="form-control" placeholder="pl_deferredTax"></td>
+				<td><input id="pl_deferredTax" ng-model = "pl_deferredTax" type="text" class="form-control input-sm" placeholder=""></td>
 				<td><label for="focusedInput">Total tax expenses</label></td>
-				<td><input id="pl_totalTaxExpenses" ng-model = "pl_totalTaxExpenses" type="text" class="form-control" placeholder="pl_totalTaxExpenses"></td>
+				<td><input id="pl_totalTaxExpenses" ng-model = "pl_totalTaxExpenses" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
 				
 				<tr>
 				<td><label for="focusedInput">Profit loss after tax and before extra ordinary items</label></td>
-				<td><input id="pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems" ng-model = "pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems" type="text" class="form-control" placeholder="pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems"></td>
+				<td><input id="pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems" ng-model = "pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems" type="text" class="form-control input-sm" placeholder=""></td>
 				<td><label for="focusedInput"> Profit loss for the period</label></td>
-				<td><input id="pl_profitLossForThePeriod" ng-model = "pl_profitLossForThePeriod" type="text" class="form-control" placeholder="pl_profitLossForThePeriod"></td>
+				<td><input id="pl_profitLossForThePeriod" ng-model = "pl_profitLossForThePeriod" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
 			</tbody>
 		</table>	
@@ -161,12 +171,12 @@
 		<tbody>
 			<tr>
 			<td><label for="focusedInput">Basic EPS</label></td>
-			<td><input id="pl_basicEps" ng-model = "pl_basicEps" type="text" class="form-control" placeholder="pl_basicEps"></td>
+			<td><input id="pl_basicEps" ng-model = "pl_basicEps" type="text" class="form-control input-sm" placeholder=""></td>
 			</tr>
 			
 			<tr>
 			<td><label for="focusedInput">Diluted EPS</label></td>
-			<td><input id="pl_dilutedEps" ng-model = "pl_dilutedEps" type="text" class="form-control" placeholder="pl_dilutedEps"></td>
+			<td><input id="pl_dilutedEps" ng-model = "pl_dilutedEps" type="text" class="form-control input-sm" placeholder=""></td>
 			</tr>
 		</tbody>
 	</table>
@@ -179,12 +189,12 @@
 			<tbody>
 				<tr>
 				<td><label for="focusedInput">Imported raw materials</label></td>
-				<td><input id="pl_importedRawMaterials" ng-model = "pl_importedRawMaterials" type="text" class="form-control" placeholder="pl_importedRawMaterials"></td>
+				<td><input id="pl_importedRawMaterials" ng-model = "pl_importedRawMaterials" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
 				
 				<tr>
 				<td><label for="focusedInput">Indigenous raw materials</label></td>
-				<td><input id="pl_indigenousRawMaterials" ng-model = "pl_indigenousRawMaterials" type="text" class="form-control" placeholder="pl_indigenousRawMaterials"></td>
+				<td><input id="pl_indigenousRawMaterials" ng-model = "pl_indigenousRawMaterials" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
 			</tbody>
 		</table> 	
@@ -197,12 +207,12 @@
 			<tbody>
 				<tr>
 				<td><label for="focusedInput">Imported stores & spares</label></td>
-				<td><input id="pl_importedStoresAndSpares" ng-model = "pl_importedStoresAndSpares" type="text" class="form-control" placeholder="pl_importedStoresAndSpares"></td>
+				<td><input id="pl_importedStoresAndSpares" ng-model = "pl_importedStoresAndSpares" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
 				
 				<tr>
 				<td><label for="focusedInput">Indegenous stores & spares</label></td>
-				<td><input id="pl_indegenousStoresAndSpares" ng-model = "pl_indegenousStoresAndSpares" type="text" class="form-control" placeholder="pl_indegenousStoresAndSpares"></td>
+				<td><input id="pl_indegenousStoresAndSpares" ng-model = "pl_indegenousStoresAndSpares" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
 			</tbody>
 		</table>
@@ -215,17 +225,17 @@
 			<tbody>
 				<tr>
 				<td><label for="focusedInput">Equity share dividend</label></td>
-				<td><input id="pl_equityShareDividend" ng-model = "pl_equityShareDividend" type="text" class="form-control" placeholder="pl_equityShareDividend"></td>
+				<td><input id="pl_equityShareDividend" ng-model = "pl_equityShareDividend" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
 				
 				<tr>
 				<td><label for="focusedInput">Tax on dividend</label></td>
-				<td><input id="pl_taxOnDividend" ng-model = "pl_taxOnDividend" type="text" class="form-control" placeholder="pl_taxOnDividend"></td>
+				<td><input id="pl_taxOnDividend" ng-model = "pl_taxOnDividend" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
 				
 				<tr>
 				<td><label for="focusedInput">Equity dividend rate</label></td>
-				<td><input id="pl_equityDividendRate" ng-model = "pl_equityDividendRate" type="text" class="form-control" placeholder="pl_equityDividendRate"></td>
+				<td><input id="pl_equityDividendRate" ng-model = "pl_equityDividendRate" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
 				
 			</tbody>
@@ -238,6 +248,90 @@
 </div>
 
 </body>
+<script type="text/javascript">
+	var app = angular.module('myApp', ['ngAnimate', 'ngSanitize','ui.bootstrap']);
+	app.controller('myCtrl', function($scope, $http, $interval) {
+		
+		 $scope.pl_year = null;
+		 $scope.company = null;
+		
+		//In Crore/million/billion
+		   $scope.pl_unitMultiplier = null;
+		
+		//INCOME
+		   $scope.pl_grossRevenueFromOperations  = null;
+		   $scope.pl_exciseOrServiceTaxOrOtherLevies  = null;
+		   $scope.pl_netRevenueFromOperations  = null;
+		   $scope.pl_otherOperatingRevenues  = null;
+		   $scope.pl_totalOperatingRevenues  = null;
+		   $scope.pl_otherIncome  = null;
+		   $scope.pl_totalRevenue  = null;
+		
+		//EXPENSES
+		   $scope.pl_costOfMaterialConsumed = null;
+		   $scope.pl_purchaseOfStocksInTrade = null;
+		   $scope.pl_changeOfInventoriesOfFgWipAndStockInTrade = null;
+		   $scope.pl_employmentBenefitExpenses = null;
+		   $scope.pl_financeCosts = null;
+		   $scope.pl_depreciationAndAmortisationExpenses = null;
+		   $scope.pl_otherExpenses = null;
+		   $scope.pl_amountTransferToCapitalAccounts = null;
+		   $scope.pl_totalExpenses = null;
+		
+		//PROFIT/LOSS BEFORE EXCEPTIONAL, EXTRAORDINARY ITEMS AND TAX
+		   $scope.pl_exceptionalItems = null;
+		   $scope.pl_profitLossBeforeTax = null;
+		
+		//TAX EXPENSES-CONTINUED OPERATIONS
+		   $scope.pl_currentTax = null;
+		   $scope.pl_matCreditEntitlement = null;
+		   $scope.pl_deferredTax = null;
+		
+		   $scope.pl_totalTaxExpenses = null;
+		   $scope.pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems = null;
+		   $scope.pl_profitLossForThePeriod = null;
+		
+		//OTHER ADDITIONAL INFORMATION
+		//EARNING PER SHARE
+		   $scope.pl_basicEps = null;
+		   $scope.pl_dilutedEps = null;
+		
+		// VALUE OF IMPORTED AND INDIGENIOUS RAW MATERIALS
+		   $scope.pl_importedRawMaterials = null;
+		   $scope.pl_indigenousRawMaterials = null;
+		
+		//STORES, SPARES AND LOOSE TOOLS
+		   $scope.pl_importedStoresAndSpares = null;
+		   $scope.pl_indegenousStoresAndSpares = null;
+		
+		// DIVIDEND AND DIVIDEND PERCENTAGE
+		   $scope.pl_equityShareDividend = null;
+		   $scope.pl_taxOnDividend = null;
+		   $scope.pl_equityDividendRate = null;
+		   
+		   $scope.savePnL = function(){
+			   $http({
+				    method : "POST",
+				    url : "/company/" + $scope.company + "/pl",
+				    data: { company: {symbol: $scope.company}, 
+				    	year:$scope.pl_year, 
+				    	grossRevenueFromOperations: $scope.pl_grossRevenueFromOperations,
+				    	exciseOrServiceTaxOrOtherLevies: $scope.pl_exciseOrServiceTaxOrOtherLevies,
+				    	netRevenueFromOperations: $scope.pl_netRevenueFromOperations
+				    	}
+				  }).then(function mySuccess(response) {
+				      $scope.stock = response.data;
+				      $scope.loading = false
+				    }, function myError(response) {
+				      $scope.myWelcome = response.statusText;
+				      $scope.loading = false;
+				});	   
+		   }
+		   
+
+	});
+	
+</script>
 </html>
 
 

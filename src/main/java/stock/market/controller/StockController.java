@@ -3,32 +3,26 @@ package stock.market.controller;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-
 import stock.market.model.Company;
+import stock.market.model.CompanyProfitAndLoss;
 import stock.market.model.Cusip;
 import stock.market.model.Market;
 import stock.market.model.Stock;
 import stock.market.model.User;
 import stock.market.model.UserTracksCusip;
 import stock.market.model.query.CusipQuery;
-
 import org.springframework.http.MediaType;
-
 import stock.market.service.CompanyAdder;
+import stock.market.service.CompanyProfitAndLossRepository;
 import stock.market.service.CompanyRepository;
 import stock.market.service.CusipRepository;
 import stock.market.service.MarketRepository;
 import stock.market.service.UserRepository;
 import stock.market.service.UserTracksCusipRepository;
 import stock.market.service.thirdparty.StockPrice;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,6 +53,8 @@ public class StockController {
 	
 	@Autowired
 	StockPrice stockPrice;
+	
+	@Autowired CompanyProfitAndLossRepository companyProfitAndLossRepository;
 	
 	@RequestMapping(value= "/cusip", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Cusip> getAllCusip(){
@@ -113,7 +109,6 @@ public class StockController {
 		
 		User usr = userRepository.findById(user);
 		Cusip cp = cusipRepository.findById(cusip);
-		//usr.getTrackedCusips().add(cp);
 		
 		CusipQuery cQuery = new CusipQuery();
 		cQuery.setSymbol(cusipRepository.getOne(cusip).getCusip());
@@ -128,17 +123,8 @@ public class StockController {
 		
 		UserTracksCusip userTracksCusip = new UserTracksCusip();
 		userTracksCusip.setPrice(stock.getPrice());
-		//userTracksCusip.setCusip(cp);
-		//userTracksCusip.setUser(usr);
-		
-		
-		//userTracksCusip.setPrice(stock.getPrice());
-		//usr.getUserTracksCusip().add(userTracksCusip);
-		//cp.getUserTracksCusip().add(userTracksCusip);
 
 		userTracksCusipRepository.save(userTracksCusip);
-		//userRepository.save(usr);
-		//cusipRepository.save(cp);
 		return usr;
 	}
 	
@@ -148,10 +134,8 @@ public class StockController {
 			@PathVariable("symbol") String symbol,
 			@PathVariable("date") String date) throws ParseException {
 			
-	
 			User usr = userRepository.findById(user);
 			Cusip cp = cusipRepository.findByCusip(symbol);
-			//usr.getTrackedCusips().add(cp);
 			
 			System.out.println("Cusip: " + cp.getId() + "Name" + cp.getName() );
 			
@@ -171,14 +155,11 @@ public class StockController {
 			userTracksCusip.setUser(usr);
 			userTracksCusip.setCusip(cp);
 			
-			//usr.getUserTracksCusip().add(userTracksCusip);
-			//cp.getUserTracksCusip().add(userTracksCusip);
-			
 			userTracksCusipRepository.save(userTracksCusip);
 			userRepository.save(usr);
 			cusipRepository.save(cp);
 			
-			return userTracksCusipRepository.findByUser(usr); //userTracksCusip;
+			return userTracksCusipRepository.findByUser(usr);
 	}
 	
 	@RequestMapping(value = "/company/nse", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -191,4 +172,50 @@ public class StockController {
 		companyAdder.addCompanies();
 	}
 	
+	@RequestMapping(value = "company/{symbol}/pl", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public CompanyProfitAndLoss saveCompanyPnL(@PathVariable("symbol") String symbol,  @RequestBody CompanyProfitAndLoss companyProfitAndLoss) {
+		
+		Company c = this.companyRepository.findBySymbol(symbol);
+		companyProfitAndLoss.setCompany(c);
+		CompanyProfitAndLoss savedCompanyProfitAndLoss = this.companyProfitAndLossRepository.findByCompanyAndYear(c, companyProfitAndLoss.getYear());
+		
+		if (savedCompanyProfitAndLoss != null ) {
+			savedCompanyProfitAndLoss.setAmountTransferToCapitalAccounts(companyProfitAndLoss.getAmountTransferToCapitalAccounts());
+			savedCompanyProfitAndLoss.setBasicEps(companyProfitAndLoss.getBasicEps());
+			savedCompanyProfitAndLoss.setChangeOfInventoriesOfFgWipAndStockInTrade(companyProfitAndLoss.getChangeOfInventoriesOfFgWipAndStockInTrade());
+			savedCompanyProfitAndLoss.setCostOfMaterialConsumed(companyProfitAndLoss.getCostOfMaterialConsumed());
+			savedCompanyProfitAndLoss.setCurrentTax(companyProfitAndLoss.getCurrentTax());
+			savedCompanyProfitAndLoss.setDeferredTax(companyProfitAndLoss.getDeferredTax());
+			savedCompanyProfitAndLoss.setDepreciationAndAmortisationExpenses(companyProfitAndLoss.getDepreciationAndAmortisationExpenses());
+			savedCompanyProfitAndLoss.setDilutedEps(companyProfitAndLoss.getDilutedEps());
+			savedCompanyProfitAndLoss.setEmploymentBenefitExpenses(companyProfitAndLoss.getEmploymentBenefitExpenses());
+			savedCompanyProfitAndLoss.setEquityDividendRate(companyProfitAndLoss.getEquityDividendRate());
+			savedCompanyProfitAndLoss.setEquityShareDividend(companyProfitAndLoss.getEquityShareDividend());
+			savedCompanyProfitAndLoss.setExceptionalItems(companyProfitAndLoss.getExceptionalItems());
+			savedCompanyProfitAndLoss.setExciseOrServiceTaxOrOtherLevies(companyProfitAndLoss.getExciseOrServiceTaxOrOtherLevies());
+			savedCompanyProfitAndLoss.setFinanceCosts(companyProfitAndLoss.getFinanceCosts());
+			savedCompanyProfitAndLoss.setGrossRevenueFromOperations(companyProfitAndLoss.getGrossRevenueFromOperations());
+			savedCompanyProfitAndLoss.setImportedRawMaterials(companyProfitAndLoss.getImportedRawMaterials());
+			savedCompanyProfitAndLoss.setImportedStoresAndSpares(companyProfitAndLoss.getImportedStoresAndSpares());
+			savedCompanyProfitAndLoss.setIndegenousStoresAndSpares(companyProfitAndLoss.getIndegenousStoresAndSpares());
+			savedCompanyProfitAndLoss.setIndigenousRawMaterials(companyProfitAndLoss.getIndigenousRawMaterials());
+			savedCompanyProfitAndLoss.setMatCreditEntitlement(companyProfitAndLoss.getMatCreditEntitlement());
+			savedCompanyProfitAndLoss.setNetRevenueFromOperations(companyProfitAndLoss.getNetRevenueFromOperations());
+			savedCompanyProfitAndLoss.setOtherExpenses(companyProfitAndLoss.getOtherExpenses());
+			savedCompanyProfitAndLoss.setOtherIncome(companyProfitAndLoss.getOtherIncome());
+			savedCompanyProfitAndLoss.setOtherOperatingRevenues(companyProfitAndLoss.getOtherOperatingRevenues());
+			savedCompanyProfitAndLoss.setProfitLossAfterTaxAndBeforeExtraOrdinaryItems(companyProfitAndLoss.getProfitLossAfterTaxAndBeforeExtraOrdinaryItems());
+			savedCompanyProfitAndLoss.setProfitLossBeforeTax(companyProfitAndLoss.getProfitLossBeforeTax());
+			savedCompanyProfitAndLoss.setProfitLossForThePeriod(companyProfitAndLoss.getProfitLossForThePeriod());
+			savedCompanyProfitAndLoss.setPurchaseOfStocksInTrade(companyProfitAndLoss.getPurchaseOfStocksInTrade());
+			savedCompanyProfitAndLoss.setTaxOnDividend(companyProfitAndLoss.getTaxOnDividend());
+			savedCompanyProfitAndLoss.setTotalExpenses(companyProfitAndLoss.getTotalExpenses());
+			savedCompanyProfitAndLoss.setTotalOperatingRevenues(companyProfitAndLoss.getTotalOperatingRevenues());
+			savedCompanyProfitAndLoss.setTotalRevenue(companyProfitAndLoss.getTotalRevenue());
+			savedCompanyProfitAndLoss.setTotalTaxExpenses(companyProfitAndLoss.getTotalTaxExpenses());
+			return this.companyProfitAndLossRepository.save(savedCompanyProfitAndLoss);
+		}
+		
+		return this.companyProfitAndLossRepository.save(companyProfitAndLoss);
+	}
 }	

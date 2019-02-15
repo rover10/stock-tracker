@@ -7,8 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 @Entity
-public class ProfitAndLoss {
+public class CompanyProfitAndLoss {
 	
 	@Id
 	private int id;
