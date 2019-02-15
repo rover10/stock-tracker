@@ -16,171 +16,223 @@
 
  <form class="form-inline">
 	<div class="form-group">
-	<div style ="font-size:30px;float:left;"> <strong>Profit & Loss</strong> of the company </div>
-	 
-	<input type="text" id="symbol" ng-model="symbol" class="form-control"
-    placeholder="Company" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
-    typeahead-show-hint="true" typeahead-min-length="0"> 
-	 &nbsp; for the year &nbsp;   
-	<input id="pl_year" ng-model = "pl_year" type="text" class="form-control" placeholder="year">
-	<button type="button" class="btn btn-success">Save</button>
+	<div style = "">
+		<div style ="font-size:40px;float:left;"> <strong>Profit & Loss</strong> </div>
+		<div style = "float:right;">
+			<input type="text" id="symbol" ng-model="symbol" class="form-control"
+		    placeholder="Company" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
+		    typeahead-show-hint="true" typeahead-min-length="0"> 
+			 &nbsp; for the year &nbsp;   
+			<input id="pl_year" ng-model = "pl_year" type="text" class="form-control" placeholder="year">
+			<button type="button" class="btn btn-success">Save</button>
+		</div>	
+	</div>
+    
+
+<BR><BR>
+<BR><BR>
+
 	
-
-    
-
-<BR><BR>
-<BR><BR>
-
-
-     <div class="well">
-    <h5>INCOME</h5>
-    
- <table class="table table-condensed">
-    <tbody>
-      <tr>
-        <td><label for="focusedInput">Gross revenue from operations</label></td>
-        <td> <input id="pl_grossRevenueFromOperations" ng-model = "pl_grossRevenueFromOperations" type="text" class="form-control" placeholder="pl_grossRevenueFromOperations"> </td>
-        <td> <label for="focusedInput">Excise or service tax or other levies</label></td>
-        <td> <input id="pl_exciseOrServiceTaxOrOtherLevies" ng-model = "pl_exciseOrServiceTaxOrOtherLevies" type="text" class="form-control" placeholder="pl_exciseOrServiceTaxOrOtherLevies">
-	    </td>
-      </tr>
-      <tr>
-        <td><label for="focusedInput">Net revenue from operations</label></td>
-        <td><input id="pl_netRevenueFromOperations" ng-model = "pl_netRevenueFromOperations" type="text" class="form-control" placeholder="pl_netRevenueFromOperations"></td>
-        <td><label for="focusedInput">Other operating revenues</label></td>
-        <td><input id="pl_otherOperatingRevenues" ng-model = "pl_otherOperatingRevenues" type="text" class="form-control" placeholder="pl_otherOperatingRevenues"></td>
-      </tr>
-      <tr>
-        <td><label for="focusedInput">Total operating revenues</label></td>
-        <td><input id="pl_totalOperatingRevenues" ng-model = "pl_totalOperatingRevenues" type="text" class="form-control" placeholder="pl_totalOperatingRevenues"></td>
-        <td><label for="focusedInput">Other income</label></td>
-        <td><input id="pl_otherIncome" ng-model = "pl_otherIncome" type="text" class="form-control" placeholder="pl_otherIncome"></td>
-      </tr>
-      <tr>
-        <td><label for="focusedInput">Total revenue</label></td>
-        <td><input id="pl_totalRevenue" ng-model = "pl_totalRevenue" type="text" class="form-control" placeholder="pl_totalRevenue"></td>
-        <td></td>
-        <td></td>
-      </tr>
-      
-    </tbody>
-  </table>
-    
-    
+	<div class="well">
+	<h5>INCOME</h5>
+	    
+	 <table class="table table-condensed">
+	    <tbody>
+	      <tr>
+	        <td><label for="focusedInput">Gross revenue from operations</label></td>
+	        <td> <input id="pl_grossRevenueFromOperations" ng-model = "pl_grossRevenueFromOperations" type="text" class="form-control" placeholder="pl_grossRevenueFromOperations"> </td>
+	        <td> <label for="focusedInput">Excise or service tax or other levies</label></td>
+	        <td> <input id="pl_exciseOrServiceTaxOrOtherLevies" ng-model = "pl_exciseOrServiceTaxOrOtherLevies" type="text" class="form-control" placeholder="pl_exciseOrServiceTaxOrOtherLevies">
+		    </td>
+	      </tr>
+	      <tr>
+	        <td><label for="focusedInput">Net revenue from operations</label></td>
+	        <td><input id="pl_netRevenueFromOperations" ng-model = "pl_netRevenueFromOperations" type="text" class="form-control" placeholder="pl_netRevenueFromOperations"></td>
+	        <td><label for="focusedInput">Other operating revenues</label></td>
+	        <td><input id="pl_otherOperatingRevenues" ng-model = "pl_otherOperatingRevenues" type="text" class="form-control" placeholder="pl_otherOperatingRevenues"></td>
+	      </tr>
+	      <tr>
+	        <td><label for="focusedInput">Total operating revenues</label></td>
+	        <td><input id="pl_totalOperatingRevenues" ng-model = "pl_totalOperatingRevenues" type="text" class="form-control" placeholder="pl_totalOperatingRevenues"></td>
+	        <td><label for="focusedInput">Other income</label></td>
+	        <td><input id="pl_otherIncome" ng-model = "pl_otherIncome" type="text" class="form-control" placeholder="pl_otherIncome"></td>
+	      </tr>
+	      <tr>
+	        <td><label for="focusedInput">Total revenue</label></td>
+	        <td><input id="pl_totalRevenue" ng-model = "pl_totalRevenue" type="text" class="form-control" placeholder="pl_totalRevenue"></td>
+	        <td></td>
+	        <td></td>
+	      </tr>
+	      
+	    </tbody>
+	  </table>
+	</div>    
+	    
     
        
        	
+	 <div class="well">
+	    <h5>EXPENSES</h5>	    
+		  <table class="table table-condensed">
+		    <thead>
+		    <tbody>
+		      <tr>
+		        <td><label for="focusedInput">Cost of material consumed </label></td>
+		        <td><input id="pl_costOfMaterialConsumed" ng-model = "pl_costOfMaterialConsumed" type="text" class="form-control" placeholder="pl_costOfMaterialConsumed">
+			    </td>
+		        <td><label for="focusedInput">Purchase of stocks in trade </label></td>
+		        <td><input id="pl_purchaseOfStocksInTrade" ng-model = "pl_purchaseOfStocksInTrade" type="text" class="form-control" placeholder="pl_purchaseOfStocksInTrade"></td>
+		      </tr>
+		      <tr>
+		        <td><label for="focusedInput">Change of inventories of FG wip and Stock in Trade </label></td>
+		        <td><input id="pl_changeOfInventoriesOfFgWipAndStockInTrade" ng-model = "pl_changeOfInventoriesOfFgWipAndStockInTrade" type="text" class="form-control" placeholder="pl_changeOfInventoriesOfFgWipAndStockInTrade"></td>
+		        <td><label for="focusedInput">Employment benefit expenses</label></td>
+		        <td><input id="pl_employmentBenefitExpenses" ng-model = "pl_employmentBenefitExpenses" type="text" class="form-control" placeholder="pl_employmentBenefitExpenses"></td>
+		      </tr>
+		      <tr>
+		        <td><label for="focusedInput">Finance costs</label></td>
+		        <td><input id="pl_financeCosts" ng-model = "pl_financeCosts" type="text" class="form-control" placeholder="pl_financeCosts"></td>
+		        <td><label for="focusedInput">Depreciation and amortisation expenses</label></td>
+		        <td><input id="pl_depreciationAndAmortisationExpenses" ng-model = "pl_depreciationAndAmortisationExpenses" type="text" class="form-control" placeholder="pl_depreciationAndAmortisationExpenses"></td>
+		      </tr>
+		      <tr>
+		        <td><label for="focusedInput">Other expenses</label></td>
+		        <td><input id="pl_otherExpenses" ng-model = "pl_otherExpenses" type="text" class="form-control" placeholder="pl_otherExpenses"></td>
+		        <td><label for="focusedInput">Amount transfer to capital accounts</label></td>
+		        <td><input id="pl_amountTransferToCapitalAccounts" ng-model = "pl_amountTransferToCapitalAccounts" type="text" class="form-control" placeholder="pl_amountTransferToCapitalAccounts"></td>
+		      </tr>
+		      <tr>
+		        <td><label for="focusedInput">Total expenses</label></td>
+		        <td><input id="pl_totalExpenses" ng-model = "pl_totalExpenses" type="text" class="form-control" placeholder="pl_totalExpenses"></td>
+		      </tr>
+		    </tbody>
+		  </table>	       
+	 </div>
 	    
-
-       	
-	    
-	    
-	    
-       	
-	    
-	    
-       	
-	    
-	    
-       	
-	    
-	    
-       	
-	
-    </div>
-	
-	
     <div class="well">
-    <h5>EXPENSES</h5>
-	    
-       	<input id="pl_costOfMaterialConsumed" ng-model = "pl_costOfMaterialConsumed" type="text" class="form-control" placeholder="pl_costOfMaterialConsumed">
-	    
-       	<input id="pl_purchaseOfStocksInTrade" ng-model = "pl_purchaseOfStocksInTrade" type="text" class="form-control" placeholder="pl_purchaseOfStocksInTrade">
-	    
-       	<input id="pl_changeOfInventoriesOfFgWipAndStockInTrade" ng-model = "pl_changeOfInventoriesOfFgWipAndStockInTrade" type="text" class="form-control" placeholder="pl_changeOfInventoriesOfFgWipAndStockInTrade">
-	    
-       	<input id="pl_employmentBenefitExpenses" ng-model = "pl_employmentBenefitExpenses" type="text" class="form-control" placeholder="pl_employmentBenefitExpenses">
-	    
-       	<input id="pl_financeCosts" ng-model = "pl_financeCosts" type="text" class="form-control" placeholder="pl_financeCosts">
-	    
-       	<input id="pl_depreciationAndAmortisationExpenses" ng-model = "pl_depreciationAndAmortisationExpenses" type="text" class="form-control" placeholder="pl_depreciationAndAmortisationExpenses">
-	    
-       	<input id="pl_otherExpenses" ng-model = "pl_otherExpenses" type="text" class="form-control" placeholder="pl_otherExpenses">
-	    
-       	<input id="pl_amountTransferToCapitalAccounts" ng-model = "pl_amountTransferToCapitalAccounts" type="text" class="form-control" placeholder="pl_amountTransferToCapitalAccounts">
-	    
-       	<input id="pl_totalExpenses" ng-model = "pl_totalExpenses" type="text" class="form-control" placeholder="pl_totalExpenses">    
-    </div>
-
-
-
-    <div class="well">
-	<h5>PROFIT/LOSS BEFORE EXCEPTIONAL, EXTRAORDINARY ITEMS AND TAX</h5>
-	    
-       	<input id="pl_exceptionalItems" ng-model = "pl_exceptionalItems" type="text" class="form-control" placeholder="pl_exceptionalItems">
-	    
-       	<input id="pl_profitLossBeforeTax" ng-model = "pl_profitLossBeforeTax" type="text" class="form-control" placeholder="pl_profitLossBeforeTax">
-    
-    </div>	
+		<h5>PROFIT/LOSS BEFORE EXCEPTIONAL, EXTRAORDINARY ITEMS AND TAX</h5>
+		<table class="table table-condensed">
+		    <tbody>
+		      <tr>
+		      <td><label for="focusedInput">Exceptional items</label></td>
+		      <td><input id="pl_exceptionalItems" ng-model = "pl_exceptionalItems" type="text" class="form-control" placeholder="pl_exceptionalItems"></td>
+		      <td><label for="focusedInput">Profit loss before tax</label></td>
+		      <td><input id="pl_profitLossBeforeTax" ng-model = "pl_profitLossBeforeTax" type="text" class="form-control" placeholder="pl_profitLossBeforeTax"></td>
+		      </tr>
+		      </tbody>  
+		    </tbody>
+		</table>      	
+	 </div>	
 	
-    <div class="well">
-    <h5>TAX EXPENSES-CONTINUED OPERATIONS</h5>
-	    
-       	<input id="pl_currentTax" ng-model = "pl_currentTax" type="text" class="form-control" placeholder="pl_currentTax">
-	    
-       	<input id="pl_matCreditEntitlement" ng-model = "pl_matCreditEntitlement" type="text" class="form-control" placeholder="pl_matCreditEntitlement">
-	    
-       	<input id="pl_deferredTax" ng-model = "pl_deferredTax" type="text" class="form-control" placeholder="pl_deferredTax">
 	
-	    
-       	<input id="pl_totalTaxExpenses" ng-model = "pl_totalTaxExpenses" type="text" class="form-control" placeholder="pl_totalTaxExpenses">
-	    
-       	<input id="pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems" ng-model = "pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems" type="text" class="form-control" placeholder="pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems">
-	    
-       	<input id="pl_profitLossForThePeriod" ng-model = "pl_profitLossForThePeriod" type="text" class="form-control" placeholder="pl_profitLossForThePeriod">
-    
-    </div>
+
+	<div class="well">
+	    <h5>TAX EXPENSES-CONTINUED OPERATIONS</h5>
+		<table class="table table-condensed">
+			<tbody>
+				<tr>
+				<td><label for="focusedInput">Current tax</label></td>
+				<td><input id="pl_currentTax" ng-model = "pl_currentTax" type="text" class="form-control" placeholder="pl_currentTax"></td>
+				<td><label for="focusedInput">Mat credit entitlement</label></td>
+				<td><input id="pl_matCreditEntitlement" ng-model = "pl_matCreditEntitlement" type="text" class="form-control" placeholder="pl_matCreditEntitlement"></td>
+				</tr>
+				
+				<tr>
+				<td><label for="focusedInput">Deferred tax</label></td>
+				<td><input id="pl_deferredTax" ng-model = "pl_deferredTax" type="text" class="form-control" placeholder="pl_deferredTax"></td>
+				<td><label for="focusedInput">Total tax expenses</label></td>
+				<td><input id="pl_totalTaxExpenses" ng-model = "pl_totalTaxExpenses" type="text" class="form-control" placeholder="pl_totalTaxExpenses"></td>
+				</tr>
+				
+				<tr>
+				<td><label for="focusedInput">Profit loss after tax and before extra ordinary items</label></td>
+				<td><input id="pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems" ng-model = "pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems" type="text" class="form-control" placeholder="pl_profitLossAfterTaxAndBeforeExtraOrdinaryItems"></td>
+				<td><label for="focusedInput"> Profit loss for the period</label></td>
+				<td><input id="pl_profitLossForThePeriod" ng-model = "pl_profitLossForThePeriod" type="text" class="form-control" placeholder="pl_profitLossForThePeriod"></td>
+				</tr>
+			</tbody>
+		</table>	
+	</div>
 	
-    <div class="well">
-	OTHER ADDITIONAL INFORMATION
+	<div class="well">
+	<h5>OTHER ADDITIONAL INFORMATION</h5>
 	<h5>EARNING PER SHARE</h5>
-	    
-       	<input id="pl_basicEps" ng-model = "pl_basicEps" type="text" class="form-control" placeholder="pl_basicEps">
-	    
-       	<input id="pl_dilutedEps" ng-model = "pl_dilutedEps" type="text" class="form-control" placeholder="pl_dilutedEps">
-    
+	<table class="table table-condensed">
+		<tbody>
+			<tr>
+			<td><label for="focusedInput">Basic EPS</label></td>
+			<td><input id="pl_basicEps" ng-model = "pl_basicEps" type="text" class="form-control" placeholder="pl_basicEps"></td>
+			</tr>
+			
+			<tr>
+			<td><label for="focusedInput">Diluted EPS</label></td>
+			<td><input id="pl_dilutedEps" ng-model = "pl_dilutedEps" type="text" class="form-control" placeholder="pl_dilutedEps"></td>
+			</tr>
+		</tbody>
+	</table>
     </div>
+	
 	
     <div class="well">
         <h5>VALUE OF IMPORTED AND INDIGENIOUS RAW MATERIALS</h5>
-	    
-       	<input id="pl_importedRawMaterials" ng-model = "pl_importedRawMaterials" type="text" class="form-control" placeholder="pl_importedRawMaterials">
-	    
-       	<input id="pl_indigenousRawMaterials" ng-model = "pl_indigenousRawMaterials" type="text" class="form-control" placeholder="pl_indigenousRawMaterials">
-    
-    </div>
+		<table class="table table-condensed">
+			<tbody>
+				<tr>
+				<td><label for="focusedInput">Imported raw materials</label></td>
+				<td><input id="pl_importedRawMaterials" ng-model = "pl_importedRawMaterials" type="text" class="form-control" placeholder="pl_importedRawMaterials"></td>
+				</tr>
+				
+				<tr>
+				<td><label for="focusedInput">Indigenous raw materials</label></td>
+				<td><input id="pl_indigenousRawMaterials" ng-model = "pl_indigenousRawMaterials" type="text" class="form-control" placeholder="pl_indigenousRawMaterials"></td>
+				</tr>
+			</tbody>
+		</table> 	
+	</div>
+	
 	
     <div class="well">
         <h5>STORES, SPARES AND LOOSE TOOLS</h5>
-	    
-       	<input id="pl_importedStoresAndSpares" ng-model = "pl_importedStoresAndSpares" type="text" class="form-control" placeholder="pl_importedStoresAndSpares">
-	    
-       	<input id="pl_indegenousStoresAndSpares" ng-model = "pl_indegenousStoresAndSpares" type="text" class="form-control" placeholder="pl_indegenousStoresAndSpares">
-    
-    </div>
+		 <table class="table table-condensed">
+			<tbody>
+				<tr>
+				<td><label for="focusedInput">Imported stores & spares</label></td>
+				<td><input id="pl_importedStoresAndSpares" ng-model = "pl_importedStoresAndSpares" type="text" class="form-control" placeholder="pl_importedStoresAndSpares"></td>
+				</tr>
+				
+				<tr>
+				<td><label for="focusedInput">Indegenous stores & spares</label></td>
+				<td><input id="pl_indegenousStoresAndSpares" ng-model = "pl_indegenousStoresAndSpares" type="text" class="form-control" placeholder="pl_indegenousStoresAndSpares"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
 	
     <div class="well">
-	 <h5>DIVIDEND AND DIVIDEND PERCENTAGE</h5>
-	    
-       	<input id="pl_equityShareDividend" ng-model = "pl_equityShareDividend" type="text" class="form-control" placeholder="pl_equityShareDividend">
-	    
-       	<input id="pl_taxOnDividend" ng-model = "pl_taxOnDividend" type="text" class="form-control" placeholder="pl_taxOnDividend">
-	    
-       	<input id="pl_equityDividendRate" ng-model = "pl_equityDividendRate" type="text" class="form-control" placeholder="pl_equityDividendRate">
-    
-    </div>
+		 <h5>DIVIDEND AND DIVIDEND PERCENTAGE</h5>
+		  <table class="table table-condensed">
+			<tbody>
+				<tr>
+				<td><label for="focusedInput">Equity share dividend</label></td>
+				<td><input id="pl_equityShareDividend" ng-model = "pl_equityShareDividend" type="text" class="form-control" placeholder="pl_equityShareDividend"></td>
+				</tr>
+				
+				<tr>
+				<td><label for="focusedInput">Tax on dividend</label></td>
+				<td><input id="pl_taxOnDividend" ng-model = "pl_taxOnDividend" type="text" class="form-control" placeholder="pl_taxOnDividend"></td>
+				</tr>
+				
+				<tr>
+				<td><label for="focusedInput">Equity dividend rate</label></td>
+				<td><input id="pl_equityDividendRate" ng-model = "pl_equityDividendRate" type="text" class="form-control" placeholder="pl_equityDividendRate"></td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
 	
-	 
+	</div> 
 </form>
 
 </div>
