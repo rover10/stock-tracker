@@ -4,14 +4,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"year","company_id"}))
 public class CashFlow {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private int year;
+	
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Company company;
+	
 	private double unitMutiplier;
 	private double netCashFlowFromOperatingActivities;
 	private double netCashUsedInInvestingActivities;
@@ -40,12 +50,12 @@ public class CashFlow {
 	public void setUnitMutiplier(double unitMutiplier) {
 		this.unitMutiplier = unitMutiplier;
 	}
-	//	public Company getCompany() {
-	//		return company;
-	//	}
-	//	public void setCompany(Company company) {
-	//		this.company = company;
-	//	}
+	public Company getCompany() {
+		return company;
+	}
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 	public double getNetCashFlowFromOperatingActivities() {
 		return netCashFlowFromOperatingActivities;
 	}

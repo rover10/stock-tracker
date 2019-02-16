@@ -21,17 +21,21 @@
     	border-style:none;
 	}
 </style>
+<div class="container">
 <div class="container" ng-app="myApp" ng-controller="myCtrl">
 <BR><BR>
 
- <form class="form-inline">
-	<div class="form-group">
+ <form class="form-inline ">
+	<div class="">
 	<div style = "">
-		<div style ="font-size:40px;float:left;"> <strong>Profit & Loss</strong> </div>
-		<div style = "float:right;">
+		<div style ="font-size:70px;float:left;"> <strong>Profit & Loss</strong> </div>
+		<BR>
+		<div style = "float:right;widht:relative;">
+			<div  style="float:left;">
 			<input type="text" id="symbol" ng-model="company" class="form-control input-sm"
 		    placeholder="Company" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
 		    typeahead-show-hint="true" typeahead-min-length="0"> 
+		    </div>
 			 &nbsp; for the year &nbsp;   
 			<input id="pl_year" ng-model = "pl_year" type="text" class="form-control input-sm" placeholder="year">
 			<button type="button" class="btn btn-success" ng-click="savePnL();">Save</button>
@@ -45,8 +49,8 @@
 
 	
 	<div class="well">
-	<h5>INCOME</h5>
-	    
+	<h4><strong>Income</strong></h4>
+	<BR>    
 	 <table class="table table-condensed ">
 	    <tbody>
 	      <tr>
@@ -75,18 +79,9 @@
 	        <td></td>
 	      </tr>
 	      
-	    </tbody>
-	  </table>
-	</div>    
-	    
-    
-       
-       	
-	 <div class="well">
-	    <h5>EXPENSES</h5>	    
-		  <table class="table table-condensed">
-		    <thead>
-		    <tbody>
+
+	    	<tr><td><h4>Expenses</h4></td></tr>
+
 		      <tr>
 		        <td><label for="focusedInput">Cost of material consumed </label></td>
 		        <td><input id="pl_costOfMaterialConsumed" ng-model = "pl_costOfMaterialConsumed" type="text" class="form-control input-sm" placeholder="">
@@ -116,31 +111,23 @@
 		        <td><label for="focusedInput">Total expenses</label></td>
 		        <td><input id="pl_totalExpenses" ng-model = "pl_totalExpenses" type="text" class="form-control input-sm" placeholder=""></td>
 		      </tr>
-		    </tbody>
-		  </table>	       
-	 </div>
-	    
-    <div class="well">
-		<h5>PROFIT/LOSS BEFORE EXCEPTIONAL, EXTRAORDINARY ITEMS AND TAX</h5>
-		<table class="table table-condensed">
-		    <tbody>
-		      <tr>
+			<tr><td>
+			<h4>Profit/Loss before exceptional, extraordinary items & tax</h4>
+			<BR>
+			</td></tr>
+			  <tr>
 		      <td><label for="focusedInput">Exceptional items</label></td>
 		      <td><input id="pl_exceptionalItems" ng-model = "pl_exceptionalItems" type="text" class="form-control input-sm" placeholder=""></td>
 		      <td><label for="focusedInput">Profit loss before tax</label></td>
 		      <td><input id="pl_profitLossBeforeTax" ng-model = "pl_profitLossBeforeTax" type="text" class="form-control input-sm" placeholder=""></td>
 		      </tr>
-		      </tbody>  
-		    </tbody>
-		</table>      	
-	 </div>	
-	
-	
-
-	<div class="well">
-	    <h5>TAX EXPENSES-CONTINUED OPERATIONS</h5>
-		<table class="table table-condensed">
-			<tbody>
+				<tr>
+				<td>
+				<h4>Tax expenses-continued operations</h4>
+			    <BR>
+				</td>
+				</tr>
+	    
 				<tr>
 				<td><label for="focusedInput">Current tax</label></td>
 				<td><input id="pl_currentTax" ng-model = "pl_currentTax" type="text" class="form-control input-sm" placeholder=""></td>
@@ -161,33 +148,28 @@
 				<td><label for="focusedInput"> Profit loss for the period</label></td>
 				<td><input id="pl_profitLossForThePeriod" ng-model = "pl_profitLossForThePeriod" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
-			</tbody>
-		</table>	
-	</div>
+				<tr><td>
+				<h4>Other additional information</h4>
+				
+				<BR>
+				</td></tr>		
+		
+				<tr>
+				<td><label for="focusedInput">Basic EPS</label></td>
+				<td><input id="pl_basicEps" ng-model = "pl_basicEps" type="text" class="form-control input-sm" placeholder=""></td>
+				</tr>
+				
+				<tr>
+				<td><label for="focusedInput">Diluted EPS</label></td>
+				<td><input id="pl_dilutedEps" ng-model = "pl_dilutedEps" type="text" class="form-control input-sm" placeholder=""></td>
+				</tr>
 	
-	<div class="well">
-	<h5>OTHER ADDITIONAL INFORMATION</h5>
-	<h5>EARNING PER SHARE</h5>
-	<table class="table table-condensed">
-		<tbody>
-			<tr>
-			<td><label for="focusedInput">Basic EPS</label></td>
-			<td><input id="pl_basicEps" ng-model = "pl_basicEps" type="text" class="form-control input-sm" placeholder=""></td>
-			</tr>
-			
-			<tr>
-			<td><label for="focusedInput">Diluted EPS</label></td>
-			<td><input id="pl_dilutedEps" ng-model = "pl_dilutedEps" type="text" class="form-control input-sm" placeholder=""></td>
-			</tr>
-		</tbody>
-	</table>
-    </div>
-	
-	
-    <div class="well">
-        <h5>VALUE OF IMPORTED AND INDIGENIOUS RAW MATERIALS</h5>
-		<table class="table table-condensed">
-			<tbody>
+				<tr>
+					<td>
+						<h4>Value of imported and indigenous raw materials</h4>
+				        <BR>
+					</td>
+				</tr>
 				<tr>
 				<td><label for="focusedInput">Imported raw materials</label></td>
 				<td><input id="pl_importedRawMaterials" ng-model = "pl_importedRawMaterials" type="text" class="form-control input-sm" placeholder=""></td>
@@ -197,15 +179,14 @@
 				<td><label for="focusedInput">Indigenous raw materials</label></td>
 				<td><input id="pl_indigenousRawMaterials" ng-model = "pl_indigenousRawMaterials" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
-			</tbody>
-		</table> 	
-	</div>
-	
-	
-    <div class="well">
-        <h5>STORES, SPARES AND LOOSE TOOLS</h5>
-		 <table class="table table-condensed">
-			<tbody>
+
+				<tr>
+					<td>
+						<h4>Stores, spares & loose tools</h4>
+				        <BR>
+					</td>
+				</tr>
+
 				<tr>
 				<td><label for="focusedInput">Imported stores & spares</label></td>
 				<td><input id="pl_importedStoresAndSpares" ng-model = "pl_importedStoresAndSpares" type="text" class="form-control input-sm" placeholder=""></td>
@@ -215,15 +196,12 @@
 				<td><label for="focusedInput">Indegenous stores & spares</label></td>
 				<td><input id="pl_indegenousStoresAndSpares" ng-model = "pl_indegenousStoresAndSpares" type="text" class="form-control input-sm" placeholder=""></td>
 				</tr>
-			</tbody>
-		</table>
-	</div>
-	
-	
-    <div class="well">
-		 <h5>DIVIDEND AND DIVIDEND PERCENTAGE</h5>
-		  <table class="table table-condensed">
-			<tbody>
+
+				<tr>
+					<td><h4>Dividend & dividend percentage</h4>
+				 	<BR></td>
+			 	</tr>
+		 
 				<tr>
 				<td><label for="focusedInput">Equity share dividend</label></td>
 				<td><input id="pl_equityShareDividend" ng-model = "pl_equityShareDividend" type="text" class="form-control input-sm" placeholder=""></td>
@@ -245,7 +223,7 @@
 	
 	</div> 
 </form>
-
+</div>
 </div>
 
 </body>
@@ -295,7 +273,7 @@
 		//OTHER ADDITIONAL INFORMATION
 		//EARNING PER SHARE
 		   $scope.pl_basicEps = null;  
-		   $scope.pl_dilutedEps = null; pl_equityDividendRate
+		   $scope.pl_dilutedEps = null; 
 		
 		// VALUE OF IMPORTED AND INDIGENIOUS RAW MATERIALS
 		   $scope.pl_importedRawMaterials = null;
@@ -309,6 +287,7 @@
 		   $scope.pl_equityShareDividend = null;
 		   $scope.pl_taxOnDividend = null;
 		   $scope.pl_equityDividendRate = null;
+		   
 		   
 		   $scope.savePnL = function(){
 			   $http({
@@ -347,8 +326,10 @@
 					    	importedRawMaterials: $scope.pl_importedRawMaterials,
 					    	indigenousRawMaterials: $scope.pl_indigenousRawMaterials,
 					    	equityShareDividend: $scope.pl_equityShareDividend, 
-					    	taxOnDividend: $scope.pl_taxOnDividend
-				    	
+					    	taxOnDividend: $scope.pl_taxOnDividend,
+					    	importedStoresAndSpares: $scope.pl_importedStoresAndSpares,
+				    		indegenousStoresAndSpares: $scope.pl_indegenousStoresAndSpares,
+				    		equityDividendRate: $scope.pl_equityDividendRate
 				    	}
 				  }).then(function mySuccess(response) {
 				         $scope.loading = false
@@ -369,7 +350,7 @@
 		    	 $scope.pl_netRevenueFromOperations = response.data.netRevenueFromOperations;
 		    	 $scope.pl_otherOperatingRevenues = response.data.otherOperatingRevenues;
 		    	 $scope.pl_totalOperatingRevenues = response.data.totalOperatingRevenues;
-		    	 $scope.pl_otherIncome = response.data.otherIncom;
+		    	 $scope.pl_otherIncome = response.data.otherIncome;
 		    	 $scope.pl_totalRevenue = response.data.totalRevenue;
 		    	 $scope.pl_costOfMaterialConsumed = response.data.costOfMaterialConsumed;
 		    	 $scope.pl_purchaseOfStocksInTrade = response.data.purchaseOfStocksInTrade;
@@ -396,6 +377,9 @@
 		    	 $scope.pl_indigenousRawMaterials = response.data.indigenousRawMaterials;
 		    	 $scope.pl_equityShareDividend = response.data.equityShareDividend;
 		    	 $scope.pl_taxOnDividend = response.data.taxOnDividend;
+			     $scope.pl_importedStoresAndSpares =  response.data.importedStoresAndSpares;
+			     $scope.pl_indegenousStoresAndSpares = response.data.indegenousStoresAndSpares;
+			     $scope.pl_equityDividendRate = response.data.equityDividendRate;
 			 }, function error(response){
 				 $scope.loading = false;
 				 

@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import stock.market.model.Company;
-import stock.market.model.CompanyProfitAndLoss;
+import stock.market.model.ProfitAndLoss;
 import stock.market.model.Cusip;
 import stock.market.model.Market;
 import stock.market.model.Stock;
@@ -16,7 +16,7 @@ import stock.market.model.UserTracksCusip;
 import stock.market.model.query.CusipQuery;
 import org.springframework.http.MediaType;
 import stock.market.service.CompanyAdder;
-import stock.market.service.CompanyProfitAndLossRepository;
+import stock.market.service.ProfitAndLossRepository;
 import stock.market.service.CompanyRepository;
 import stock.market.service.CusipRepository;
 import stock.market.service.MarketRepository;
@@ -54,7 +54,7 @@ public class StockController {
 	@Autowired
 	StockPrice stockPrice;
 	
-	@Autowired CompanyProfitAndLossRepository companyProfitAndLossRepository;
+	@Autowired ProfitAndLossRepository profitAndLossRepository;
 	
 	@RequestMapping(value= "/cusip", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Cusip> getAllCusip(){
@@ -130,36 +130,36 @@ public class StockController {
 	
 	@RequestMapping(value = "/track/{user}/symbol/{symbol}/date/{date}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<UserTracksCusip> trackStockSymbol(
-			@PathVariable("user") int user,
-			@PathVariable("symbol") String symbol,
-			@PathVariable("date") String date) throws ParseException {
-			
-			User usr = userRepository.findById(user);
-			Cusip cp = cusipRepository.findByCusip(symbol);
-			
-			System.out.println("Cusip: " + cp.getId() + "Name" + cp.getName() );
-			
-			CusipQuery cQuery = new CusipQuery();
-			cQuery.setSymbol(symbol);
-			cQuery.setStartDate(date);
-			cQuery.setEndDate(date);
-			
-			Stock stock = stockPrice.fetchDetail(cQuery);
-			DateFormat format = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
-			Date trackdate = format.parse(date);
-			cp.setTradingFrom(trackdate);
-			
-			UserTracksCusip userTracksCusip = new UserTracksCusip();
-			userTracksCusip.setPrice(stock.getPrice());
-			
-			userTracksCusip.setUser(usr);
-			userTracksCusip.setCusip(cp);
-			
-			userTracksCusipRepository.save(userTracksCusip);
-			userRepository.save(usr);
-			cusipRepository.save(cp);
-			
-			return userTracksCusipRepository.findByUser(usr);
+		@PathVariable("user") int user,
+		@PathVariable("symbol") String symbol,
+		@PathVariable("date") String date) throws ParseException {
+		
+		User usr = userRepository.findById(user);
+		Cusip cp = cusipRepository.findByCusip(symbol);
+		
+		System.out.println("Cusip: " + cp.getId() + "Name" + cp.getName() );
+		
+		CusipQuery cQuery = new CusipQuery();
+		cQuery.setSymbol(symbol);
+		cQuery.setStartDate(date);
+		cQuery.setEndDate(date);
+		
+		Stock stock = stockPrice.fetchDetail(cQuery);
+		DateFormat format = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+		Date trackdate = format.parse(date);
+		cp.setTradingFrom(trackdate);
+		
+		UserTracksCusip userTracksCusip = new UserTracksCusip();
+		userTracksCusip.setPrice(stock.getPrice());
+		
+		userTracksCusip.setUser(usr);
+		userTracksCusip.setCusip(cp);
+		
+		userTracksCusipRepository.save(userTracksCusip);
+		userRepository.save(usr);
+		cusipRepository.save(cp);
+		
+		return userTracksCusipRepository.findByUser(usr);
 	}
 	
 	@RequestMapping(value = "/company/nse", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -173,11 +173,11 @@ public class StockController {
 	}
 	
 	@RequestMapping(value = "company/{symbol}/pl", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public CompanyProfitAndLoss saveCompanyPnL(@PathVariable("symbol") String symbol,  @RequestBody CompanyProfitAndLoss companyProfitAndLoss) {
+	public ProfitAndLoss saveCompanyPnL(@PathVariable("symbol") String symbol,  @RequestBody ProfitAndLoss companyProfitAndLoss) {
 		
 		Company c = this.companyRepository.findBySymbol(symbol);
 		companyProfitAndLoss.setCompany(c);
-		CompanyProfitAndLoss savedCompanyProfitAndLoss = this.companyProfitAndLossRepository.findByCompanyAndYear(c, companyProfitAndLoss.getYear());
+		ProfitAndLoss savedCompanyProfitAndLoss = this.profitAndLossRepository.findByCompanyAndYear(c, companyProfitAndLoss.getYear());
 		
 		if (savedCompanyProfitAndLoss != null ) {
 			savedCompanyProfitAndLoss.setAmountTransferToCapitalAccounts(companyProfitAndLoss.getAmountTransferToCapitalAccounts());
@@ -213,15 +213,15 @@ public class StockController {
 			savedCompanyProfitAndLoss.setTotalOperatingRevenues(companyProfitAndLoss.getTotalOperatingRevenues());
 			savedCompanyProfitAndLoss.setTotalRevenue(companyProfitAndLoss.getTotalRevenue());
 			savedCompanyProfitAndLoss.setTotalTaxExpenses(companyProfitAndLoss.getTotalTaxExpenses());
-			return this.companyProfitAndLossRepository.save(savedCompanyProfitAndLoss);
+			return this.profitAndLossRepository.save(savedCompanyProfitAndLoss);
 		}
 		
-		return this.companyProfitAndLossRepository.save(companyProfitAndLoss);
+		return this.profitAndLossRepository.save(companyProfitAndLoss);
 	}
 	
 	@RequestMapping(value = "company/{symbol}/pl/{year}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public CompanyProfitAndLoss profitAndLoss(@PathVariable("symbol") String symbol, @PathVariable("year") int year) {
+	public ProfitAndLoss profitAndLoss(@PathVariable("symbol") String symbol, @PathVariable("year") int year) {
 		Company c = this.companyRepository.findBySymbol(symbol);
-		return this.companyProfitAndLossRepository.findByCompanyAndYear(c, year);
+		return this.profitAndLossRepository.findByCompanyAndYear(c, year);
 	}
 }	

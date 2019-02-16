@@ -8,19 +8,27 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames= {"year","company_id"}))
 public class BalanceSheet {
 	//COMPANY
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	//@ManyToOne
-	//@JoinColumn(referencedColumnName = "id")
-	//private Company company;
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Company company;
 	
+	public Company getCompany() {
+		return company;
+	}
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 	//BALANCESHEET YEAR
 	private int year;
 	

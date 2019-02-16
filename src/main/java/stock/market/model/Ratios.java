@@ -4,13 +4,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"year", "company_id"}))
 public class Ratios {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private int year;
+	
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Company company;
 	
 	//PER SHARE RATIOS
 	private float basicEps;
@@ -65,12 +74,12 @@ public class Ratios {
 	public void setYear(int year) {
 		this.year = year;
 	}
-//	public Company getCompany() {
-//		return company;
-//	}
-//	public void setCompany(Company company) {
-//		this.company = company;
-//	}
+	public Company getCompany() {
+		return company;
+	}
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 	public float getBasicEps() {
 		return basicEps;
 	}

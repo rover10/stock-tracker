@@ -8,11 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
-public class CompanyProfitAndLoss {
+@Table(uniqueConstraints=@UniqueConstraint(columnNames= {"year","company_id"}))
+public class ProfitAndLoss {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
