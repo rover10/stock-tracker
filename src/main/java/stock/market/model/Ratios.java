@@ -20,7 +20,7 @@ public class Ratios {
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Company company;
-	
+
 	//PER SHARE RATIOS
 	private float basicEps;
 	private float dilutedEps;

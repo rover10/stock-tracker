@@ -21,7 +21,6 @@ public class CashFlow {
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Company company;
-	
 	private double unitMutiplier;
 	private double netCashFlowFromOperatingActivities;
 	private double netCashUsedInInvestingActivities;
