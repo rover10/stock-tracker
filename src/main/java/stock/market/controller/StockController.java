@@ -177,7 +177,7 @@ public class StockController {
 		
 		Company c = this.companyRepository.findBySymbol(symbol);
 		companyProfitAndLoss.setCompany(c);
-		ProfitAndLoss savedCompanyProfitAndLoss = this.profitAndLossRepository.findByCompanyAndYear(c, companyProfitAndLoss.getYear());
+		ProfitAndLoss savedCompanyProfitAndLoss = this.profitAndLossRepository.findByCompanyAndYearAndQuarter(c, companyProfitAndLoss.getYear(), companyProfitAndLoss.getQuarter());
 		
 		if (savedCompanyProfitAndLoss != null ) {
 			savedCompanyProfitAndLoss.setAmountTransferToCapitalAccounts(companyProfitAndLoss.getAmountTransferToCapitalAccounts());
@@ -219,9 +219,9 @@ public class StockController {
 		return this.profitAndLossRepository.save(companyProfitAndLoss);
 	}
 	
-	@RequestMapping(value = "company/{symbol}/pl/{year}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ProfitAndLoss profitAndLoss(@PathVariable("symbol") String symbol, @PathVariable("year") int year) {
+	@RequestMapping(value = "company/{symbol}/pl/{year}/quarter/{quarter}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ProfitAndLoss profitAndLoss(@PathVariable("symbol") String symbol, @PathVariable("year") int year, @PathVariable("quarter") int quarter) {
 		Company c = this.companyRepository.findBySymbol(symbol);
-		return this.profitAndLossRepository.findByCompanyAndYear(c, year);
+		return this.profitAndLossRepository.findByCompanyAndYearAndQuarter(c, year, quarter);
 	}
 }	

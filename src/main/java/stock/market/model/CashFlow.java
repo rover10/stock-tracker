@@ -10,13 +10,14 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"year","company_id"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"quarter", "year","company_id"}))
 public class CashFlow {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private int year;
+	private int quarter;
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
@@ -90,6 +91,12 @@ public class CashFlow {
 	}
 	public void setCashAndCashEquivalentsEndOfYear(double cashAndCashEquivalentsEndOfYear) {
 		this.cashAndCashEquivalentsEndOfYear = cashAndCashEquivalentsEndOfYear;
+	}
+	public int getQuarter() {
+		return quarter;
+	}
+	public void setQuarter(int quarter) {
+		this.quarter = quarter;
 	}
 
 }

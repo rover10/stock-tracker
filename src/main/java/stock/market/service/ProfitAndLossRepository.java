@@ -7,6 +7,6 @@ import stock.market.model.ProfitAndLoss;
 
 public interface ProfitAndLossRepository extends JpaRepository<ProfitAndLoss, Integer> {
 	public ProfitAndLoss save(ProfitAndLoss companyProfitAndLoss);
-	public ProfitAndLoss findByCompanyAndYear(Company c, int year);
+	public ProfitAndLoss findByCompanyAndYearAndQuarter(Company c, int year, int quarter);
 	//public CompanyProfitAndLoss update(CompanyProfitAndLoss companyProfitAndLoss);
 }

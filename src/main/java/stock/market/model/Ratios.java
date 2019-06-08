@@ -8,14 +8,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"year", "company_id"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"quarter","year", "company_id"}))
 public class Ratios {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
+	@NotNull
 	private int year;
+	@NotNull
+	private int quarter;
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
@@ -277,6 +282,12 @@ public class Ratios {
 	}
 	public void setEarningsYields(float earningsYields) {
 		this.earningsYields = earningsYields;
+	}
+	public int getQuarter() {
+		return quarter;
+	}
+	public void setQuarter(int quarter) {
+		this.quarter = quarter;
 	}
 
 }

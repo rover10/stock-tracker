@@ -13,7 +13,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(uniqueConstraints=@UniqueConstraint(columnNames= {"year","company_id"}))
+@Table(uniqueConstraints=@UniqueConstraint(columnNames= {"quarter","year","company_id"}))
 public class ProfitAndLoss {
 	
 	@Id
@@ -22,6 +22,10 @@ public class ProfitAndLoss {
 	
 	@NotNull
 	private int year;
+	
+	@NotNull
+	private int quarter;
+	
 	
 	@NotNull
 	@ManyToOne
@@ -310,6 +314,12 @@ public class ProfitAndLoss {
 	}
 	public void setDilutedEps(double dilutedEps) {
 		this.dilutedEps = dilutedEps;
+	}
+	public int getQuarter() {
+		return quarter;
+	}
+	public void setQuarter(int quarter) {
+		this.quarter = quarter;
 	}
 		
 }

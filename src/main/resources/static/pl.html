@@ -51,6 +51,9 @@
 		    </div>
 			 &nbsp; for the year &nbsp;   
 			<input id="pl_year" ng-model = "pl_year" type="text" class="form-control input-sm" placeholder="year">
+			 &nbsp; for the quarter &nbsp;   
+			<input id="pl_quarter" ng-model = "pl_quarter" type="text" class="form-control input-sm" placeholder="quarter">
+			
 			<button type="button" class="btn btn-success" ng-click="savePnL();">Save</button>
 			<button type="button" class="btn btn-info" ng-click="getCompanyPnL();">Load</button>
 		</div>	
@@ -286,7 +289,7 @@
 		
 		  $scope.pl_year = null;
 		  $scope.company = null;
-		
+		  $scope.pl_quarter = null;
 		  //In Crore/million/billion
 		  $scope.pl_unitMultiplier = null;
 		
@@ -347,7 +350,8 @@
 				    method : "POST",
 				    url : "/company/" + $scope.company + "/pl",
 				    data: { company: {symbol: $scope.company}, 
-					    	year:$scope.pl_year, 
+					    	year:$scope.pl_year,
+					    	quarter: $scope.pl_quarter,
 					    	grossRevenueFromOperations: $scope.pl_grossRevenueFromOperations,
 					    	exciseOrServiceTaxOrOtherLevies: $scope.pl_exciseOrServiceTaxOrOtherLevies,
 					    	netRevenueFromOperations: $scope.pl_netRevenueFromOperations,
@@ -395,7 +399,7 @@
 		   
 		 $scope.getCompanyPnL = function(){
 			 $http({method: "GET", 
-				url: "/company/" + $scope.company + "/pl/" + $scope.pl_year	 
+				url: "/company/" + $scope.company + "/pl/" + $scope.pl_year	 + "/quarter/" + $scope.pl_quarter
 			 }).then(function success(response){
 				 $scope.loading = false;
 				 $scope.pl_grossRevenueFromOperations = response.data.grossRevenueFromOperations;
