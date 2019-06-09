@@ -207,9 +207,9 @@
 			   $http({
 				    method : "POST",
 				    url : "company/" + $scope.company  + "/ratios" ,
-				    data: { company: {symbol: $scope.company}, 
+				    data: { 
 				    	quarter: $scope.quarter,
-				    	company: $scope.company,
+				    	year: $scope.year,
 				    	basicEps: $scope.basicEps,
 				    	dilutedEps: $scope.dilutedEps,
 				    	cashEps: $scope.cashEps,

@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 public class Ratios {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private int id;
 	
 	@NotNull
 	private Integer year;
@@ -67,7 +67,7 @@ public class Ratios {
 	private Float pricePerbv;
 	private Float earningsYields;
 		
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 	public void setId(int id) {

@@ -35,19 +35,19 @@ public class CashFlow {
 	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public Integer getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 	public Double getUnitMutiplier() {
 		return unitMutiplier;
 	}
-	public void setUnitMutiplier(double unitMutiplier) {
+	public void setUnitMutiplier(Double unitMutiplier) {
 		this.unitMutiplier = unitMutiplier;
 	}
 	public Company getCompany() {
@@ -59,43 +59,43 @@ public class CashFlow {
 	public Double getNetCashFlowFromOperatingActivities() {
 		return netCashFlowFromOperatingActivities;
 	}
-	public void setNetCashFlowFromOperatingActivities(double netCashFlowFromOperatingActivities) {
+	public void setNetCashFlowFromOperatingActivities(Double netCashFlowFromOperatingActivities) {
 		this.netCashFlowFromOperatingActivities = netCashFlowFromOperatingActivities;
 	}
 	public Double getNetCashUsedInInvestingActivities() {
 		return netCashUsedInInvestingActivities;
 	}
-	public void setNetCashUsedInInvestingActivities(double netCashUsedInInvestingActivities) {
+	public void setNetCashUsedInInvestingActivities(Double netCashUsedInInvestingActivities) {
 		this.netCashUsedInInvestingActivities = netCashUsedInInvestingActivities;
 	}
 	public Double getForeignExchangeGainsOrLosses() {
 		return foreignExchangeGainsOrLosses;
 	}
-	public void setForeignExchangeGainsOrLosses(double foreignExchangeGainsOrLosses) {
+	public void setForeignExchangeGainsOrLosses(Double foreignExchangeGainsOrLosses) {
 		this.foreignExchangeGainsOrLosses = foreignExchangeGainsOrLosses;
 	}
 	public Double getNetIncreaseOrDecreaseInCashAndCashEquivalents() {
 		return netIncreaseOrDecreaseInCashAndCashEquivalents;
 	}
-	public void setNetIncreaseOrDecreaseInCashAndCashEquivalents(double netIncreaseOrDecreaseInCashAndCashEquivalents) {
+	public void setNetIncreaseOrDecreaseInCashAndCashEquivalents(Double netIncreaseOrDecreaseInCashAndCashEquivalents) {
 		this.netIncreaseOrDecreaseInCashAndCashEquivalents = netIncreaseOrDecreaseInCashAndCashEquivalents;
 	}
 	public Double getCashAndcashEquivalentsBeginOfyear() {
 		return cashAndcashEquivalentsBeginOfyear;
 	}
-	public void setCashAndcashEquivalentsBeginOfyear(double cashAndcashEquivalentsBeginOfyear) {
+	public void setCashAndcashEquivalentsBeginOfyear(Double cashAndcashEquivalentsBeginOfyear) {
 		this.cashAndcashEquivalentsBeginOfyear = cashAndcashEquivalentsBeginOfyear;
 	}
 	public Double getCashAndCashEquivalentsEndOfYear() {
 		return cashAndCashEquivalentsEndOfYear;
 	}
-	public void setCashAndCashEquivalentsEndOfYear(double cashAndCashEquivalentsEndOfYear) {
+	public void setCashAndCashEquivalentsEndOfYear(Double cashAndCashEquivalentsEndOfYear) {
 		this.cashAndCashEquivalentsEndOfYear = cashAndCashEquivalentsEndOfYear;
 	}
 	public Integer getQuarter() {
 		return quarter;
 	}
-	public void setQuarter(int quarter) {
+	public void setQuarter(Integer quarter) {
 		this.quarter = quarter;
 	}
 
