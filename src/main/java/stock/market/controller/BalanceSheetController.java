@@ -85,7 +85,7 @@ public class BalanceSheetController {
 		
 	}
 	
-	@RequestMapping(value = "company/{symbol}/year/{year}/balanceshet", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "company/{symbol}/year/{year}/balancesheet", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	BalanceSheet getBalanceSheet(@PathVariable("symbol")  String symbol, @PathVariable("year") int year) {
 		Company c = companyRepository.findBySymbol(symbol);
 		return balanceSheetRepository.findByCompanyAndYear(c, year);

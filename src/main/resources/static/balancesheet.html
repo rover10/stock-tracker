@@ -314,7 +314,55 @@
 				    	}
 				  }).then(function mySuccess(response) {
 				         $scope.loading = false
-				    	 
+				         $scope.equityShareCapital = response.data.equityShareCapital;
+				         $scope.totalShareCapital = response.data.totalShareCapital;
+				         $scope.reserveAndSurplus = response.data.reserveAndSurplus;
+				         $scope.totalReserveAndSurplus = response.data.totalReserveAndSurplus;
+				         $scope.totalShareholdersFund = response.data.totalShareholdersFund;
+				         $scope.equityShareAndApplicationMoney = response.data.equityShareAndApplicationMoney;
+				         $scope.hybridOrDebtOrOtherSecurities = response.data.hybridOrDebtOrOtherSecurities;
+				         $scope.longTermBorrowings = response.data.longTermBorrowings;
+				         $scope.deferredTaxLiabilities = response.data.deferredTaxLiabilities;
+				         $scope.otherLongTermLiabilities = response.data.otherLongTermLiabilities;
+				         $scope.longTermProvisions = response.data.longTermProvisions;
+				         $scope.totalNonCurrentLiabilities = response.data.totalNonCurrentLiabilities;
+				         $scope.shortTermBorrowings = response.data.shortTermBorrowings;
+				         $scope.tradePayables = response.data.tradePayables;
+				         $scope.otherCurrentLiuabilities = response.data.otherCurrentLiuabilities;
+				         $scope.shortTermProvisions = response.data.shortTermProvisions;
+				         $scope.totalCurrentLiabilities = response.data.totalCurrentLiabilities;
+				         $scope.totalCapitalAndLiabilities = response.data.totalCapitalAndLiabilities;
+				         $scope.tangibleAssets = response.data.tangibleAssets;
+				         $scope.intangibleAssets = response.data.intangibleAssets;
+				         $scope.capitalWorkInProgress = response.data.capitalWorkInProgress;
+				         $scope.intangibleAssetsUnderDevelopment = response.data.intangibleAssetsUnderDevelopment;
+				         $scope.nonCurrentInvestments = response.data.nonCurrentInvestments;
+				         $scope.longTermLoansAndAdvances = response.data.longTermLoansAndAdvances;
+				         $scope.otherNonCurrentAssets = response.data.otherNonCurrentAssets;
+				         $scope.totalNonCurrentAssets = response.data.totalNonCurrentAssets;
+				         $scope.currentInvestments = response.data.currentInvestments;
+				         $scope.inventories = response.data.inventories;
+				         $scope.tradeReceivables = response.data.tradeReceivables;
+				         $scope.cashAndcashEquivalents = response.data.cashAndcashEquivalents;
+				         $scope.shortTermLoansAndAdvances = response.data.shortTermLoansAndAdvances;
+				         $scope.otherCurrentAssets = response.data.otherCurrentAssets;
+				         $scope.totalCurrentAsets = response.data.totalCurrentAsets;
+				         $scope.totalAssets = response.data.totalAssets;
+				         $scope.contingentsLiabilities = response.data.contingentsLiabilities;
+				         $scope.rawMaterials = response.data.rawMaterials;
+				         $scope.storesSparesAndLooseTools = response.data.storesSparesAndLooseTools;
+				         $scope.tradeOrOtherGoods = response.data.tradeOrOtherGoods;
+				         $scope.capitalGoods = response.data.capitalGoods;
+				         $scope.expenditureInForeignCurrency = response.data.expenditureInForeignCurrency;
+				         $scope.dividendRemittanceInForeignCurrency = response.data.dividendRemittanceInForeignCurrency;
+				         $scope.FOBValueOfGoods = response.data.FOBValueOfGoods;
+				         $scope.otherEarnings = response.data.otherEarnings;
+				         $scope.bonusEquityShareCapital = response.data.bonusEquityShareCapital;
+				         $scope.nonCurrentInvestmentsQuotedMarkedValue = response.data.nonCurrentInvestmentsQuotedMarkedValue;
+				         $scope.nonCurrentInvestmentsUnquotedBookValue = response.data.nonCurrentInvestmentsUnquotedBookValue;
+				         $scope.currentInvestmentsQuotedMarkedValue = response.data.currentInvestmentsQuotedMarkedValue;
+				         $scope.currentInvestmentsUnquotedBookValue = response.data.currentInvestmentsUnquotedBookValue;
+
 				    }, function myError(response) {
 				      $scope.myWelcome = response.statusText;
 				      $scope.loading = false;
@@ -323,43 +371,9 @@
 		   
 		 $scope.getBalanceSheet = function(){
 			 $http({method: "GET", 
-				url: "company/" + $scope.company + "/balancesheet"
+				url: "company/" + $scope.company + "/year/" + $scope.year+ "/balancesheet"
 			 }).then(function success(response){
-				 $scope.quarter = response.data.quarter;
-				 $scope.year = response.data.year;
-				 $scope.basicEps = response.data.basicEps;
-				 $scope.dilutedEps = response.data.dilutedEps;
-				 $scope.cashEps = response.data.cashEps;
-				 $scope.bookValueExclRevalReserveOrShare = response.data.bookValueExclRevalReserveOrShare;
-				 $scope.bookValueInclRevalReserveShare = response.data.bookValueInclRevalReserveShare;
-				 $scope.dividendPerShare = response.data.dividendPerShare;
-				 $scope.revenueFromOperationsPerShare = response.data.revenueFromOperationsPerShare;
-				 $scope.pbditPerShare = response.data.pbditPerShare;
-				 $scope.pbitPerShare = response.data.pbitPerShare;
-				 $scope.netProfitPerShare = response.data.netProfitPerShare;
-				 $scope.pbditMarginPercent = response.data.pbditMarginPercent;
-				 $scope.pbitMarginPercent = response.data.pbitMarginPercent;
-				 $scope.pbtMarginPercent = response.data.pbtMarginPercent;
-				 $scope.netProfitMarginPercent = response.data.netProfitMarginPercent;
-				 $scope.returnOnNetworthPerEquityPercent = response.data.returnOnNetworthPerEquityPercent;
-				 $scope.returnOnCapitalEmployedPercent = response.data.returnOnCapitalEmployedPercent;
-				 $scope.returnOnAssetsPercent = response.data.returnOnAssetsPercent;
-				 $scope.totalDebtPerEquityRatio = response.data.totalDebtPerEquityRatio;
-				 $scope.assetTurnoverRatioPercent = response.data.assetTurnoverRatioPercent;
-				 $scope.currentRatio = response.data.currentRatio;
-				 $scope.quickRatio = response.data.quickRatio;
-				 $scope.inventoryTurnoverRatio = response.data.inventoryTurnoverRatio;
-				 $scope.dividendPayoutRatioNpPercent = response.data.dividendPayoutRatioNpPercent;
-				 $scope.dividendPayoutRatioCpPercent = response.data.dividendPayoutRatioCpPercent;
-				 $scope.earningRetentionRatioPercent = response.data.earningRetentionRatioPercent;
-				 $scope.cashEarningRetentionRatioPercent = response.data.cashEarningRetentionRatioPercent;
-				 $scope.enterpriseValue = response.data.enterpriseValue;
-				 $scope.evOrNetOperatingRevenue = response.data.evOrNetOperatingRevenue;
-				 $scope.evOrEbitda = response.data.evOrEbitda;
-				 $scope.marketCapOrNetOperatingRevenue = response.data.marketCapOrNetOperatingRevenue;
-				 $scope.retentionRatiosPercent = response.data.retentionRatiosPercent;
-				 $scope.pricePerbv = response.data.pricePerbv;
-				 $scope.earningsYields = response.data.earningsYields;
+				 
 			 }, function error(response){
 				 $scope.loading = false;
 				 
