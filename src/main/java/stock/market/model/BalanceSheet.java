@@ -15,7 +15,7 @@ public class BalanceSheet {
 	//COMPANY
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private int id;
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
@@ -95,7 +95,7 @@ public class BalanceSheet {
 	private Double dividendRemittanceInForeignCurrency;
 	
 	//EARNINGS IN FOREIGN CURRENCIES FOR DIVIDENDS
-	private Double FOBValueOfGoods;
+	private Double fobValueOfGoods;
 	private Double otherEarnings;
 	
 	//BONUS DETAILS
@@ -109,7 +109,7 @@ public class BalanceSheet {
 	private Double currentInvestmentsQuotedMarkedValue;
 	private Double currentInvestmentsUnquotedBookValue;
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
@@ -368,11 +368,11 @@ public class BalanceSheet {
 	public void setDividendRemittanceInForeignCurrency(double dividendRemittanceInForeignCurrency) {
 		this.dividendRemittanceInForeignCurrency = dividendRemittanceInForeignCurrency;
 	}
-	public Double getFOBValueOfGoods() {
-		return FOBValueOfGoods;
+	public Double getFobValueOfGoods() {
+		return fobValueOfGoods;
 	}
-	public void setFOBValueOfGoods(double fOBValueOfGoods) {
-		FOBValueOfGoods = fOBValueOfGoods;
+	public void setFobValueOfGoods(double fobValueOfGoods) {
+		this.fobValueOfGoods = fobValueOfGoods;
 	}
 	public Double getOtherEarnings() {
 		return otherEarnings;

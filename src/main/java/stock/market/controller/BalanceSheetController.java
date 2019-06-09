@@ -27,8 +27,9 @@ public class BalanceSheetController {
 	BalanceSheet saveBalanceSheet(@PathVariable("symbol") String symbol, @RequestBody BalanceSheet bs) {
 		Company c = companyRepository.findBySymbol(symbol);
 		BalanceSheet db_bs = balanceSheetRepository.findByCompanyAndYear(c, bs.getYear());
-		
+		System.out.println("BalanceSheet from db"+ db_bs);
 		if (db_bs != null) {
+			System.out.println("--->" + db_bs);
 			db_bs.setBonusEquityShareCapital(bs.getBonusEquityShareCapital());
 			db_bs.setCapitalGoods(bs.getCapitalGoods());
 			db_bs.setCapitalWorkInProgress(bs.getCapitalWorkInProgress());
@@ -43,7 +44,7 @@ public class BalanceSheetController {
 			db_bs.setEquityShareAndApplicationMoney(bs.getEquityShareAndApplicationMoney());
 			db_bs.setEquityShareCapital(bs.getEquityShareCapital());
 			db_bs.setExpenditureInForeignCurrency(bs.getExpenditureInForeignCurrency());
-			db_bs.setFOBValueOfGoods(bs.getFOBValueOfGoods());
+			db_bs.setFobValueOfGoods(bs.getFobValueOfGoods());
 			db_bs.setHybridOrDebtOrOtherSecurities(bs.getHybridOrDebtOrOtherSecurities());
 			db_bs.setIntangibleAssets(bs.getIntangibleAssetsUnderDevelopment());
 			db_bs.setIntangibleAssetsUnderDevelopment(bs.getIntangibleAssetsUnderDevelopment());

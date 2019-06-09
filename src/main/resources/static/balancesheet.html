@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    
+    
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body style = "background-color: #cccccc0d;">
+<style>
+	.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+    	border-style:none;
+	}
+	
+	label {
+	    font-weight: 1;
+	    font-family: monospace;
+	    color: darkslateblue;
+	}
+	h2{
+		font-weight:200;
+	}
+	.well{
+		background-color: white;
+		box-shadow: 0px 0px 7px 3px rgba(0,0,0,.05);
+	}
+</style>
+<div class="container" >
+<div class="container" ng-app="myApp" ng-controller="myCtrl">
+<BR><BR>
+
+ <form class="form-inline ">
+	<div class="">
+	<div style = "">
+		<div style ="font-size:70px;float:left;font-weight:300;"> Balancesheet </div>
+		<BR>
+		<div style = "float:right;widht:relative;">
+			<div  style="float:left;">
+			<input type="text" id="symbol" ng-model="company" class="form-control input-sm"
+		    placeholder="Company" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
+		    typeahead-show-hint="true" typeahead-min-length="0"> 
+		    </div>
+			 &nbsp; for the year &nbsp;   
+			<input id="pl_year" ng-model = "year" type="text" class="form-control input-sm" placeholder="year">
+			 &nbsp; for the quarter &nbsp;   
+			<input id="pl_quarter" ng-model = "quarter" type="text" class="form-control input-sm" placeholder="quarter">
+			
+			<button type="button" class="btn btn-success" ng-click="saveBalanceSheet();">Save</button>
+			<button type="button" class="btn btn-info" ng-click="getBalanceSheet();">Load</button>
+		</div>	
+	</div>
+    
+
+<BR><BR>
+<BR><BR>
+
+		  
+	<div class="well">
+	<h2>Income</h2>
+	<BR>    
+	 <table class="table table-condensed ">
+	    <tbody>
+		<tr>
+		<td><label for="focusedInput">equityShareCapital</label></td>
+		<td> <input id="equityShareCapital" ng-model = "equityShareCapital" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">totalShareCapital</label></td>
+		<td> <input id="totalShareCapital" ng-model = "totalShareCapital" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">reserveAndSurplus</label></td>
+		<td> <input id="reserveAndSurplus" ng-model = "reserveAndSurplus" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">totalReserveAndSurplus</label></td>
+		<td> <input id="totalReserveAndSurplus" ng-model = "totalReserveAndSurplus" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">totalShareholdersFund</label></td>
+		<td> <input id="totalShareholdersFund" ng-model = "totalShareholdersFund" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">equityShareAndApplicationMoney</label></td>
+		<td> <input id="equityShareAndApplicationMoney" ng-model = "equityShareAndApplicationMoney" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">hybridOrDebtOrOtherSecurities</label></td>
+		<td> <input id="hybridOrDebtOrOtherSecurities" ng-model = "hybridOrDebtOrOtherSecurities" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">longTermBorrowings</label></td>
+		<td> <input id="longTermBorrowings" ng-model = "longTermBorrowings" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">deferredTaxLiabilities</label></td>
+		<td> <input id="deferredTaxLiabilities" ng-model = "deferredTaxLiabilities" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">otherLongTermLiabilities</label></td>
+		<td> <input id="otherLongTermLiabilities" ng-model = "otherLongTermLiabilities" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">longTermProvisions</label></td>
+		<td> <input id="longTermProvisions" ng-model = "longTermProvisions" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">totalNonCurrentLiabilities</label></td>
+		<td> <input id="totalNonCurrentLiabilities" ng-model = "totalNonCurrentLiabilities" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">shortTermBorrowings</label></td>
+		<td> <input id="shortTermBorrowings" ng-model = "shortTermBorrowings" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">tradePayables</label></td>
+		<td> <input id="tradePayables" ng-model = "tradePayables" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">otherCurrentLiuabilities</label></td>
+		<td> <input id="otherCurrentLiuabilities" ng-model = "otherCurrentLiuabilities" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">shortTermProvisions</label></td>
+		<td> <input id="shortTermProvisions" ng-model = "shortTermProvisions" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">totalCurrentLiabilities</label></td>
+		<td> <input id="totalCurrentLiabilities" ng-model = "totalCurrentLiabilities" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">totalCapitalAndLiabilities</label></td>
+		<td> <input id="totalCapitalAndLiabilities" ng-model = "totalCapitalAndLiabilities" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">tangibleAssets</label></td>
+		<td> <input id="tangibleAssets" ng-model = "tangibleAssets" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">intangibleAssets</label></td>
+		<td> <input id="intangibleAssets" ng-model = "intangibleAssets" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">capitalWorkInProgress</label></td>
+		<td> <input id="capitalWorkInProgress" ng-model = "capitalWorkInProgress" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">intangibleAssetsUnderDevelopment</label></td>
+		<td> <input id="intangibleAssetsUnderDevelopment" ng-model = "intangibleAssetsUnderDevelopment" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">nonCurrentInvestments</label></td>
+		<td> <input id="nonCurrentInvestments" ng-model = "nonCurrentInvestments" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">longTermLoansAndAdvances</label></td>
+		<td> <input id="longTermLoansAndAdvances" ng-model = "longTermLoansAndAdvances" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">otherNonCurrentAssets</label></td>
+		<td> <input id="otherNonCurrentAssets" ng-model = "otherNonCurrentAssets" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">totalNonCurrentAssets</label></td>
+		<td> <input id="totalNonCurrentAssets" ng-model = "totalNonCurrentAssets" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">currentInvestments</label></td>
+		<td> <input id="currentInvestments" ng-model = "currentInvestments" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">inventories</label></td>
+		<td> <input id="inventories" ng-model = "inventories" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">tradeReceivables</label></td>
+		<td> <input id="tradeReceivables" ng-model = "tradeReceivables" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">cashAndcashEquivalents</label></td>
+		<td> <input id="cashAndcashEquivalents" ng-model = "cashAndcashEquivalents" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">shortTermLoansAndAdvances</label></td>
+		<td> <input id="shortTermLoansAndAdvances" ng-model = "shortTermLoansAndAdvances" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">otherCurrentAssets</label></td>
+		<td> <input id="otherCurrentAssets" ng-model = "otherCurrentAssets" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">totalCurrentAsets</label></td>
+		<td> <input id="totalCurrentAsets" ng-model = "totalCurrentAsets" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">totalAssets</label></td>
+		<td> <input id="totalAssets" ng-model = "totalAssets" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">contingentsLiabilities</label></td>
+		<td> <input id="contingentsLiabilities" ng-model = "contingentsLiabilities" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">rawMaterials</label></td>
+		<td> <input id="rawMaterials" ng-model = "rawMaterials" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">storesSparesAndLooseTools</label></td>
+		<td> <input id="storesSparesAndLooseTools" ng-model = "storesSparesAndLooseTools" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">tradeOrOtherGoods</label></td>
+		<td> <input id="tradeOrOtherGoods" ng-model = "tradeOrOtherGoods" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">capitalGoods</label></td>
+		<td> <input id="capitalGoods" ng-model = "capitalGoods" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">expenditureInForeignCurrency</label></td>
+		<td> <input id="expenditureInForeignCurrency" ng-model = "expenditureInForeignCurrency" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">dividendRemittanceInForeignCurrency</label></td>
+		<td> <input id="dividendRemittanceInForeignCurrency" ng-model = "dividendRemittanceInForeignCurrency" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">fobValueOfGoods</label></td>
+		<td> <input id="fobValueOfGoods" ng-model = "fobValueOfGoods" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">otherEarnings</label></td>
+		<td> <input id="otherEarnings" ng-model = "otherEarnings" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">bonusEquityShareCapital</label></td>
+		<td> <input id="bonusEquityShareCapital" ng-model = "bonusEquityShareCapital" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">nonCurrentInvestmentsQuotedMarkedValue</label></td>
+		<td> <input id="nonCurrentInvestmentsQuotedMarkedValue" ng-model = "nonCurrentInvestmentsQuotedMarkedValue" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">nonCurrentInvestmentsUnquotedBookValue</label></td>
+		<td> <input id="nonCurrentInvestmentsUnquotedBookValue" ng-model = "nonCurrentInvestmentsUnquotedBookValue" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		<td><label for="focusedInput">currentInvestmentsQuotedMarkedValue</label></td>
+		<td> <input id="currentInvestmentsQuotedMarkedValue" ng-model = "currentInvestmentsQuotedMarkedValue" type="text" class="form-control input-sm" placeholder=""> </td>
+		<td><label for="focusedInput">currentInvestmentsUnquotedBookValue</label></td>
+		<td> <input id="currentInvestmentsUnquotedBookValue" ng-model = "currentInvestmentsUnquotedBookValue" type="text" class="form-control input-sm" placeholder=""> </td>
+		</tr><tr>
+		</tr>
+							
+	    </tbody>
+		</table>
+	</div>
+	
+	</div> 
+</form>
+</div>
+</div>
+
+</body>
+<script type="text/javascript">
+	var app = angular.module('myApp', ['ngAnimate', 'ngSanitize','ui.bootstrap']);
+	app.controller('myCtrl', function($scope, $http, $interval) {
+		$scope.equityShareCapital = null;
+		$scope.totalShareCapital = null;
+		$scope.reserveAndSurplus = null;
+		$scope.totalReserveAndSurplus = null;
+		$scope.totalShareholdersFund = null;
+		$scope.equityShareAndApplicationMoney = null;
+		$scope.hybridOrDebtOrOtherSecurities = null;
+		$scope.longTermBorrowings = null;
+		$scope.deferredTaxLiabilities = null;
+		$scope.otherLongTermLiabilities = null;
+		$scope.longTermProvisions = null;
+		$scope.totalNonCurrentLiabilities = null;
+		$scope.shortTermBorrowings = null;
+		$scope.tradePayables = null;
+		$scope.otherCurrentLiuabilities = null;
+		$scope.shortTermProvisions = null;
+		$scope.totalCurrentLiabilities = null;
+		$scope.totalCapitalAndLiabilities = null;
+		$scope.tangibleAssets = null;
+		$scope.intangibleAssets = null;
+		$scope.capitalWorkInProgress = null;
+		$scope.intangibleAssetsUnderDevelopment = null;
+		$scope.nonCurrentInvestments = null;
+		$scope.longTermLoansAndAdvances = null;
+		$scope.otherNonCurrentAssets = null;
+		$scope.totalNonCurrentAssets = null;
+		$scope.currentInvestments = null;
+		$scope.inventories = null;
+		$scope.tradeReceivables = null;
+		$scope.cashAndcashEquivalents = null;
+		$scope.shortTermLoansAndAdvances = null;
+		$scope.otherCurrentAssets = null;
+		$scope.totalCurrentAsets = null;
+		$scope.totalAssets = null;
+		$scope.contingentsLiabilities = null;
+		$scope.rawMaterials = null;
+		$scope.storesSparesAndLooseTools = null;
+		$scope.tradeOrOtherGoods = null;
+		$scope.capitalGoods = null;
+		$scope.expenditureInForeignCurrency = null;
+		$scope.dividendRemittanceInForeignCurrency = null;
+		$scope.fobValueOfGoods = null;
+		$scope.otherEarnings = null;
+		$scope.bonusEquityShareCapital = null;
+		$scope.nonCurrentInvestmentsQuotedMarkedValue = null;
+		$scope.nonCurrentInvestmentsUnquotedBookValue = null;
+		$scope.currentInvestmentsQuotedMarkedValue = null;
+		$scope.currentInvestmentsUnquotedBookValue = null;
+
+		   $scope.saveBalanceSheet = function(){
+			   $http({
+				    method : "POST",
+				    url : "company/" + $scope.company  + "/balancesheet" ,
+				    data: { 
+				    	quarter: $scope.quarter,
+				    	year: $scope.year,
+				    	equityShareCapital: $scope.equityShareCapital,
+				    	totalShareCapital: $scope.totalShareCapital,
+				    	reserveAndSurplus: $scope.reserveAndSurplus,
+				    	totalReserveAndSurplus: $scope.totalReserveAndSurplus,
+				    	totalShareholdersFund: $scope.totalShareholdersFund,
+				    	equityShareAndApplicationMoney: $scope.equityShareAndApplicationMoney,
+				    	hybridOrDebtOrOtherSecurities: $scope.hybridOrDebtOrOtherSecurities,
+				    	longTermBorrowings: $scope.longTermBorrowings,
+				    	deferredTaxLiabilities: $scope.deferredTaxLiabilities,
+				    	otherLongTermLiabilities: $scope.otherLongTermLiabilities,
+				    	longTermProvisions: $scope.longTermProvisions,
+				    	totalNonCurrentLiabilities: $scope.totalNonCurrentLiabilities,
+				    	shortTermBorrowings: $scope.shortTermBorrowings,
+				    	tradePayables: $scope.tradePayables,
+				    	otherCurrentLiuabilities: $scope.otherCurrentLiuabilities,
+				    	shortTermProvisions: $scope.shortTermProvisions,
+				    	totalCurrentLiabilities: $scope.totalCurrentLiabilities,
+				    	totalCapitalAndLiabilities: $scope.totalCapitalAndLiabilities,
+				    	tangibleAssets: $scope.tangibleAssets,
+				    	intangibleAssets: $scope.intangibleAssets,
+				    	capitalWorkInProgress: $scope.capitalWorkInProgress,
+				    	intangibleAssetsUnderDevelopment: $scope.intangibleAssetsUnderDevelopment,
+				    	nonCurrentInvestments: $scope.nonCurrentInvestments,
+				    	longTermLoansAndAdvances: $scope.longTermLoansAndAdvances,
+				    	otherNonCurrentAssets: $scope.otherNonCurrentAssets,
+				    	totalNonCurrentAssets: $scope.totalNonCurrentAssets,
+				    	currentInvestments: $scope.currentInvestments,
+				    	inventories: $scope.inventories,
+				    	tradeReceivables: $scope.tradeReceivables,
+				    	cashAndcashEquivalents: $scope.cashAndcashEquivalents,
+				    	shortTermLoansAndAdvances: $scope.shortTermLoansAndAdvances,
+				    	otherCurrentAssets: $scope.otherCurrentAssets,
+				    	totalCurrentAsets: $scope.totalCurrentAsets,
+				    	totalAssets: $scope.totalAssets,
+				    	contingentsLiabilities: $scope.contingentsLiabilities,
+				    	rawMaterials: $scope.rawMaterials,
+				    	storesSparesAndLooseTools: $scope.storesSparesAndLooseTools,
+				    	tradeOrOtherGoods: $scope.tradeOrOtherGoods,
+				    	capitalGoods: $scope.capitalGoods,
+				    	expenditureInForeignCurrency: $scope.expenditureInForeignCurrency,
+				    	dividendRemittanceInForeignCurrency: $scope.dividendRemittanceInForeignCurrency,
+				    	fobValueOfGoods: $scope.fobValueOfGoods,
+				    	otherEarnings: $scope.otherEarnings,
+				    	bonusEquityShareCapital: $scope.bonusEquityShareCapital,
+				    	nonCurrentInvestmentsQuotedMarkedValue: $scope.nonCurrentInvestmentsQuotedMarkedValue,
+				    	nonCurrentInvestmentsUnquotedBookValue: $scope.nonCurrentInvestmentsUnquotedBookValue,
+				    	currentInvestmentsQuotedMarkedValue: $scope.currentInvestmentsQuotedMarkedValue,
+				    	currentInvestmentsUnquotedBookValue: $scope.currentInvestmentsUnquotedBookValue,
+	
+					    	 	
+				    	}
+				  }).then(function mySuccess(response) {
+				         $scope.loading = false
+				    	 
+				    }, function myError(response) {
+				      $scope.myWelcome = response.statusText;
+				      $scope.loading = false;
+				});	   
+		   }
+		   
+		 $scope.getBalanceSheet = function(){
+			 $http({method: "GET", 
+				url: "company/" + $scope.company + "/balancesheet"
+			 }).then(function success(response){
+				 $scope.quarter = response.data.quarter;
+				 $scope.year = response.data.year;
+				 $scope.basicEps = response.data.basicEps;
+				 $scope.dilutedEps = response.data.dilutedEps;
+				 $scope.cashEps = response.data.cashEps;
+				 $scope.bookValueExclRevalReserveOrShare = response.data.bookValueExclRevalReserveOrShare;
+				 $scope.bookValueInclRevalReserveShare = response.data.bookValueInclRevalReserveShare;
+				 $scope.dividendPerShare = response.data.dividendPerShare;
+				 $scope.revenueFromOperationsPerShare = response.data.revenueFromOperationsPerShare;
+				 $scope.pbditPerShare = response.data.pbditPerShare;
+				 $scope.pbitPerShare = response.data.pbitPerShare;
+				 $scope.netProfitPerShare = response.data.netProfitPerShare;
+				 $scope.pbditMarginPercent = response.data.pbditMarginPercent;
+				 $scope.pbitMarginPercent = response.data.pbitMarginPercent;
+				 $scope.pbtMarginPercent = response.data.pbtMarginPercent;
+				 $scope.netProfitMarginPercent = response.data.netProfitMarginPercent;
+				 $scope.returnOnNetworthPerEquityPercent = response.data.returnOnNetworthPerEquityPercent;
+				 $scope.returnOnCapitalEmployedPercent = response.data.returnOnCapitalEmployedPercent;
+				 $scope.returnOnAssetsPercent = response.data.returnOnAssetsPercent;
+				 $scope.totalDebtPerEquityRatio = response.data.totalDebtPerEquityRatio;
+				 $scope.assetTurnoverRatioPercent = response.data.assetTurnoverRatioPercent;
+				 $scope.currentRatio = response.data.currentRatio;
+				 $scope.quickRatio = response.data.quickRatio;
+				 $scope.inventoryTurnoverRatio = response.data.inventoryTurnoverRatio;
+				 $scope.dividendPayoutRatioNpPercent = response.data.dividendPayoutRatioNpPercent;
+				 $scope.dividendPayoutRatioCpPercent = response.data.dividendPayoutRatioCpPercent;
+				 $scope.earningRetentionRatioPercent = response.data.earningRetentionRatioPercent;
+				 $scope.cashEarningRetentionRatioPercent = response.data.cashEarningRetentionRatioPercent;
+				 $scope.enterpriseValue = response.data.enterpriseValue;
+				 $scope.evOrNetOperatingRevenue = response.data.evOrNetOperatingRevenue;
+				 $scope.evOrEbitda = response.data.evOrEbitda;
+				 $scope.marketCapOrNetOperatingRevenue = response.data.marketCapOrNetOperatingRevenue;
+				 $scope.retentionRatiosPercent = response.data.retentionRatiosPercent;
+				 $scope.pricePerbv = response.data.pricePerbv;
+				 $scope.earningsYields = response.data.earningsYields;
+			 }, function error(response){
+				 $scope.loading = false;
+				 
+			 });
+		 }  
+	});
+	
+</script>
+</html>
+
+
+
