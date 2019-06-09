@@ -15,65 +15,65 @@ import javax.validation.constraints.NotNull;
 public class Ratios {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 	
 	@NotNull
-	private int year;
+	private Integer year;
 	@NotNull
-	private int quarter;
+	private Integer quarter;
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Company company;
 
 	//PER SHARE RATIOS
-	private float basicEps;
-	private float dilutedEps;
-	private float cashEps;
-	private float bookValueExclRevalReserveOrShare;
-	private float bookValueInclRevalReserveShare;
-	private float dividendPerShare;
-	private float revenueFromOperationsPerShare;
-	private float pbditPerShare;
-	private float pbitPerShare;
-	private float netProfitPerShare;
+	private Float basicEps;
+	private Float dilutedEps;
+	private Float cashEps;
+	private Float bookValueExclRevalReserveOrShare;
+	private Float bookValueInclRevalReserveShare;
+	private Float dividendPerShare;
+	private Float revenueFromOperationsPerShare;
+	private Float pbditPerShare;
+	private Float pbitPerShare;
+	private Float netProfitPerShare;
 	
 	//PROFITIBALITY RATIOS
-	private float pbditMarginPercent;
-	private float pbitMarginPercent;
-	private float pbtMarginPercent;
-	private float netProfitMarginPercent;
-	private float returnOnNetworthPerEquityPercent;
-	private float returnOnCapitalEmployedPercent;
-	private float returnOnAssetsPercent;
-	private float totalDebtPerEquityRatio;
-	private float assetTurnoverRatioPercent;
+	private Float pbditMarginPercent;
+	private Float pbitMarginPercent;
+	private Float pbtMarginPercent;
+	private Float netProfitMarginPercent;
+	private Float returnOnNetworthPerEquityPercent;
+	private Float returnOnCapitalEmployedPercent;
+	private Float returnOnAssetsPercent;
+	private Float totalDebtPerEquityRatio;
+	private Float assetTurnoverRatioPercent;
 	
 	//LIQUIDITY RATIOS
-	private float currentRatio;
-	private float quickRatio;
-	private float inventoryTurnoverRatio;
-	private float dividendPayoutRatioNpPercent;
-	private float dividendPayoutRatioCpPercent;
-	private float earningRetentionRatioPercent;
-	private float cashEarningRetentionRatioPercent;
+	private Float currentRatio;
+	private Float quickRatio;
+	private Float inventoryTurnoverRatio;
+	private Float dividendPayoutRatioNpPercent;
+	private Float dividendPayoutRatioCpPercent;
+	private Float earningRetentionRatioPercent;
+	private Float cashEarningRetentionRatioPercent;
 	
 	//VALUATION RATIOS(Cr)
-	private float enterpriseValue;
-	private float evOrNetOperatingRevenue;
-	private float evOrEbitda;
-	private float marketCapOrNetOperatingRevenue;
-	private float retentionRatiosPercent;
-	private float pricePerbv;
-	private float earningsYields;
+	private Float enterpriseValue;
+	private Float evOrNetOperatingRevenue;
+	private Float evOrEbitda;
+	private Float marketCapOrNetOperatingRevenue;
+	private Float retentionRatiosPercent;
+	private Float pricePerbv;
+	private Float earningsYields;
 		
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getYear() {
+	public Integer getYear() {
 		return year;
 	}
 	public void setYear(int year) {
@@ -85,205 +85,205 @@ public class Ratios {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	public float getBasicEps() {
+	public Float  getBasicEps() {
 		return basicEps;
 	}
 	public void setBasicEps(float basicEps) {
 		this.basicEps = basicEps;
 	}
-	public float getDilutedEps() {
+	public Float  getDilutedEps() {
 		return dilutedEps;
 	}
 	public void setDilutedEps(float dilutedEps) {
 		this.dilutedEps = dilutedEps;
 	}
-	public float getCashEps() {
+	public Float  getCashEps() {
 		return cashEps;
 	}
 	public void setCashEps(float cashEps) {
 		this.cashEps = cashEps;
 	}
-	public float getBookValueExclRevalReserveOrShare() {
+	public Float  getBookValueExclRevalReserveOrShare() {
 		return bookValueExclRevalReserveOrShare;
 	}
 	public void setBookValueExclRevalReserveOrShare(float bookValueExclRevalReserveOrShare) {
 		this.bookValueExclRevalReserveOrShare = bookValueExclRevalReserveOrShare;
 	}
-	public float getBookValueInclRevalReserveShare() {
+	public Float  getBookValueInclRevalReserveShare() {
 		return bookValueInclRevalReserveShare;
 	}
 	public void setBookValueInclRevalReserveShare(float bookValueInclRevalReserveShare) {
 		this.bookValueInclRevalReserveShare = bookValueInclRevalReserveShare;
 	}
-	public float getDividendPerShare() {
+	public Float  getDividendPerShare() {
 		return dividendPerShare;
 	}
 	public void setDividendPerShare(float dividendPerShare) {
 		this.dividendPerShare = dividendPerShare;
 	}
-	public float getRevenueFromOperationsPerShare() {
+	public Float  getRevenueFromOperationsPerShare() {
 		return revenueFromOperationsPerShare;
 	}
 	public void setRevenueFromOperationsPerShare(float revenueFromOperationsPerShare) {
 		this.revenueFromOperationsPerShare = revenueFromOperationsPerShare;
 	}
-	public float getPbditPerShare() {
+	public Float  getPbditPerShare() {
 		return pbditPerShare;
 	}
 	public void setPbditPerShare(float pbditPerShare) {
 		this.pbditPerShare = pbditPerShare;
 	}
-	public float getPbitPerShare() {
+	public Float  getPbitPerShare() {
 		return pbitPerShare;
 	}
 	public void setPbitPerShare(float pbitPerShare) {
 		this.pbitPerShare = pbitPerShare;
 	}
-	public float getNetProfitPerShare() {
+	public Float  getNetProfitPerShare() {
 		return netProfitPerShare;
 	}
 	public void setNetProfitPerShare(float netProfitPerShare) {
 		this.netProfitPerShare = netProfitPerShare;
 	}
-	public float getPbditMarginPercent() {
+	public Float  getPbditMarginPercent() {
 		return pbditMarginPercent;
 	}
 	public void setPbditMarginPercent(float pbditMarginPercent) {
 		this.pbditMarginPercent = pbditMarginPercent;
 	}
-	public float getPbitMarginPercent() {
+	public Float  getPbitMarginPercent() {
 		return pbitMarginPercent;
 	}
 	public void setPbitMarginPercent(float pbitMarginPercent) {
 		this.pbitMarginPercent = pbitMarginPercent;
 	}
-	public float getPbtMarginPercent() {
+	public Float  getPbtMarginPercent() {
 		return pbtMarginPercent;
 	}
 	public void setPbtMarginPercent(float pbtMarginPercent) {
 		this.pbtMarginPercent = pbtMarginPercent;
 	}
-	public float getNetProfitMarginPercent() {
+	public Float  getNetProfitMarginPercent() {
 		return netProfitMarginPercent;
 	}
 	public void setNetProfitMarginPercent(float netProfitMarginPercent) {
 		this.netProfitMarginPercent = netProfitMarginPercent;
 	}
-	public float getReturnOnNetworthPerEquityPercent() {
+	public Float  getReturnOnNetworthPerEquityPercent() {
 		return returnOnNetworthPerEquityPercent;
 	}
 	public void setReturnOnNetworthPerEquityPercent(float returnOnNetworthPerEquityPercent) {
 		this.returnOnNetworthPerEquityPercent = returnOnNetworthPerEquityPercent;
 	}
-	public float getReturnOnCapitalEmployedPercent() {
+	public Float  getReturnOnCapitalEmployedPercent() {
 		return returnOnCapitalEmployedPercent;
 	}
 	public void setReturnOnCapitalEmployedPercent(float returnOnCapitalEmployedPercent) {
 		this.returnOnCapitalEmployedPercent = returnOnCapitalEmployedPercent;
 	}
-	public float getReturnOnAssetsPercent() {
+	public Float  getReturnOnAssetsPercent() {
 		return returnOnAssetsPercent;
 	}
 	public void setReturnOnAssetsPercent(float returnOnAssetsPercent) {
 		this.returnOnAssetsPercent = returnOnAssetsPercent;
 	}
-	public float getTotalDebtPerEquityRatio() {
+	public Float  getTotalDebtPerEquityRatio() {
 		return totalDebtPerEquityRatio;
 	}
 	public void setTotalDebtPerEquityRatio(float totalDebtPerEquityRatio) {
 		this.totalDebtPerEquityRatio = totalDebtPerEquityRatio;
 	}
-	public float getAssetTurnoverRatioPercent() {
+	public Float  getAssetTurnoverRatioPercent() {
 		return assetTurnoverRatioPercent;
 	}
 	public void setAssetTurnoverRatioPercent(float assetTurnoverRatioPercent) {
 		this.assetTurnoverRatioPercent = assetTurnoverRatioPercent;
 	}
-	public float getCurrentRatio() {
+	public Float  getCurrentRatio() {
 		return currentRatio;
 	}
 	public void setCurrentRatio(float currentRatio) {
 		this.currentRatio = currentRatio;
 	}
-	public float getQuickRatio() {
+	public Float  getQuickRatio() {
 		return quickRatio;
 	}
 	public void setQuickRatio(float quickRatio) {
 		this.quickRatio = quickRatio;
 	}
-	public float getInventoryTurnoverRatio() {
+	public Float  getInventoryTurnoverRatio() {
 		return inventoryTurnoverRatio;
 	}
 	public void setInventoryTurnoverRatio(float inventoryTurnoverRatio) {
 		this.inventoryTurnoverRatio = inventoryTurnoverRatio;
 	}
-	public float getDividendPayoutRatioNpPercent() {
+	public Float  getDividendPayoutRatioNpPercent() {
 		return dividendPayoutRatioNpPercent;
 	}
 	public void setDividendPayoutRatioNpPercent(float dividendPayoutRatioNpPercent) {
 		this.dividendPayoutRatioNpPercent = dividendPayoutRatioNpPercent;
 	}
-	public float getDividendPayoutRatioCpPercent() {
+	public Float  getDividendPayoutRatioCpPercent() {
 		return dividendPayoutRatioCpPercent;
 	}
 	public void setDividendPayoutRatioCpPercent(float dividendPayoutRatioCpPercent) {
 		this.dividendPayoutRatioCpPercent = dividendPayoutRatioCpPercent;
 	}
-	public float getEarningRetentionRatioPercent() {
+	public Float  getEarningRetentionRatioPercent() {
 		return earningRetentionRatioPercent;
 	}
 	public void setEarningRetentionRatioPercent(float earningRetentionRatioPercent) {
 		this.earningRetentionRatioPercent = earningRetentionRatioPercent;
 	}
-	public float getCashEarningRetentionRatioPercent() {
+	public Float  getCashEarningRetentionRatioPercent() {
 		return cashEarningRetentionRatioPercent;
 	}
 	public void setCashEarningRetentionRatioPercent(float cashEarningRetentionRatioPercent) {
 		this.cashEarningRetentionRatioPercent = cashEarningRetentionRatioPercent;
 	}
-	public float getEnterpriseValue() {
+	public Float  getEnterpriseValue() {
 		return enterpriseValue;
 	}
 	public void setEnterpriseValue(float enterpriseValue) {
 		this.enterpriseValue = enterpriseValue;
 	}
-	public float getEvOrNetOperatingRevenue() {
+	public Float  getEvOrNetOperatingRevenue() {
 		return evOrNetOperatingRevenue;
 	}
 	public void setEvOrNetOperatingRevenue(float evOrNetOperatingRevenue) {
 		this.evOrNetOperatingRevenue = evOrNetOperatingRevenue;
 	}
-	public float getEvOrEbitda() {
+	public Float  getEvOrEbitda() {
 		return evOrEbitda;
 	}
 	public void setEvOrEbitda(float evOrEbitda) {
 		this.evOrEbitda = evOrEbitda;
 	}
-	public float getMarketCapOrNetOperatingRevenue() {
+	public Float  getMarketCapOrNetOperatingRevenue() {
 		return marketCapOrNetOperatingRevenue;
 	}
 	public void setMarketCapOrNetOperatingRevenue(float marketCapOrNetOperatingRevenue) {
 		this.marketCapOrNetOperatingRevenue = marketCapOrNetOperatingRevenue;
 	}
-	public float getRetentionRatiosPercent() {
+	public Float  getRetentionRatiosPercent() {
 		return retentionRatiosPercent;
 	}
 	public void setRetentionRatiosPercent(float retentionRatiosPercent) {
 		this.retentionRatiosPercent = retentionRatiosPercent;
 	}
-	public float getPricePerbv() {
+	public Float  getPricePerbv() {
 		return pricePerbv;
 	}
 	public void setPricePerbv(float pricePerbv) {
 		this.pricePerbv = pricePerbv;
 	}
-	public float getEarningsYields() {
+	public Float  getEarningsYields() {
 		return earningsYields;
 	}
 	public void setEarningsYields(float earningsYields) {
 		this.earningsYields = earningsYields;
 	}
-	public int getQuarter() {
+	public Integer getQuarter() {
 		return quarter;
 	}
 	public void setQuarter(int quarter) {

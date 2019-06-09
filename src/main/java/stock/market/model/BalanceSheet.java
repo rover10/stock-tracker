@@ -15,7 +15,7 @@ public class BalanceSheet {
 	//COMPANY
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
@@ -28,383 +28,383 @@ public class BalanceSheet {
 		this.company = company;
 	}
 	//BALANCESHEET YEAR
-	private int year;
+	private Integer year;
 	
-	private double equityShareCapital;
-	private double totalShareCapital;
+	private Double equityShareCapital;
+	private Double totalShareCapital;
 	
-	private double reserveAndSurplus;
-	private double totalReserveAndSurplus;
-	private double totalShareholdersFund;
+	private Double reserveAndSurplus;
+	private Double totalReserveAndSurplus;
+	private Double totalShareholdersFund;
 	
-	private double equityShareAndApplicationMoney;
-	private double hybridOrDebtOrOtherSecurities;
+	private Double equityShareAndApplicationMoney;
+	private Double hybridOrDebtOrOtherSecurities;
 	
 	//NON-CURRENT LIABILITIES
-	private double longTermBorrowings;
-	private double deferredTaxLiabilities;
-	private double otherLongTermLiabilities;
-	private double longTermProvisions;
-	private double totalNonCurrentLiabilities;
+	private Double longTermBorrowings;
+	private Double deferredTaxLiabilities;
+	private Double otherLongTermLiabilities;
+	private Double longTermProvisions;
+	private Double totalNonCurrentLiabilities;
 	
 	//CURRENT LIABILITIES
-	private double shortTermBorrowings;
-	private double tradePayables;
-	private double otherCurrentLiuabilities;
-	private double shortTermProvisions;
-	private double totalCurrentLiabilities;
-	private double totalCapitalAndLiabilities;
+	private Double shortTermBorrowings;
+	private Double tradePayables;
+	private Double otherCurrentLiuabilities;
+	private Double shortTermProvisions;
+	private Double totalCurrentLiabilities;
+	private Double totalCapitalAndLiabilities;
 	
 	//ASSETS
 	//NON_CURRENT ASSETS
-	private double tangibleAssets;
-	private double intangibleAssets;
-	private double capitalWorkInProgress;
-	private double intangibleAssetsUnderDevelopment;
+	private Double tangibleAssets;
+	private Double intangibleAssets;
+	private Double capitalWorkInProgress;
+	private Double intangibleAssetsUnderDevelopment;
 	
 	//FIXED ASSETS
-	private double nonCurrentInvestments;
-	private double longTermLoansAndAdvances;
-	private double otherNonCurrentAssets;
-	private double  totalNonCurrentAssets;
+	private Double nonCurrentInvestments;
+	private Double longTermLoansAndAdvances;
+	private Double otherNonCurrentAssets;
+	private Double  totalNonCurrentAssets;
 	
 	//CURRENT ASSETS
-	private double currentInvestments;
-	private double inventories;
-	private double tradeReceivables;
-	private double cashAndcashEquivalents;
-	private double shortTermLoansAndAdvances;
-	private double otherCurrentAssets;
+	private Double currentInvestments;
+	private Double inventories;
+	private Double tradeReceivables;
+	private Double cashAndcashEquivalents;
+	private Double shortTermLoansAndAdvances;
+	private Double otherCurrentAssets;
 	
-	private double totalCurrentAsets;
-	private double totalAssets;
+	private Double totalCurrentAsets;
+	private Double totalAssets;
 	
 	//OTHER ADDITIONAL INFORMATION
-	private double contingentsLiabilities;
+	private Double contingentsLiabilities;
 	
 	//CIF VALUE OF IMPORTS
-	private double rawMaterials;
-	private double storesSparesAndLooseTools;
-	private double tradeOrOtherGoods;
-	private double capitalGoods;
+	private Double rawMaterials;
+	private Double storesSparesAndLooseTools;
+	private Double tradeOrOtherGoods;
+	private Double capitalGoods;
 	
 	//EXPENDITURE IN FOREIGN EXCHANGE
-	private double expenditureInForeignCurrency;
+	private Double expenditureInForeignCurrency;
 	
 	// REMITTANCES IN FOREIGN CURRENCIES FOR DIVIDENDS
-	private double dividendRemittanceInForeignCurrency;
+	private Double dividendRemittanceInForeignCurrency;
 	
 	//EARNINGS IN FOREIGN CURRENCIES FOR DIVIDENDS
-	private double FOBValueOfGoods;
-	private double otherEarnings;
+	private Double FOBValueOfGoods;
+	private Double otherEarnings;
 	
 	//BONUS DETAILS
-	private double bonusEquityShareCapital;
+	private Double bonusEquityShareCapital;
 	
 	//NON-CURRENT INVESTMENTS
-	private double nonCurrentInvestmentsQuotedMarkedValue;
-	private double nonCurrentInvestmentsUnquotedBookValue;
+	private Double nonCurrentInvestmentsQuotedMarkedValue;
+	private Double nonCurrentInvestmentsUnquotedBookValue;
 	
 	//CURRENT INVESTMENTS
-	private double currentInvestmentsQuotedMarkedValue;
-	private double currentInvestmentsUnquotedBookValue;
+	private Double currentInvestmentsQuotedMarkedValue;
+	private Double currentInvestmentsUnquotedBookValue;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
 	
-	public int getYear() {
+	public Integer getYear() {
 		return year;
 	}
 	public void setYear(int year) {
 		this.year = year;
 	}
-	public double getEquityShareCapital() {
+	public Double getEquityShareCapital() {
 		return equityShareCapital;
 	}
 	public void setEquityShareCapital(double equityShareCapital) {
 		this.equityShareCapital = equityShareCapital;
 	}
-	public double getTotalShareCapital() {
+	public Double getTotalShareCapital() {
 		return totalShareCapital;
 	}
 	public void setTotalShareCapital(double totalShareCapital) {
 		this.totalShareCapital = totalShareCapital;
 	}
-	public double getReserveAndSurplus() {
+	public Double getReserveAndSurplus() {
 		return reserveAndSurplus;
 	}
 	public void setReserveAndSurplus(double reserveAndSurplus) {
 		this.reserveAndSurplus = reserveAndSurplus;
 	}
-	public double getTotalReserveAndSurplus() {
+	public Double getTotalReserveAndSurplus() {
 		return totalReserveAndSurplus;
 	}
 	public void setTotalReserveAndSurplus(double totalReserveAndSurplus) {
 		this.totalReserveAndSurplus = totalReserveAndSurplus;
 	}
-	public double getTotalShareholdersFund() {
+	public Double getTotalShareholdersFund() {
 		return totalShareholdersFund;
 	}
 	public void setTotalShareholdersFund(double totalShareholdersFund) {
 		this.totalShareholdersFund = totalShareholdersFund;
 	}
-	public double getEquityShareAndApplicationMoney() {
+	public Double getEquityShareAndApplicationMoney() {
 		return equityShareAndApplicationMoney;
 	}
 	public void setEquityShareAndApplicationMoney(double equityShareAndApplicationMoney) {
 		this.equityShareAndApplicationMoney = equityShareAndApplicationMoney;
 	}
-	public double getHybridOrDebtOrOtherSecurities() {
+	public Double getHybridOrDebtOrOtherSecurities() {
 		return hybridOrDebtOrOtherSecurities;
 	}
 	public void setHybridOrDebtOrOtherSecurities(double hybridOrDebtOrOtherSecurities) {
 		this.hybridOrDebtOrOtherSecurities = hybridOrDebtOrOtherSecurities;
 	}
-	public double getLongTermBorrowings() {
+	public Double getLongTermBorrowings() {
 		return longTermBorrowings;
 	}
 	public void setLongTermBorrowings(double longTermBorrowings) {
 		this.longTermBorrowings = longTermBorrowings;
 	}
-	public double getDeferredTaxLiabilities() {
+	public Double getDeferredTaxLiabilities() {
 		return deferredTaxLiabilities;
 	}
 	public void setDeferredTaxLiabilities(double deferredTaxLiabilities) {
 		this.deferredTaxLiabilities = deferredTaxLiabilities;
 	}
-	public double getOtherLongTermLiabilities() {
+	public Double getOtherLongTermLiabilities() {
 		return otherLongTermLiabilities;
 	}
 	public void setOtherLongTermLiabilities(double otherLongTermLiabilities) {
 		this.otherLongTermLiabilities = otherLongTermLiabilities;
 	}
-	public double getLongTermProvisions() {
+	public Double getLongTermProvisions() {
 		return longTermProvisions;
 	}
 	public void setLongTermProvisions(double longTermProvisions) {
 		this.longTermProvisions = longTermProvisions;
 	}
-	public double getTotalNonCurrentLiabilities() {
+	public Double getTotalNonCurrentLiabilities() {
 		return totalNonCurrentLiabilities;
 	}
 	public void setTotalNonCurrentLiabilities(double totalNonCurrentLiabilities) {
 		this.totalNonCurrentLiabilities = totalNonCurrentLiabilities;
 	}
-	public double getShortTermBorrowings() {
+	public Double getShortTermBorrowings() {
 		return shortTermBorrowings;
 	}
 	public void setShortTermBorrowings(double shortTermBorrowings) {
 		this.shortTermBorrowings = shortTermBorrowings;
 	}
-	public double getTradePayables() {
+	public Double getTradePayables() {
 		return tradePayables;
 	}
 	public void setTradePayables(double tradePayables) {
 		this.tradePayables = tradePayables;
 	}
-	public double getOtherCurrentLiuabilities() {
+	public Double getOtherCurrentLiuabilities() {
 		return otherCurrentLiuabilities;
 	}
 	public void setOtherCurrentLiuabilities(double otherCurrentLiuabilities) {
 		this.otherCurrentLiuabilities = otherCurrentLiuabilities;
 	}
-	public double getShortTermProvisions() {
+	public Double getShortTermProvisions() {
 		return shortTermProvisions;
 	}
 	public void setShortTermProvisions(double shortTermProvisions) {
 		this.shortTermProvisions = shortTermProvisions;
 	}
-	public double getTotalCurrentLiabilities() {
+	public Double getTotalCurrentLiabilities() {
 		return totalCurrentLiabilities;
 	}
 	public void setTotalCurrentLiabilities(double totalCurrentLiabilities) {
 		this.totalCurrentLiabilities = totalCurrentLiabilities;
 	}
-	public double getTotalCapitalAndLiabilities() {
+	public Double getTotalCapitalAndLiabilities() {
 		return totalCapitalAndLiabilities;
 	}
 	public void setTotalCapitalAndLiabilities(double totalCapitalAndLiabilities) {
 		this.totalCapitalAndLiabilities = totalCapitalAndLiabilities;
 	}
-	public double getTangibleAssets() {
+	public Double getTangibleAssets() {
 		return tangibleAssets;
 	}
 	public void setTangibleAssets(double tangibleAssets) {
 		this.tangibleAssets = tangibleAssets;
 	}
-	public double getIntangibleAssets() {
+	public Double getIntangibleAssets() {
 		return intangibleAssets;
 	}
 	public void setIntangibleAssets(double intangibleAssets) {
 		this.intangibleAssets = intangibleAssets;
 	}
-	public double getCapitalWorkInProgress() {
+	public Double getCapitalWorkInProgress() {
 		return capitalWorkInProgress;
 	}
 	public void setCapitalWorkInProgress(double capitalWorkInProgress) {
 		this.capitalWorkInProgress = capitalWorkInProgress;
 	}
-	public double getIntangibleAssetsUnderDevelopment() {
+	public Double getIntangibleAssetsUnderDevelopment() {
 		return intangibleAssetsUnderDevelopment;
 	}
 	public void setIntangibleAssetsUnderDevelopment(double intangibleAssetsUnderDevelopment) {
 		this.intangibleAssetsUnderDevelopment = intangibleAssetsUnderDevelopment;
 	}
-	public double getNonCurrentInvestments() {
+	public Double getNonCurrentInvestments() {
 		return nonCurrentInvestments;
 	}
 	public void setNonCurrentInvestments(double nonCurrentInvestments) {
 		this.nonCurrentInvestments = nonCurrentInvestments;
 	}
-	public double getLongTermLoansAndAdvances() {
+	public Double getLongTermLoansAndAdvances() {
 		return longTermLoansAndAdvances;
 	}
 	public void setLongTermLoansAndAdvances(double longTermLoansAndAdvances) {
 		this.longTermLoansAndAdvances = longTermLoansAndAdvances;
 	}
-	public double getOtherNonCurrentAssets() {
+	public Double getOtherNonCurrentAssets() {
 		return otherNonCurrentAssets;
 	}
 	public void setOtherNonCurrentAssets(double otherNonCurrentAssets) {
 		this.otherNonCurrentAssets = otherNonCurrentAssets;
 	}
-	public double getTotalNonCurrentAssets() {
+	public Double getTotalNonCurrentAssets() {
 		return totalNonCurrentAssets;
 	}
 	public void setTotalNonCurrentAssets(double totalNonCurrentAssets) {
 		this.totalNonCurrentAssets = totalNonCurrentAssets;
 	}
-	public double getCurrentInvestments() {
+	public Double getCurrentInvestments() {
 		return currentInvestments;
 	}
 	public void setCurrentInvestments(double currentInvestments) {
 		this.currentInvestments = currentInvestments;
 	}
-	public double getInventories() {
+	public Double getInventories() {
 		return inventories;
 	}
 	public void setInventories(double inventories) {
 		this.inventories = inventories;
 	}
-	public double getTradeReceivables() {
+	public Double getTradeReceivables() {
 		return tradeReceivables;
 	}
 	public void setTradeReceivables(double tradeReceivables) {
 		this.tradeReceivables = tradeReceivables;
 	}
-	public double getCashAndcashEquivalents() {
+	public Double getCashAndcashEquivalents() {
 		return cashAndcashEquivalents;
 	}
 	public void setCashAndcashEquivalents(double cashAndcashEquivalents) {
 		this.cashAndcashEquivalents = cashAndcashEquivalents;
 	}
-	public double getShortTermLoansAndAdvances() {
+	public Double getShortTermLoansAndAdvances() {
 		return shortTermLoansAndAdvances;
 	}
 	public void setShortTermLoansAndAdvances(double shortTermLoansAndAdvances) {
 		this.shortTermLoansAndAdvances = shortTermLoansAndAdvances;
 	}
-	public double getOtherCurrentAssets() {
+	public Double getOtherCurrentAssets() {
 		return otherCurrentAssets;
 	}
 	public void setOtherCurrentAssets(double otherCurrentAssets) {
 		this.otherCurrentAssets = otherCurrentAssets;
 	}
-	public double getTotalCurrentAsets() {
+	public Double getTotalCurrentAsets() {
 		return totalCurrentAsets;
 	}
 	public void setTotalCurrentAsets(double totalCurrentAsets) {
 		this.totalCurrentAsets = totalCurrentAsets;
 	}
-	public double getTotalAssets() {
+	public Double getTotalAssets() {
 		return totalAssets;
 	}
 	public void setTotalAssets(double totalAssets) {
 		this.totalAssets = totalAssets;
 	}
-	public double getContingentsLiabilities() {
+	public Double getContingentsLiabilities() {
 		return contingentsLiabilities;
 	}
 	public void setContingentsLiabilities(double contingentsLiabilities) {
 		this.contingentsLiabilities = contingentsLiabilities;
 	}
-	public double getRawMaterials() {
+	public Double getRawMaterials() {
 		return rawMaterials;
 	}
 	public void setRawMaterials(double rawMaterials) {
 		this.rawMaterials = rawMaterials;
 	}
-	public double getStoresSparesAndLooseTools() {
+	public Double getStoresSparesAndLooseTools() {
 		return storesSparesAndLooseTools;
 	}
 	public void setStoresSparesAndLooseTools(double storesSparesAndLooseTools) {
 		this.storesSparesAndLooseTools = storesSparesAndLooseTools;
 	}
-	public double getTradeOrOtherGoods() {
+	public Double getTradeOrOtherGoods() {
 		return tradeOrOtherGoods;
 	}
 	public void setTradeOrOtherGoods(double tradeOrOtherGoods) {
 		this.tradeOrOtherGoods = tradeOrOtherGoods;
 	}
-	public double getCapitalGoods() {
+	public Double getCapitalGoods() {
 		return capitalGoods;
 	}
 	public void setCapitalGoods(double capitalGoods) {
 		this.capitalGoods = capitalGoods;
 	}
-	public double getExpenditureInForeignCurrency() {
+	public Double getExpenditureInForeignCurrency() {
 		return expenditureInForeignCurrency;
 	}
 	public void setExpenditureInForeignCurrency(double expenditureInForeignCurrency) {
 		this.expenditureInForeignCurrency = expenditureInForeignCurrency;
 	}
-	public double getDividendRemittanceInForeignCurrency() {
+	public Double getDividendRemittanceInForeignCurrency() {
 		return dividendRemittanceInForeignCurrency;
 	}
 	public void setDividendRemittanceInForeignCurrency(double dividendRemittanceInForeignCurrency) {
 		this.dividendRemittanceInForeignCurrency = dividendRemittanceInForeignCurrency;
 	}
-	public double getFOBValueOfGoods() {
+	public Double getFOBValueOfGoods() {
 		return FOBValueOfGoods;
 	}
 	public void setFOBValueOfGoods(double fOBValueOfGoods) {
 		FOBValueOfGoods = fOBValueOfGoods;
 	}
-	public double getOtherEarnings() {
+	public Double getOtherEarnings() {
 		return otherEarnings;
 	}
 	public void setOtherEarnings(double otherEarnings) {
 		this.otherEarnings = otherEarnings;
 	}
-	public double getBonusEquityShareCapital() {
+	public Double getBonusEquityShareCapital() {
 		return bonusEquityShareCapital;
 	}
 	public void setBonusEquityShareCapital(double bonusEquityShareCapital) {
 		this.bonusEquityShareCapital = bonusEquityShareCapital;
 	}
-	public double getNonCurrentInvestmentsQuotedMarkedValue() {
+	public Double getNonCurrentInvestmentsQuotedMarkedValue() {
 		return nonCurrentInvestmentsQuotedMarkedValue;
 	}
 	public void setNonCurrentInvestmentsQuotedMarkedValue(double nonCurrentInvestmentsQuotedMarkedValue) {
 		this.nonCurrentInvestmentsQuotedMarkedValue = nonCurrentInvestmentsQuotedMarkedValue;
 	}
-	public double getNonCurrentInvestmentsUnquotedBookValue() {
+	public Double getNonCurrentInvestmentsUnquotedBookValue() {
 		return nonCurrentInvestmentsUnquotedBookValue;
 	}
 	public void setNonCurrentInvestmentsUnquotedBookValue(double nonCurrentInvestmentsUnquotedBookValue) {
 		this.nonCurrentInvestmentsUnquotedBookValue = nonCurrentInvestmentsUnquotedBookValue;
 	}
-	public double getCurrentInvestmentsQuotedMarkedValue() {
+	public Double getCurrentInvestmentsQuotedMarkedValue() {
 		return currentInvestmentsQuotedMarkedValue;
 	}
 	public void setCurrentInvestmentsQuotedMarkedValue(double currentInvestmentsQuotedMarkedValue) {
 		this.currentInvestmentsQuotedMarkedValue = currentInvestmentsQuotedMarkedValue;
 	}
-	public double getCurrentInvestmentsUnquotedBookValue() {
+	public Double getCurrentInvestmentsUnquotedBookValue() {
 		return currentInvestmentsUnquotedBookValue;
 	}
 	public void setCurrentInvestmentsUnquotedBookValue(double currentInvestmentsUnquotedBookValue) {

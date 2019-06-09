@@ -13,13 +13,13 @@ import javax.persistence.OneToOne;
 public class Stock {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
 	private Cusip cusip;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {
@@ -31,7 +31,7 @@ public class Stock {
 	public void setCusip(Cusip cusip) {
 		this.cusip = cusip;
 	}
-	public float getPrice() {
+	public Float getPrice() {
 		return price;
 	}
 	public void setPrice(float price) {
@@ -43,14 +43,14 @@ public class Stock {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	private float price;
+	private Float price;
 	private Date date; 
-	private int userId;
+	private Integer userId;
 }
 

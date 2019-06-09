@@ -15,36 +15,36 @@ public class CashFlow {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	private int year;
-	private int quarter;
+	private Integer id;
+	private Integer year;
+	private Integer quarter;
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Company company;
-	private double unitMutiplier;
-	private double netCashFlowFromOperatingActivities;
-	private double netCashUsedInInvestingActivities;
-	private double foreignExchangeGainsOrLosses;
+	private Double unitMutiplier;
+	private Double netCashFlowFromOperatingActivities;
+	private Double netCashUsedInInvestingActivities;
+	private Double foreignExchangeGainsOrLosses;
 	
-	private double netIncreaseOrDecreaseInCashAndCashEquivalents;
+	private Double netIncreaseOrDecreaseInCashAndCashEquivalents;
 	
-	private double cashAndcashEquivalentsBeginOfyear;
-	private double cashAndCashEquivalentsEndOfYear;
+	private Double cashAndcashEquivalentsBeginOfyear;
+	private Double cashAndCashEquivalentsEndOfYear;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getYear() {
+	public Integer getYear() {
 		return year;
 	}
 	public void setYear(int year) {
 		this.year = year;
 	}
-	public double getUnitMutiplier() {
+	public Double getUnitMutiplier() {
 		return unitMutiplier;
 	}
 	public void setUnitMutiplier(double unitMutiplier) {
@@ -56,43 +56,43 @@ public class CashFlow {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	public double getNetCashFlowFromOperatingActivities() {
+	public Double getNetCashFlowFromOperatingActivities() {
 		return netCashFlowFromOperatingActivities;
 	}
 	public void setNetCashFlowFromOperatingActivities(double netCashFlowFromOperatingActivities) {
 		this.netCashFlowFromOperatingActivities = netCashFlowFromOperatingActivities;
 	}
-	public double getNetCashUsedInInvestingActivities() {
+	public Double getNetCashUsedInInvestingActivities() {
 		return netCashUsedInInvestingActivities;
 	}
 	public void setNetCashUsedInInvestingActivities(double netCashUsedInInvestingActivities) {
 		this.netCashUsedInInvestingActivities = netCashUsedInInvestingActivities;
 	}
-	public double getForeignExchangeGainsOrLosses() {
+	public Double getForeignExchangeGainsOrLosses() {
 		return foreignExchangeGainsOrLosses;
 	}
 	public void setForeignExchangeGainsOrLosses(double foreignExchangeGainsOrLosses) {
 		this.foreignExchangeGainsOrLosses = foreignExchangeGainsOrLosses;
 	}
-	public double getNetIncreaseOrDecreaseInCashAndCashEquivalents() {
+	public Double getNetIncreaseOrDecreaseInCashAndCashEquivalents() {
 		return netIncreaseOrDecreaseInCashAndCashEquivalents;
 	}
 	public void setNetIncreaseOrDecreaseInCashAndCashEquivalents(double netIncreaseOrDecreaseInCashAndCashEquivalents) {
 		this.netIncreaseOrDecreaseInCashAndCashEquivalents = netIncreaseOrDecreaseInCashAndCashEquivalents;
 	}
-	public double getCashAndcashEquivalentsBeginOfyear() {
+	public Double getCashAndcashEquivalentsBeginOfyear() {
 		return cashAndcashEquivalentsBeginOfyear;
 	}
 	public void setCashAndcashEquivalentsBeginOfyear(double cashAndcashEquivalentsBeginOfyear) {
 		this.cashAndcashEquivalentsBeginOfyear = cashAndcashEquivalentsBeginOfyear;
 	}
-	public double getCashAndCashEquivalentsEndOfYear() {
+	public Double getCashAndCashEquivalentsEndOfYear() {
 		return cashAndCashEquivalentsEndOfYear;
 	}
 	public void setCashAndCashEquivalentsEndOfYear(double cashAndCashEquivalentsEndOfYear) {
 		this.cashAndCashEquivalentsEndOfYear = cashAndCashEquivalentsEndOfYear;
 	}
-	public int getQuarter() {
+	public Integer getQuarter() {
 		return quarter;
 	}
 	public void setQuarter(int quarter) {

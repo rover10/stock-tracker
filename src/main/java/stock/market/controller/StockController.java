@@ -176,6 +176,9 @@ public class StockController {
 	public ProfitAndLoss saveCompanyPnL(@PathVariable("symbol") String symbol,  @RequestBody ProfitAndLoss companyProfitAndLoss) {
 		
 		Company c = this.companyRepository.findBySymbol(symbol);
+		
+		System.out.println("Company = " + c.getName());
+		
 		companyProfitAndLoss.setCompany(c);
 		ProfitAndLoss savedCompanyProfitAndLoss = this.profitAndLossRepository.findByCompanyAndYearAndQuarter(c, companyProfitAndLoss.getYear(), companyProfitAndLoss.getQuarter());
 		

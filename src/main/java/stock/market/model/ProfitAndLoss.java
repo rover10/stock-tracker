@@ -18,13 +18,13 @@ public class ProfitAndLoss {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 	
 	@NotNull
-	private int year;
+	private Integer year;
 	
 	@NotNull
-	private int quarter;
+	private Integer quarter;
 	
 	
 	@NotNull
@@ -34,66 +34,66 @@ public class ProfitAndLoss {
 	private Currency currency;
 	
 	//In Crore/million/billion
-	private double unitMultiplier;
+	private Double unitMultiplier;
 	
 	//INCOME
-	private double grossRevenueFromOperations;
-	private double exciseOrServiceTaxOrOtherLevies;
-	private double netRevenueFromOperations;
-	private double otherOperatingRevenues;
-	private double totalOperatingRevenues;
-	private double otherIncome;
-	private double totalRevenue;
+	private Double grossRevenueFromOperations;
+	private Double exciseOrServiceTaxOrOtherLevies;
+	private Double netRevenueFromOperations;
+	private Double otherOperatingRevenues;
+	private Double totalOperatingRevenues;
+	private Double otherIncome;
+	private Double totalRevenue;
 	
 	//EXPENSES
-	private double costOfMaterialConsumed;
-	private double purchaseOfStocksInTrade;
-	private double changeOfInventoriesOfFgWipAndStockInTrade;
-	private double employmentBenefitExpenses;
-	private double financeCosts;
-	private double depreciationAndAmortisationExpenses;
-	private double otherExpenses;
-	private double amountTransferToCapitalAccounts;
-	private double totalExpenses;
+	private Double costOfMaterialConsumed;
+	private Double purchaseOfStocksInTrade;
+	private Double changeOfInventoriesOfFgWipAndStockInTrade;
+	private Double employmentBenefitExpenses;
+	private Double financeCosts;
+	private Double depreciationAndAmortisationExpenses;
+	private Double otherExpenses;
+	private Double amountTransferToCapitalAccounts;
+	private Double totalExpenses;
 	
 	//PROFIT/LOSS BEFORE EXCEPTIONAL, EXTRAORDINARY ITEMS AND TAX
-	private double exceptionalItems;
-	private double profitLossBeforeTax;
+	private Double exceptionalItems;
+	private Double profitLossBeforeTax;
 	
 	//TAX EXPENSES-CONTINUED OPERATIONS
-	private double currentTax;
-	private double matCreditEntitlement;
-	private double deferredTax;
+	private Double currentTax;
+	private Double matCreditEntitlement;
+	private Double deferredTax;
 	
-	private double totalTaxExpenses;
-	private double profitLossAfterTaxAndBeforeExtraOrdinaryItems;
-	private double profitLossForThePeriod;
+	private Double totalTaxExpenses;
+	private Double profitLossAfterTaxAndBeforeExtraOrdinaryItems;
+	private Double profitLossForThePeriod;
 	
 	//OTHER ADDITIONAL INFORMATION
 	//EARNING PER SHARE
-	private double basicEps;
-	private double dilutedEps;
+	private Double basicEps;
+	private Double dilutedEps;
 	
 	// VALUE OF IMPORTED AND INDIGENIOUS RAW MATERIALS
-	private double importedRawMaterials;
-	private double indigenousRawMaterials;
+	private Double importedRawMaterials;
+	private Double indigenousRawMaterials;
 	
 	//STORES, SPARES AND LOOSE TOOLS
-	private double importedStoresAndSpares;
-	private double indegenousStoresAndSpares;
+	private Double importedStoresAndSpares;
+	private Double indegenousStoresAndSpares;
 	
 	// DIVIDEND AND DIVIDEND PERCENTAGE
-	private double equityShareDividend;
-	private double taxOnDividend;
-	private double equityDividendRate;
+	private Double equityShareDividend;
+	private Double taxOnDividend;
+	private Double equityDividendRate;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getYear() {
+	public Integer getYear() {
 		return year;
 	}
 	public void setYear(int year) {
@@ -111,211 +111,211 @@ public class ProfitAndLoss {
 	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
-	public double getUnitMultiplier() {
+	public Double getUnitMultiplier() {
 		return unitMultiplier;
 	}
-	public void setUnitMultiplier(double unitMultiplier) {
+	public void setUnitMultiplier(Double unitMultiplier) {
 		this.unitMultiplier = unitMultiplier;
 	}
-	public double getGrossRevenueFromOperations() {
+	public Double getGrossRevenueFromOperations() {
 		return grossRevenueFromOperations;
 	}
-	public void setGrossRevenueFromOperations(double grossRevenueFromOperations) {
+	public void setGrossRevenueFromOperations(Double grossRevenueFromOperations) {
 		this.grossRevenueFromOperations = grossRevenueFromOperations;
 	}
-	public double getExciseOrServiceTaxOrOtherLevies() {
+	public Double getExciseOrServiceTaxOrOtherLevies() {
 		return exciseOrServiceTaxOrOtherLevies;
 	}
-	public void setExciseOrServiceTaxOrOtherLevies(double exciseOrServiceTaxOrOtherLevies) {
+	public void setExciseOrServiceTaxOrOtherLevies(Double exciseOrServiceTaxOrOtherLevies) {
 		this.exciseOrServiceTaxOrOtherLevies = exciseOrServiceTaxOrOtherLevies;
 	}
-	public double getNetRevenueFromOperations() {
+	public Double getNetRevenueFromOperations() {
 		return netRevenueFromOperations;
 	}
-	public void setNetRevenueFromOperations(double netRevenueFromOperations) {
+	public void setNetRevenueFromOperations(Double netRevenueFromOperations) {
 		this.netRevenueFromOperations = netRevenueFromOperations;
 	}
-	public double getOtherOperatingRevenues() {
+	public Double getOtherOperatingRevenues() {
 		return otherOperatingRevenues;
 	}
-	public void setOtherOperatingRevenues(double otherOperatingRevenues) {
+	public void setOtherOperatingRevenues(Double otherOperatingRevenues) {
 		this.otherOperatingRevenues = otherOperatingRevenues;
 	}
-	public double getTotalOperatingRevenues() {
+	public Double getTotalOperatingRevenues() {
 		return totalOperatingRevenues;
 	}
-	public void setTotalOperatingRevenues(double totalOperatingRevenues) {
+	public void setTotalOperatingRevenues(Double totalOperatingRevenues) {
 		this.totalOperatingRevenues = totalOperatingRevenues;
 	}
-	public double getOtherIncome() {
+	public Double getOtherIncome() {
 		return otherIncome;
 	}
-	public void setOtherIncome(double otherIncome) {
+	public void setOtherIncome(Double otherIncome) {
 		this.otherIncome = otherIncome;
 	}
-	public double getTotalRevenue() {
+	public Double getTotalRevenue() {
 		return totalRevenue;
 	}
-	public void setTotalRevenue(double totalRevenue) {
+	public void setTotalRevenue(Double totalRevenue) {
 		this.totalRevenue = totalRevenue;
 	}
-	public double getCostOfMaterialConsumed() {
+	public Double getCostOfMaterialConsumed() {
 		return costOfMaterialConsumed;
 	}
-	public void setCostOfMaterialConsumed(double costOfMaterialConsumed) {
+	public void setCostOfMaterialConsumed(Double costOfMaterialConsumed) {
 		this.costOfMaterialConsumed = costOfMaterialConsumed;
 	}
-	public double getPurchaseOfStocksInTrade() {
+	public Double getPurchaseOfStocksInTrade() {
 		return purchaseOfStocksInTrade;
 	}
-	public void setPurchaseOfStocksInTrade(double purchaseOfStocksInTrade) {
+	public void setPurchaseOfStocksInTrade(Double purchaseOfStocksInTrade) {
 		this.purchaseOfStocksInTrade = purchaseOfStocksInTrade;
 	}
-	public double getChangeOfInventoriesOfFgWipAndStockInTrade() {
+	public Double getChangeOfInventoriesOfFgWipAndStockInTrade() {
 		return changeOfInventoriesOfFgWipAndStockInTrade;
 	}
-	public void setChangeOfInventoriesOfFgWipAndStockInTrade(double changeOfInventoriesOfFgWipAndStockInTrade) {
+	public void setChangeOfInventoriesOfFgWipAndStockInTrade(Double changeOfInventoriesOfFgWipAndStockInTrade) {
 		this.changeOfInventoriesOfFgWipAndStockInTrade = changeOfInventoriesOfFgWipAndStockInTrade;
 	}
-	public double getEmploymentBenefitExpenses() {
+	public Double getEmploymentBenefitExpenses() {
 		return employmentBenefitExpenses;
 	}
-	public void setEmploymentBenefitExpenses(double employmentBenefitExpenses) {
+	public void setEmploymentBenefitExpenses(Double employmentBenefitExpenses) {
 		this.employmentBenefitExpenses = employmentBenefitExpenses;
 	}
-	public double getFinanceCosts() {
+	public Double getFinanceCosts() {
 		return financeCosts;
 	}
-	public void setFinanceCosts(double financeCosts) {
+	public void setFinanceCosts(Double financeCosts) {
 		this.financeCosts = financeCosts;
 	}
-	public double getDepreciationAndAmortisationExpenses() {
+	public Double getDepreciationAndAmortisationExpenses() {
 		return depreciationAndAmortisationExpenses;
 	}
-	public void setDepreciationAndAmortisationExpenses(double depreciationAndAmortisationExpenses) {
+	public void setDepreciationAndAmortisationExpenses(Double depreciationAndAmortisationExpenses) {
 		this.depreciationAndAmortisationExpenses = depreciationAndAmortisationExpenses;
 	}
-	public double getOtherExpenses() {
+	public Double getOtherExpenses() {
 		return otherExpenses;
 	}
-	public void setOtherExpenses(double otherExpenses) {
+	public void setOtherExpenses(Double otherExpenses) {
 		this.otherExpenses = otherExpenses;
 	}
-	public double getAmountTransferToCapitalAccounts() {
+	public Double getAmountTransferToCapitalAccounts() {
 		return amountTransferToCapitalAccounts;
 	}
-	public void setAmountTransferToCapitalAccounts(double amountTransferToCapitalAccounts) {
+	public void setAmountTransferToCapitalAccounts(Double amountTransferToCapitalAccounts) {
 		this.amountTransferToCapitalAccounts = amountTransferToCapitalAccounts;
 	}
-	public double getTotalExpenses() {
+	public Double getTotalExpenses() {
 		return totalExpenses;
 	}
-	public void setTotalExpenses(double totalExpenses) {
+	public void setTotalExpenses(Double totalExpenses) {
 		this.totalExpenses = totalExpenses;
 	}
-	public double getExceptionalItems() {
+	public Double getExceptionalItems() {
 		return exceptionalItems;
 	}
-	public void setExceptionalItems(double exceptionalItems) {
+	public void setExceptionalItems(Double exceptionalItems) {
 		this.exceptionalItems = exceptionalItems;
 	}
-	public double getProfitLossBeforeTax() {
+	public Double getProfitLossBeforeTax() {
 		return profitLossBeforeTax;
 	}
-	public void setProfitLossBeforeTax(double profitLossBeforeTax) {
+	public void setProfitLossBeforeTax(Double profitLossBeforeTax) {
 		this.profitLossBeforeTax = profitLossBeforeTax;
 	}
-	public double getCurrentTax() {
+	public Double getCurrentTax() {
 		return currentTax;
 	}
-	public void setCurrentTax(double currentTax) {
+	public void setCurrentTax(Double currentTax) {
 		this.currentTax = currentTax;
 	}
-	public double getMatCreditEntitlement() {
+	public Double getMatCreditEntitlement() {
 		return matCreditEntitlement;
 	}
-	public void setMatCreditEntitlement(double matCreditEntitlement) {
+	public void setMatCreditEntitlement(Double matCreditEntitlement) {
 		this.matCreditEntitlement = matCreditEntitlement;
 	}
-	public double getDeferredTax() {
+	public Double getDeferredTax() {
 		return deferredTax;
 	}
-	public void setDeferredTax(double deferredTax) {
+	public void setDeferredTax(Double deferredTax) {
 		this.deferredTax = deferredTax;
 	}
-	public double getTotalTaxExpenses() {
+	public Double getTotalTaxExpenses() {
 		return totalTaxExpenses;
 	}
-	public void setTotalTaxExpenses(double totalTaxExpenses) {
+	public void setTotalTaxExpenses(Double totalTaxExpenses) {
 		this.totalTaxExpenses = totalTaxExpenses;
 	}
-	public double getProfitLossAfterTaxAndBeforeExtraOrdinaryItems() {
+	public Double getProfitLossAfterTaxAndBeforeExtraOrdinaryItems() {
 		return profitLossAfterTaxAndBeforeExtraOrdinaryItems;
 	}
-	public void setProfitLossAfterTaxAndBeforeExtraOrdinaryItems(double profitLossAfterTaxAndBeforeExtraOrdinaryItems) {
+	public void setProfitLossAfterTaxAndBeforeExtraOrdinaryItems(Double profitLossAfterTaxAndBeforeExtraOrdinaryItems) {
 		this.profitLossAfterTaxAndBeforeExtraOrdinaryItems = profitLossAfterTaxAndBeforeExtraOrdinaryItems;
 	}
-	public double getProfitLossForThePeriod() {
+	public Double getProfitLossForThePeriod() {
 		return profitLossForThePeriod;
 	}
-	public void setProfitLossForThePeriod(double profitLossForThePeriod) {
+	public void setProfitLossForThePeriod(Double profitLossForThePeriod) {
 		this.profitLossForThePeriod = profitLossForThePeriod;
 	}
-	public double getImportedRawMaterials() {
+	public Double getImportedRawMaterials() {
 		return importedRawMaterials;
 	}
-	public void setImportedRawMaterials(double importedRawMaterials) {
+	public void setImportedRawMaterials(Double importedRawMaterials) {
 		this.importedRawMaterials = importedRawMaterials;
 	}
-	public double getIndigenousRawMaterials() {
+	public Double getIndigenousRawMaterials() {
 		return indigenousRawMaterials;
 	}
-	public void setIndigenousRawMaterials(double indigenousRawMaterials) {
+	public void setIndigenousRawMaterials(Double indigenousRawMaterials) {
 		this.indigenousRawMaterials = indigenousRawMaterials;
 	}
-	public double getImportedStoresAndSpares() {
+	public Double getImportedStoresAndSpares() {
 		return importedStoresAndSpares;
 	}
-	public void setImportedStoresAndSpares(double importedStoresAndSpares) {
+	public void setImportedStoresAndSpares(Double importedStoresAndSpares) {
 		this.importedStoresAndSpares = importedStoresAndSpares;
 	}
-	public double getIndegenousStoresAndSpares() {
+	public Double getIndegenousStoresAndSpares() {
 		return indegenousStoresAndSpares;
 	}
-	public void setIndegenousStoresAndSpares(double indegenousStoresAndSpares) {
+	public void setIndegenousStoresAndSpares(Double indegenousStoresAndSpares) {
 		this.indegenousStoresAndSpares = indegenousStoresAndSpares;
 	}
-	public double getEquityShareDividend() {
+	public Double getEquityShareDividend() {
 		return equityShareDividend;
 	}
-	public void setEquityShareDividend(double equityShareDividend) {
+	public void setEquityShareDividend(Double equityShareDividend) {
 		this.equityShareDividend = equityShareDividend;
 	}
-	public double getTaxOnDividend() {
+	public Double getTaxOnDividend() {
 		return taxOnDividend;
 	}
-	public void setTaxOnDividend(double taxOnDividend) {
+	public void setTaxOnDividend(Double taxOnDividend) {
 		this.taxOnDividend = taxOnDividend;
 	}
-	public double getEquityDividendRate() {
+	public Double getEquityDividendRate() {
 		return equityDividendRate;
 	}
-	public void setEquityDividendRate(double equityDividendRate) {
+	public void setEquityDividendRate(Double equityDividendRate) {
 		this.equityDividendRate = equityDividendRate;
 	}
-	public double getBasicEps() {
+	public Double getBasicEps() {
 		return basicEps;
 	}
-	public void setBasicEps(double basicEps) {
+	public void setBasicEps(Double basicEps) {
 		this.basicEps = basicEps;
 	}
-	public double getDilutedEps() {
+	public Double getDilutedEps() {
 		return dilutedEps;
 	}
-	public void setDilutedEps(double dilutedEps) {
+	public void setDilutedEps(Double dilutedEps) {
 		this.dilutedEps = dilutedEps;
 	}
-	public int getQuarter() {
+	public Integer getQuarter() {
 		return quarter;
 	}
 	public void setQuarter(int quarter) {

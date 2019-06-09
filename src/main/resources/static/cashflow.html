@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    
+    
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body style = "background-color: #cccccc0d;">
+<style>
+	.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+    	border-style:none;
+	}
+	
+	label {
+	    font-weight: 1;
+	    font-family: monospace;
+	    color: darkslateblue;
+	}
+	h2{
+		font-weight:200;
+	}
+	.well{
+		background-color: white;
+		box-shadow: 0px 0px 7px 3px rgba(0,0,0,.05);
+	}
+</style>
+<div class="container" >
+<div class="container" ng-app="myApp" ng-controller="myCtrl">
+<BR><BR>
+
+ <form class="form-inline ">
+	<div class="">
+	<div style = "">
+		<div style ="font-size:70px;float:left;font-weight:300;"> Cashflow </div>
+		<BR>
+		<div style = "float:right;widht:relative;">
+			<div  style="float:left;">
+			<input type="text" id="symbol" ng-model="company" class="form-control input-sm"
+		    placeholder="Company" uib-typeahead="comp.symbol as comp.symbol for comp in nse_companies | filter:{name:$viewValue}| limitTo:8"  
+		    typeahead-show-hint="true" typeahead-min-length="0"> 
+		    </div>
+			 &nbsp; for the year &nbsp;   
+			<input id="pl_year" ng-model = "year" type="text" class="form-control input-sm" placeholder="year">
+			 &nbsp; for the quarter &nbsp;   
+			<input id="pl_quarter" ng-model = "quarter" type="text" class="form-control input-sm" placeholder="quarter">
+			
+			<button type="button" class="btn btn-success" ng-click="saveCashFlow();">Save</button>
+			<button type="button" class="btn btn-info" ng-click="getCashFlow();">Load</button>
+		</div>	
+	</div>
+    
+
+<BR><BR>
+<BR><BR>
+
+		  
+	<div class="well">
+	<h2>Income</h2>
+	<BR>    
+	 <table class="table table-condensed ">
+	    <tbody>
+	      <tr>
+	        <td><label for="focusedInput">Net cashflow from operating activities</label></td>
+	        <td> <input id="netCashFlowFromOperatingActivities" ng-model = "netCashFlowFromOperatingActivities" type="text" class="form-control input-sm" placeholder=""> </td>
+	        <td> <label for="focusedInput">Net Cash used in investing activities</label></td>
+	        <td> <input id="netCashUsedInInvestingActivities" ng-model = "netCashUsedInInvestingActivities" type="text" class="form-control input-sm" placeholder="">
+		    </td>
+	      </tr>
+	      <tr>
+	        <td><label for="focusedInput">Foreign exchange gain or losses</label></td>
+	        <td><input id="foreignExchangeGainsOrLosses" ng-model = "foreignExchangeGainsOrLosses" type="text" class="form-control input-sm" placeholder=""></td>
+	        <td><label for="focusedInput">Net increase or decrease in cash and equivalents</label></td>
+	        <td><input id="netIncreaseOrDecreaseInCashAndCashEquivalents" ng-model = "netIncreaseOrDecreaseInCashAndCashEquivalents" type="text" class="form-control input-sm" placeholder=""></td>
+	      </tr>
+	      <tr>
+	        <td><label for="focusedInput">Cash and cash equivalents at begin of year</label></td>
+	        <td><input id="cashAndcashEquivalentsBeginOfyear" ng-model = "cashAndcashEquivalentsBeginOfyear" type="text" class="form-control input-sm" placeholder=""></td>
+	        <td><label for="focusedInput">Cash and cash equivalent at end of year</label></td>
+	        <td><input id="cashAndCashEquivalentsEndOfYear" ng-model = "cashAndCashEquivalentsEndOfYear" type="text" class="form-control input-sm" placeholder=""></td>
+	      </tr>
+	      
+				
+			</tbody>
+		</table>
+	</div>
+	
+	</div> 
+</form>
+</div>
+</div>
+
+</body>
+<script type="text/javascript">
+	var app = angular.module('myApp', ['ngAnimate', 'ngSanitize','ui.bootstrap']);
+	app.controller('myCtrl', function($scope, $http, $interval) {
+		  $scope.company = null;		
+		  $scope.unitMutiplier = null;
+		  $scope.netCashFlowFromOperatingActivities = null;
+		  $scope.netCashUsedInInvestingActivities = null;
+		  $scope.foreignExchangeGainsOrLosses = null;
+		  $scope.netIncreaseOrDecreaseInCashAndCashEquivalents = null;
+		  $scope.cashAndcashEquivalentsBeginOfyear = null;
+		  $scope.cashAndCashEquivalentsEndOfYear = null;
+		  $scope.year = null;
+		  $scope.quarter = null;
+		  
+	
+		   $scope.saveCashFlow = function(){
+			   $http({
+				    method : "POST",
+				    url : "company/" + $scope.company  + "/cashflow" ,
+				    data: { company: {symbol: $scope.company}, 
+					    	year:$scope.year,
+					    	quarter: $scope.quarter,
+					    	unitMutiplier: $scope.unitMutiplier,
+					    	netCashFlowFromOperatingActivities: $scope.netCashFlowFromOperatingActivities,
+					    	netCashUsedInInvestingActivities: $scope.netCashUsedInInvestingActivities,
+					    	foreignExchangeGainsOrLosses: $scope.foreignExchangeGainsOrLosses,
+					    	netIncreaseOrDecreaseInCashAndCashEquivalents: $scope.netIncreaseOrDecreaseInCashAndCashEquivalents,
+					    	cashAndcashEquivalentsBeginOfyear: $scope.cashAndcashEquivalentsBeginOfyear,
+					    	cashAndCashEquivalentsEndOfYear: $scope.cashAndCashEquivalentsEndOfYear
+					    	 	
+				    	}
+				  }).then(function mySuccess(response) {
+				         $scope.loading = false
+				    	 
+				    }, function myError(response) {
+				      $scope.myWelcome = response.statusText;
+				      $scope.loading = false;
+				});	   
+		   }
+		   
+		 $scope.getCashFlow = function(){
+			 $http({method: "GET", 
+				url: "/company/" + $scope.company +"/year/" + $scope.year + "/cashflow/"
+			 }).then(function success(response){
+				 $scope.loading = false;
+				 $scope.year = response.data.year;
+				 $scope.quarter = response.data.quarter;
+				 $scope.unitMutiplier = response.data.unitMutiplier;
+				 $scope.netCashFlowFromOperatingActivities = response.data.netCashFlowFromOperatingActivities;
+				 $scope.netCashUsedInInvestingActivities = response.data.netCashUsedInInvestingActivities;
+				 $scope.foreignExchangeGainsOrLosses = response.data.foreignExchangeGainsOrLosses;
+				 $scope.netIncreaseOrDecreaseInCashAndCashEquivalents = response.data.netIncreaseOrDecreaseInCashAndCashEquivalents;
+				 $scope.cashAndcashEquivalentsBeginOfyear = response.data.cashAndcashEquivalentsBeginOfyear;
+				 $scope.cashAndCashEquivalentsEndOfYear = response.data.cashAndCashEquivalentsEndOfYear;
+			 }, function error(response){
+				 $scope.loading = false;
+				 
+			 });
+		 }  
+	});
+	
+</script>
+</html>
+
+
+

@@ -21,7 +21,7 @@ public class RatioController {
 	@Autowired
 	CompanyRepository companyRepository;
 	
-	@RequestMapping(value = "company/{symbol}/ratio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "company/{symbol}/ratios", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Ratios saveCompanyRatio(@PathVariable("symbol") String symbol,  @RequestBody Ratios cr) {
 		Company c = this.companyRepository.findBySymbol(symbol);
 		Ratios rc = ratioRepository.findByCompanyAndYearAndQuarter(c,cr.getYear(), cr.getQuarter());
@@ -74,7 +74,7 @@ public class RatioController {
 		return ratioRepository.save(rc);
 	}
 	
-	@RequestMapping(value = "company/{company}/year/{year}/quarter/{quarter}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "company/{company}/year/{year}/quarter/{quarter}/ratios", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Ratios getCompanyRatio(@PathVariable("company") String company, @PathVariable("year") int year, @PathVariable("quarter") int quarter){
 		Company c = companyRepository.findBySymbol(company);
 		return ratioRepository.findByCompanyAndYearAndQuarter(c, year, quarter);
