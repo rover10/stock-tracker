@@ -44,6 +44,16 @@ public class User {
 	@Column(unique = true, nullable = false)
 	private String mobile;
 	
+	@Column(name = "password")
+	private String password;
+	
+	@Column(name = "status")
+	private String status;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "auth_user_role", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "auth_role_id"))
+	private Set<Role> roles;
+	
 	//	@ManyToMany(cascade=CascadeType.ALL)
 	//    @JoinTable(name="track_stocks",    // Will create a table with name 'track_stock'
 	//    	joinColumns = { @JoinColumn(referencedColumnName = "id") }, 	
@@ -54,6 +64,24 @@ public class User {
 	//@OneToMany
 	//private Set<UserTracksCusip> userTracksCusip = new HashSet<UserTracksCusip>();
 		
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public Set<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	private String country;
 	private String firstName;
 	private String lastName;

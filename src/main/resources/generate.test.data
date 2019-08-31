@@ -222,3 +222,16 @@ Inner service response(this should be parsed)
   }
 }
 
+
+// SQL for first user
+
+INSERT INTO auth_role VALUES (1,'SUPER_USER','This user has ultimate rights for everything');
+INSERT INTO auth_role VALUES (2,'ADMIN_USER','This user has admin rights for administrative work');
+INSERT INTO auth_role VALUES (3,'SITE_USER','This user has access to site, after login - normal user');
+
+
+INSERT INTO SUser (id, first_name,last_name,email,mobile, password,status) VALUES (1, 'Rakesh','Kumar','rakesh.r1303@gmail.com','9971588951','$2a$10$DD/FQ0hTIprg3fGarZl1reK1f7tzgM4RuFKjAKyun0Si60w6g3v5i','VERIFIED');
+
+INSERT INTO auth_user_role (id, auth_role_id) VALUES ('1','1');
+INSERT INTO auth_user_role (id, auth_role_id) VALUES ('1','2');
+INSERT INTO auth_user_role (id, auth_role_id) VALUES ('1','3');
