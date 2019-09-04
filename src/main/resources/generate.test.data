@@ -235,3 +235,9 @@ INSERT INTO SUser (id, first_name,last_name,email,mobile, password,status) VALUE
 INSERT INTO auth_user_role (id, auth_role_id) VALUES ('1','1');
 INSERT INTO auth_user_role (id, auth_role_id) VALUES ('1','2');
 INSERT INTO auth_user_role (id, auth_role_id) VALUES ('1','3');
+
+
+
+Curl request to load company data(Change the session value after login)
+---------------------------------*____________________________________
+curl 'http://localhost:8080/company/reload/nse/' -H 'Connection: keep-alive' -H 'Cache-Control: max-age=0' -H 'Origin: http://localhost:8080' -H 'Upgrade-Insecure-Requests: 1' -H 'DNT: 1' -H 'Content-Type: application/json' -H 'User-Agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Mobile Safari/537.36' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-User: ?1' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3' -H 'Sec-Fetch-Site: same-origin' -H 'Referer: http://localhost:8080/register' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-GB,en-US;q=0.9,en;q=0.8,hi;q=0.7' -H 'Cookie: JSESSIONID=B186CADFAB03E24D26AD4385845B70B9' -d a --compressed
